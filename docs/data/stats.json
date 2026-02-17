@@ -1,76 +1,88 @@
 {
   "n": 2,
   "counters": {
-    "sec1/ministere": {
-      "autre": 1,
-      "plan": 1
+    "sec1/ministere_display": {
+      "Autre (à préciser)": 1,
+      "Ministère du Plan": 1
     },
     "sec1/sexe": {
-      "feminin": 1,
-      "masculin": 1
+      "Féminin": 1,
+      "Masculin": 1
     },
     "sec1/fonction": {
-      "autre": 1,
-      "ministre": 1
+      "Autre": 1,
+      "Ministre": 1
     },
     "sec1/annees_experience_ministere": {
-      "7_10": 1,
-      "4_6": 1
+      "7 à 10 ans": 1,
+      "4 à 6 ans": 1
     },
     "sec1/formation_genre": {
-      "oui": 1,
-      "non": 1
+      "Oui": 1,
+      "Non": 1
     },
     "sec2/compr_genre": {
-      "bonne": 1,
-      "faible": 1
+      "Bonne": 1,
+      "Faible": 1
+    },
+    "sec2/diff_sexe_genre": {
+      "Oui": 2
+    },
+    "sec2/genre_biologique": {
+      "Faux": 2
     },
     "sec2/politiques_genre_connaissance": {
-      "oui": 1,
-      "non": 1
+      "Oui": 1,
+      "Non": 1
+    },
+    "sec2/importance_genre_politiques_publiques": {
+      "Oui": 2
     },
     "sec3/cellule_genre": {
-      "oui": 1,
-      "non": 1
+      "Oui": 1,
+      "Non": 1
     },
     "sec3/plan_action_genre": {
-      "non": 2
+      "Non": 2
     },
     "sec3/indicateurs_genre": {
-      "non": 2
+      "Non": 2
     },
     "sec3/outils_guide_genre": {
-      "non": 2
+      "Non": 2
     },
-    "sec5/gtg_connaissance": {
-      "oui": 1,
-      "non": 1
+    "sec3/frequence_formations_genre": {
+      "Annuelle": 2
     },
     "sec4/importance_genre_secteur": {
-      "oui": 2
+      "Oui": 2
+    },
+    "sec5/gtg_connaissance": {
+      "Oui": 1,
+      "Non": 1
     }
   },
   "multi": {
-    "sec4/obstacles": {
-      "obs2": 1,
-      "obs3": 1,
-      "obs4": 2,
-      "obs1": 1,
-      "obs7": 1
+    "sec4/obstacles_display": {
+      "Manque de ressources humaines qualifiées": 1,
+      "Faible engagement de la hiérarchie": 1,
+      "Absence de données désagrégées par sexe": 2,
+      "Manque de financement dédié au genre": 1,
+      "Priorités sectorielles non sensibles au genre": 1
     },
-    "sec4/actions": {
-      "act2": 2,
-      "act4": 2,
-      "act1": 1,
-      "act3": 1,
-      "act5": 1,
-      "act6": 1
+    "sec4/actions_display": {
+      "Nommer et former les points focaux genre": 2,
+      "Produire des données désagrégées par sexe": 2,
+      "Renforcer les capacités du personnel": 1,
+      "Intégrer le genre dans la planification et le budget": 1,
+      "Allouer un budget spécifique au genre": 1,
+      "Créer un cadre de concertation interinstitutionnel": 1
     },
-    "sec5/sgtgtg_connus": {
-      "vbg": 2,
-      "rpeaf": 2,
-      "essjf": 1,
-      "pplf": 1
+    "sec5/sgtgtg_connus_display": {
+      "Violences Basées sur le Genre (VBG)": 2,
+      "Renforcement du Pouvoir Économique et Autonomisation de la Femme (RPEAF)": 2,
+      "Égalité des Sexes et Habilitation du Statut Juridique de la Femme (ESSJF)": 1,
+      "Participation Politique de la Femme et Leadership Féminin (PPLF)": 1
     }
   }
 }

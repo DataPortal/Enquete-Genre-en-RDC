@@ -1,0 +1,122 @@
+[
+  {
+    "section": "Profil",
+    "title": "Ministère",
+    "field": "sec1/ministere_display",
+    "chart": "bar"
+  },
+  {
+    "section": "Profil",
+    "title": "Sexe du répondant",
+    "field": "sec1/sexe",
+    "chart": "donut"
+  },
+  {
+    "section": "Profil",
+    "title": "Fonction actuelle",
+    "field": "sec1/fonction",
+    "chart": "bar"
+  },
+  {
+    "section": "Profil",
+    "title": "Expérience au sein du ministère",
+    "field": "sec1/annees_experience_ministere",
+    "chart": "bar"
+  },
+  {
+    "section": "Profil",
+    "title": "A déjà suivi une formation genre ?",
+    "field": "sec1/formation_genre",
+    "chart": "donut"
+  },
+  {
+    "section": "Connaissances",
+    "title": "Compréhension du concept de genre",
+    "field": "sec2/compr_genre",
+    "chart": "bar"
+  },
+  {
+    "section": "Connaissances",
+    "title": "Connaît la différence sexe/genre ?",
+    "field": "sec2/diff_sexe_genre",
+    "chart": "donut"
+  },
+  {
+    "section": "Connaissances",
+    "title": "« Le genre est principalement biologique »",
+    "field": "sec2/genre_biologique",
+    "chart": "donut"
+  },
+  {
+    "section": "Connaissances",
+    "title": "Connaît une politique genre ?",
+    "field": "sec2/politiques_genre_connaissance",
+    "chart": "donut"
+  },
+  {
+    "section": "Connaissances",
+    "title": "Le genre est important en politiques publiques ?",
+    "field": "sec2/importance_genre_politiques_publiques",
+    "chart": "donut"
+  },
+  {
+    "section": "Pratiques institutionnelles",
+    "title": "Présence d’une Cellule Genre",
+    "field": "sec3/cellule_genre",
+    "chart": "donut"
+  },
+  {
+    "section": "Pratiques institutionnelles",
+    "title": "Plan/stratégie genre",
+    "field": "sec3/plan_action_genre",
+    "chart": "donut"
+  },
+  {
+    "section": "Pratiques institutionnelles",
+    "title": "Indicateurs sensibles au genre",
+    "field": "sec3/indicateurs_genre",
+    "chart": "donut"
+  },
+  {
+    "section": "Pratiques institutionnelles",
+    "title": "Accès à des outils/guides genre",
+    "field": "sec3/outils_guide_genre",
+    "chart": "donut"
+  },
+  {
+    "section": "Pratiques institutionnelles",
+    "title": "Fréquence des formations genre",
+    "field": "sec3/frequence_formations_genre",
+    "chart": "bar"
+  },
+  {
+    "section": "Perceptions & obstacles",
+    "title": "Le genre est important pour votre secteur ?",
+    "field": "sec4/importance_genre_secteur",
+    "chart": "donut"
+  },
+  {
+    "section": "Perceptions & obstacles",
+    "title": "Obstacles à l’intégration du genre (Top)",
+    "field": "sec4/obstacles_display",
+    "chart": "bar_multi"
+  },
+  {
+    "section": "Perceptions & obstacles",
+    "title": "Actions prioritaires (Top)",
+    "field": "sec4/actions_display",
+    "chart": "bar_multi"
+  },
+  {
+    "section": "Coordination (GTG)",
+    "title": "A déjà entendu parler du GTG ?",
+    "field": "sec5/gtg_connaissance",
+    "chart": "donut"
+  },
+  {
+    "section": "Coordination (GTG)",
+    "title": "Sous-groupes GTG connus (Top)",
+    "field": "sec5/sgtgtg_connus_display",
+    "chart": "bar_multi"
+  }
+]
