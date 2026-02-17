@@ -5,14 +5,12 @@ on:
   schedule:
     - cron: "*/5 * * * *"
 
-# important pour autoriser le push automatique
 permissions:
   contents: write
 
-# évite les conflits si plusieurs runs se chevauchent
 concurrency:
-  group: kobo-sync
-  cancel-in-progress: false
+  group: kobo-sync-main
+  cancel-in-progress: true
 
 jobs:
   sync:
@@ -20,7 +18,7 @@ jobs:
 
     steps:
       # ---------------------------------------------------
-      # 1. Checkout repo
+      # 1) Checkout
       # ---------------------------------------------------
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -28,7 +26,7 @@ jobs:
           fetch-depth: 0
 
       # ---------------------------------------------------
-      # 2. Setup Python
+      # 2) Python
       # ---------------------------------------------------
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -36,7 +34,7 @@ jobs:
           python-version: "3.11"
 
       # ---------------------------------------------------
-      # 3. Install dependencies
+      # 3) Dependencies
       # ---------------------------------------------------
       - name: Install dependencies
         run: |
@@ -44,7 +42,7 @@ jobs:
           pip install -r scripts/requirements.txt
 
       # ---------------------------------------------------
-      # 4. Fetch Kobo data (JSON brut)
+      # 4) Fetch Kobo data (raw JSON)
       # ---------------------------------------------------
       - name: Fetch Kobo data
         env:
@@ -55,48 +53,50 @@ jobs:
           python scripts/fetch_kobo.py
 
       # ---------------------------------------------------
-      # 5. Transform data (flat + stats)
+      # 5) Transform (flat + table + stats + questions)
       # ---------------------------------------------------
       - name: Transform data
         run: |
           python scripts/transform.py
 
       # ---------------------------------------------------
-      # 6. Automatic analysis + recommendations
+      # 6) Global recommendations (from stats)
       # ---------------------------------------------------
-      - name: Analyze & generate recommendations
+      - name: Generate global recommendations
         run: |
           python scripts/analyze_recos.py
-      # ---------------------------------------------------
-      - name: Global recommendations
-        run: |
-          python scripts/analyze_recos_global.py
-      # ---------------------------------------------------
-      # 7. Commit & Push uniquement si changement
-      # ---------------------------------------------------
-      - name: Transform (table + stats + questions)
-        run: |
-          python scripts/transform.py
 
-      - name: Global recommendations
-        run: |
-          python scripts/analyze_recos_global.py
-      - name: Commit and push changes
+      # ---------------------------------------------------
+      # 7) Commit if changes, then rebase & push
+      # ---------------------------------------------------
+      - name: Commit changes (if any)
         run: |
           git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
+          # Add ONLY generated artifacts
           git add \
             docs/data/submissions.json \
             docs/data/submissions_flat.json \
+            docs/data/submissions_table.json \
             docs/data/stats.json \
-            docs/data/analysis_recos.json
+            docs/data/questions.json \
+            docs/data/recommendations_global.json
 
-          # vérifier s'il y a réellement des changements
           if git diff --cached --quiet; then
             echo "No changes detected."
             exit 0
           fi
 
           git commit -m "chore(data): auto sync Kobo data"
-          git push
+
+      - name: Rebase on latest main & push
+        run: |
+          # If no commit happened, nothing to push
+          if git log -1 --pretty=%B | grep -q "chore(data): auto sync Kobo data"; then
+            git fetch origin main
+            git rebase origin/main
+            git push origin HEAD:main
+          else
+            echo "No new commit created, skipping push."
+          fi
