@@ -74,6 +74,13 @@ jobs:
       # ---------------------------------------------------
       # 7. Commit & Push uniquement si changement
       # ---------------------------------------------------
+      - name: Transform (table + stats + questions)
+        run: |
+          python scripts/transform.py
+
+      - name: Global recommendations
+        run: |
+          python scripts/analyze_recos_global.py
       - name: Commit and push changes
         run: |
           git config user.name "github-actions[bot]"
