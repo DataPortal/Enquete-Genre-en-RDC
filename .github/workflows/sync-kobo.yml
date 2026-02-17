@@ -5,9 +5,11 @@ on:
   schedule:
     - cron: "*/5 * * * *"
 
+# important pour autoriser le push automatique
 permissions:
   contents: write
 
+# évite les conflits si plusieurs runs se chevauchent
 concurrency:
   group: kobo-sync
   cancel-in-progress: false
@@ -17,22 +19,34 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      # ---------------------------------------------------
+      # 1. Checkout repo
+      # ---------------------------------------------------
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
+      # ---------------------------------------------------
+      # 2. Setup Python
+      # ---------------------------------------------------
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
+      # ---------------------------------------------------
+      # 3. Install dependencies
+      # ---------------------------------------------------
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r scripts/requirements.txt
 
-      - name: Fetch Kobo JSON
+      # ---------------------------------------------------
+      # 4. Fetch Kobo data (JSON brut)
+      # ---------------------------------------------------
+      - name: Fetch Kobo data
         env:
           KOBO_SERVER: ${{ secrets.KOBO_SERVER }}
           KOBO_ASSET_UID: ${{ secrets.KOBO_ASSET_UID }}
@@ -40,21 +54,39 @@ jobs:
         run: |
           python scripts/fetch_kobo.py
 
-      - name: Transform (flat + stats)
+      # ---------------------------------------------------
+      # 5. Transform data (flat + stats)
+      # ---------------------------------------------------
+      - name: Transform data
         run: |
           python scripts/transform.py
 
-      - name: Commit & push if changed
+      # ---------------------------------------------------
+      # 6. Automatic analysis + recommendations
+      # ---------------------------------------------------
+      - name: Analyze & generate recommendations
+        run: |
+          python scripts/analyze_recos.py
+
+      # ---------------------------------------------------
+      # 7. Commit & Push uniquement si changement
+      # ---------------------------------------------------
+      - name: Commit and push changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          git add docs/data/submissions.json docs/data/submissions_flat.json docs/data/stats.json
+          git add \
+            docs/data/submissions.json \
+            docs/data/submissions_flat.json \
+            docs/data/stats.json \
+            docs/data/analysis_recos.json
 
+          # vérifier s'il y a réellement des changements
           if git diff --cached --quiet; then
-            echo "No changes to commit."
+            echo "No changes detected."
             exit 0
           fi
 
-          git commit -m "chore(data): sync Kobo submissions"
+          git commit -m "chore(data): auto sync Kobo data"
           git push
