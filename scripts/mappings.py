@@ -1,16 +1,9 @@
 # scripts/mappings.py
 
-# Generic yes/no mappings
-YES_NO = {
-    "oui": "Oui",
-    "non": "Non",
-    "np": "Partiellement / Je ne sais pas",
-}
+YES_NO = {"oui": "Oui", "non": "Non"}
+YES_NO_NP = {"oui": "Oui", "non": "Non", "np": "Partiellement / Je ne sais pas"}
 
-SEXE = {
-    "feminin": "Féminin",
-    "masculin": "Masculin",
-}
+SEXE = {"feminin": "Féminin", "masculin": "Masculin"}
 
 FONCTION = {
     "ministre": "Ministre",
@@ -32,16 +25,8 @@ EXPERIENCE = {
     "16_plus": "Plus de 15 ans",
 }
 
-NIVEAU = {
-    "bonne": "Bonne",
-    "moyenne": "Moyenne",
-    "faible": "Faible",
-}
-
-VRAI_FAUX = {
-    "vrai": "Vrai",
-    "faux": "Faux",
-}
+NIVEAU = {"bonne": "Bonne", "moyenne": "Moyenne", "faible": "Faible"}
+VRAI_FAUX = {"vrai": "Vrai", "faux": "Faux"}
 
 FREQ = {
     "mensuelle": "Mensuelle",
@@ -132,7 +117,6 @@ def map_one(value, mapping: dict):
     return value
 
 def map_multi(value, mapping: dict):
-    # multiselect like: "obs2 obs3 obs4"
     if value is None:
         return []
     if isinstance(value, list):
