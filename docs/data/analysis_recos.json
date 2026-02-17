@@ -1,0 +1,114 @@
+{
+  "generated_at": "2026-02-17T21:00:49Z",
+  "summary": {
+    "n": 2,
+    "score_distribution": {
+      "4": 1,
+      "0": 1
+    },
+    "priority_distribution": {
+      "Moyenne": 1,
+      "Haute": 1
+    },
+    "level_distribution": {
+      "Moyen": 1,
+      "Faible": 1
+    }
+  },
+  "results": [
+    {
+      "_id": 658716774,
+      "_uuid": "cf722cde-2e40-491b-9856-202e9512bae9",
+      "_submission_time": "2026-01-29T08:47:35",
+      "ministere": "autre",
+      "fonction": "autre",
+      "sexe": "feminin",
+      "experience": "7_10",
+      "score_maturite_0_7": 4,
+      "niveau_maturite": "Moyen",
+      "priorite_actions": "Moyenne",
+      "gaps_cles": [
+        "Absence de plan d’action genre",
+        "Absence d’indicateurs genre",
+        "Absence d’outils/guide genre"
+      ],
+      "forces": [
+        "Cellule genre existante",
+        "Formation genre suivie",
+        "Politiques genre connues",
+        "GTG connu"
+      ],
+      "recommandations": [
+        "Élaborer un plan d’action genre 12 mois avec activités, responsabilités, échéances, coûts.",
+        "Aligner le plan sur les priorités nationales et les engagements sectoriels.",
+        "Définir un set minimal d’indicateurs (process/output/outcome) et un calendrier de suivi.",
+        "Mettre en place un tableau de bord interne (même simple) pour le monitoring.",
+        "Produire un mini-guide opérationnel (checklist mainstreaming + exemples) et le diffuser.",
+        "Standardiser des outils : fiche projet sensible au genre, grille d’analyse, modèle rapport.",
+        "Capitaliser sur la/les politique(s) citée(s) (PNE) pour ancrer les actions et harmoniser les référentiels.",
+        "Activer la participation/liaison avec les sous-groupes cités (vbg, rpeaf) pour accélérer coordination et partage d’outils.",
+        "Prioriser le traitement des obstacles déclarés (obs2, obs3, obs4).",
+        "Consolider et planifier les actions proposées (act2, act4), avec responsabilités et échéances."
+      ],
+      "formation_genre": "oui",
+      "compr_genre": "bonne",
+      "politiques_connues": "oui",
+      "cellule_genre": "oui",
+      "gtg_connaissance": "oui",
+      "obstacles": "obs2 obs3 obs4",
+      "actions": "act2 act4",
+      "reco_verbatim": "RAS"
+    },
+    {
+      "_id": 668015888,
+      "_uuid": "7f75643e-80e0-450b-aefb-1493c4412485",
+      "_submission_time": "2026-02-10T09:18:47",
+      "ministere": "plan",
+      "fonction": "ministre",
+      "sexe": "masculin",
+      "experience": "4_6",
+      "score_maturite_0_7": 0,
+      "niveau_maturite": "Faible",
+      "priorite_actions": "Haute",
+      "gaps_cles": [
+        "Absence de cellule genre / dispositif institutionnel",
+        "Absence de plan d’action genre",
+        "Absence d’indicateurs genre",
+        "Absence d’outils/guide genre",
+        "Besoin de formation genre",
+        "Faible connaissance des politiques genre",
+        "Faible connaissance de la coordination (GTG)"
+      ],
+      "forces": [],
+      "recommandations": [
+        "Mettre en place/officialiser une cellule genre (note de service), clarifier mandat et responsabilités.",
+        "Désigner des points focaux (ToR) et définir un circuit de reporting (mensuel).",
+        "Élaborer un plan d’action genre 12 mois avec activités, responsabilités, échéances, coûts.",
+        "Aligner le plan sur les priorités nationales et les engagements sectoriels.",
+        "Définir un set minimal d’indicateurs (process/output/outcome) et un calendrier de suivi.",
+        "Mettre en place un tableau de bord interne (même simple) pour le monitoring.",
+        "Produire un mini-guide opérationnel (checklist mainstreaming + exemples) et le diffuser.",
+        "Standardiser des outils : fiche projet sensible au genre, grille d’analyse, modèle rapport.",
+        "Organiser une formation courte (2–4h) sur concepts genre, politiques nationales, et application sectorielle.",
+        "Prévoir un recyclage annuel + coaching pratique sur dossiers/projets réels.",
+        "Diffuser une fiche synthèse des politiques nationales (ex: PNE et autres) + session d’appropriation.",
+        "Créer un répertoire (drive) des référentiels et rendre l’accès systématique.",
+        "Organiser un onboarding coordination : rôle du GTG, canaux, sous-groupes, modalités de participation.",
+        "Relier les priorités sectorielles aux sous-groupes pertinents (ex: VBG, ESSJF, etc.).",
+        "Renforcer la compréhension du concept genre (différence sexe/genre, stéréotypes, inclusion), via exercices pratiques.",
+        "Inclure des cas d’usage sectoriels et des exemples de mesures correctives.",
+        "Activer la participation/liaison avec les sous-groupes cités (vbg, essjf, rpeaf, pplf) pour accélérer coordination et partage d’outils.",
+        "Prioriser le traitement des obstacles déclarés (obs1, obs4, obs7).",
+        "Consolider et planifier les actions proposées (act1, act2, act3, act4, act5, act6), avec responsabilités et échéances."
+      ],
+      "formation_genre": "non",
+      "compr_genre": "faible",
+      "politiques_connues": "non",
+      "cellule_genre": "non",
+      "gtg_connaissance": "non",
+      "obstacles": "obs1 obs4 obs7",
+      "actions": "act1 act2 act3 act4 act5 act6",
+      "reco_verbatim": "Intégrer systématiquement l'approche genre dans les politiques nationales."
+    }
+  ]
+}
