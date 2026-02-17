@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Dashboard — Kobo</title>
+  <title>Dashboard — Enquête Genre</title>
   <link rel="stylesheet" href="style.css"/>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 </head>
@@ -11,89 +11,70 @@
   <header class="topbar">
     <div class="topbar-inner">
       <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
+        <div class="logo"></div>
         <div>
-          <h1>Plateforme Kobo — Nations Unies (style)</h1>
-          <p>Dashboard statistique • Réponses • Analyse & recommandations</p>
+          <h1>Enquête Genre — Dashboard</h1>
+          <p>Statistiques question par question (UN Blue + UNFPA Pink)</p>
         </div>
       </div>
 
-      <nav class="nav" aria-label="Navigation">
+      <nav class="nav">
         <a class="active" href="./index.html">Dashboard</a>
         <a href="./responses.html">Réponses</a>
-        <a href="./analysis.html">Analyse & recommandations</a>
+        <a href="./recommendations.html">Recommandations</a>
       </nav>
 
       <div class="meta">
         <div class="badge"><span class="dot"></span><span>Mise à jour : <strong id="lastUpdate">—</strong></span></div>
-        <div class="line">Nb réponses : <strong id="nResponses">—</strong></div>
+        <div class="line">Nb réponses (consentement oui) : <strong id="nResponses">—</strong></div>
       </div>
     </div>
   </header>
 
   <main class="container">
     <section class="card">
-      <h2>Vue d’ensemble</h2>
-      <p class="subhead">KPI principaux (issus de <code>stats.json</code> et <code>submissions_flat.json</code>)</p>
+      <div class="sectionTitle">
+        <div>
+          <h2 style="margin:0">Chiffres clés</h2>
+          <p class="subhead">Synthèse rapide pour une lecture immédiate.</p>
+        </div>
+        <span class="sectionChip">Vue harmonisée • KPI + Graphiques</span>
+      </div>
 
       <div class="grid">
         <div class="kpi col-3">
-          <div class="label">Nombre de réponses</div>
+          <div class="label">Réponses analysées</div>
           <div class="value" id="kpiN">—</div>
-          <div class="hint">Total soumissions synchronisées</div>
+          <div class="hint">Uniquement consentement = Oui</div>
         </div>
         <div class="kpi col-3">
-          <div class="label">Consentement (oui)</div>
-          <div class="value" id="kpiConsent">—</div>
+          <div class="label">Formation genre (Oui)</div>
+          <div class="value" id="kpiFormation">—</div>
           <div class="hint">% des répondants</div>
         </div>
         <div class="kpi col-3">
-          <div class="label">Cellule genre (oui)</div>
+          <div class="label">Cellule Genre (Oui)</div>
           <div class="value" id="kpiCellule">—</div>
           <div class="hint">% des répondants</div>
         </div>
         <div class="kpi col-3">
-          <div class="label">Formation genre (oui)</div>
-          <div class="value" id="kpiFormation">—</div>
+          <div class="label">Politiques genre connues (Oui)</div>
+          <div class="value" id="kpiPol">—</div>
           <div class="hint">% des répondants</div>
         </div>
       </div>
     </section>
 
     <section class="card">
-      <h2>Statistiques & graphiques</h2>
-      <p class="subhead">Graphiques calculés automatiquement.</p>
-
-      <div class="grid">
-        <div class="col-6">
-          <h2 style="margin-top:0">Sexe</h2>
-          <canvas id="chartSexe"></canvas>
+      <div class="sectionTitle">
+        <div>
+          <h2 style="margin:0">Statistiques détaillées</h2>
+          <p class="subhead">Affichage par section (Profil → Connaissances → Pratiques → Obstacles → GTG).</p>
         </div>
-        <div class="col-6">
-          <h2 style="margin-top:0">Ministère</h2>
-          <canvas id="chartMinistere"></canvas>
-        </div>
-
-        <div class="col-6">
-          <h2 style="margin-top:0">Compréhension du genre</h2>
-          <canvas id="chartCompr"></canvas>
-        </div>
-        <div class="col-6">
-          <h2 style="margin-top:0">Politiques genre connues</h2>
-          <canvas id="chartPolConnues"></canvas>
-        </div>
-
-        <div class="col-6">
-          <h2 style="margin-top:0">Obstacles (Top)</h2>
-          <canvas id="chartObstacles"></canvas>
-          <p class="small">Codes (obs1, obs2…) tant que le mapping libellés n’est pas fourni.</p>
-        </div>
-        <div class="col-6">
-          <h2 style="margin-top:0">Actions proposées (Top)</h2>
-          <canvas id="chartActions"></canvas>
-          <p class="small">Codes (act1, act2…) tant que le mapping libellés n’est pas fourni.</p>
-        </div>
+        <span class="sectionChip">Ordre aligné sur le questionnaire</span>
       </div>
+
+      <div id="dashboardSections"></div>
     </section>
   </main>
 
