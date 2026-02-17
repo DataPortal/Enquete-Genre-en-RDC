@@ -67,7 +67,10 @@ jobs:
       - name: Analyze & generate recommendations
         run: |
           python scripts/analyze_recos.py
-
+      # ---------------------------------------------------
+      - name: Global recommendations
+        run: |
+          python scripts/analyze_recos_global.py
       # ---------------------------------------------------
       # 7. Commit & Push uniquement si changement
       # ---------------------------------------------------
