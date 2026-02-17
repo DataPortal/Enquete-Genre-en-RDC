@@ -1,205 +1,143 @@
 import json
 from pathlib import Path
 from datetime import datetime
-from collections import Counter
 
-from scripts.mappings import (
-    YES_NO, NIVEAU,
-    map_one
-)
+# Import local (car on exécute: python scripts/analyze_recos.py)
+from mappings import YES_NO, YES_NO_NP  # noqa: F401  (si tu veux les utiliser plus tard)
 
-SCORE_RULES = [
-    ("cellule_genre", lambda r: (r.get("sec3/cellule_genre") == "Oui"), "Cellule genre existante"),
-    ("plan_action",   lambda r: (r.get("sec3/plan_action_genre") == "Oui"), "Plan d’action genre disponible"),
-    ("indicateurs",   lambda r: (r.get("sec3/indicateurs_genre") == "Oui"), "Indicateurs genre définis"),
-    ("outils_guide",  lambda r: (r.get("sec3/outils_guide_genre") == "Oui"), "Outils/guide genre disponibles"),
-    ("formation",     lambda r: (r.get("sec1/formation_genre") == "Oui"), "Formation genre suivie"),
-    ("politiques",    lambda r: (r.get("sec2/politiques_genre_connaissance") == "Oui"), "Politiques genre connues"),
-    ("gtg",           lambda r: (r.get("sec5/gtg_connaissance") == "Oui"), "GTG connu"),
-]
+def pct(counter: dict, key: str):
+    if not counter:
+        return None
+    total = sum(v for k, v in counter.items() if k != "_missing")
+    if total == 0:
+        return None
+    return round((counter.get(key, 0) / total) * 100)
 
-GAP_LABELS = {
-    "cellule_genre": "Absence de cellule genre / dispositif institutionnel",
-    "plan_action": "Absence de plan d’action genre",
-    "indicateurs": "Absence d’indicateurs genre",
-    "outils_guide": "Absence d’outils/guide genre",
-    "formation": "Besoin de formation genre",
-    "politiques": "Faible connaissance des politiques genre",
-    "gtg": "Faible connaissance de la coordination (GTG)",
-}
-
-RECO_TEMPLATES = {
-    "cellule_genre": [
-        "Mettre en place/officialiser une cellule genre (note de service), clarifier mandat et responsabilités.",
-        "Désigner des points focaux (ToR) et définir un circuit de reporting (mensuel).",
-    ],
-    "plan_action": [
-        "Élaborer un plan d’action genre 12 mois avec activités, responsabilités, échéances, coûts.",
-        "Aligner le plan sur les priorités nationales et les engagements sectoriels.",
-    ],
-    "indicateurs": [
-        "Définir un set minimal d’indicateurs (process/output/outcome) et un calendrier de suivi.",
-        "Mettre en place un tableau de bord interne pour le monitoring.",
-    ],
-    "outils_guide": [
-        "Produire un mini-guide opérationnel (checklist mainstreaming + exemples) et le diffuser.",
-        "Standardiser des outils : fiche projet sensible au genre, grille d’analyse, modèle rapport.",
-    ],
-    "formation": [
-        "Organiser une formation courte (2–4h) sur concepts genre, politiques nationales, et application sectorielle.",
-        "Prévoir un recyclage annuel + coaching pratique sur dossiers/projets réels.",
-    ],
-    "politiques": [
-        "Diffuser une fiche synthèse des politiques nationales + session d’appropriation.",
-        "Créer un répertoire (drive) des référentiels et rendre l’accès systématique.",
-    ],
-    "gtg": [
-        "Organiser un onboarding coordination : rôle du GTG, canaux, sous-groupes, modalités de participation.",
-        "Relier les priorités sectorielles aux sous-groupes pertinents (VBG, ESSJF, RPEAF, PPLF).",
-    ],
-}
-
-COMPREHENSION_EXTRA = {
-    "Faible": [
-        "Renforcer la compréhension du concept genre via exercices pratiques et cas d’usage sectoriels.",
-        "Inclure des exemples de mesures correctives (données, planification, budget, suivi).",
-    ]
-}
-
-def maturity_level(score: int) -> str:
-    if score <= 2:
-        return "Faible"
-    if score <= 5:
-        return "Moyen"
-    return "Élevé"
-
-def priority_from_gaps(gaps_keys):
-    n = len(gaps_keys)
-    if n >= 4:
-        return "Haute"
-    if n >= 2:
-        return "Moyenne"
-    return "Basse"
-
-def split_bullets(s):
-    # our transform stores multi as "a • b • c"
-    if not s:
-        return []
-    return [x.strip() for x in str(s).split("•") if x.strip()]
-
-def build_recos(record, missing_keys):
-    recos = []
-    for g in missing_keys:
-        recos.extend(RECO_TEMPLATES.get(g, []))
-
-    compr = record.get("sec2/compr_genre")
-    if compr in COMPREHENSION_EXTRA:
-        recos.extend(COMPREHENSION_EXTRA[compr])
-
-    pol_list = (record.get("sec2/politiques_genre_liste") or "").strip()
-    if pol_list:
-        recos.append(f"Capitaliser sur la/les politique(s) citée(s) ({pol_list}) pour ancrer les actions et harmoniser les référentiels.")
-
-    sgt = split_bullets(record.get("sec5/sgtgtg_connus"))
-    if sgt:
-        recos.append(f"Activer la participation/liaison avec les sous-groupes cités ({', '.join(sgt)}).")
-
-    obs = split_bullets(record.get("sec4/obstacles"))
-    acts = split_bullets(record.get("sec4/actions"))
-    if obs:
-        recos.append(f"Prioriser le traitement des obstacles : {', '.join(obs)}.")
-    if acts:
-        recos.append(f"Planifier et opérationnaliser les actions proposées : {', '.join(acts)} (responsables + échéances).")
-
-    # dedupe
-    seen = set()
-    out = []
-    for x in recos:
-        if x not in seen:
-            seen.add(x)
-            out.append(x)
-    return out
-
-def analyze_one(record):
-    score = 0
-    achieved = []
-    missing_keys = []
-
-    for key, fn, label in SCORE_RULES:
-        ok = False
-        try:
-            ok = bool(fn(record))
-        except Exception:
-            ok = False
-
-        if ok:
-            score += 1
-            achieved.append(label)
-        else:
-            missing_keys.append(key)
-
-    gaps = [GAP_LABELS.get(k, k) for k in missing_keys]
-    level = maturity_level(score)
-    priority = priority_from_gaps(missing_keys)
-
-    recos = build_recos(record, missing_keys)
-
-    return {
-        "_id": record.get("_id"),
-        "_uuid": record.get("_uuid"),
-        "_submission_time": record.get("_submission_time"),
-        "ministere": record.get("sec1/ministere"),
-        "fonction": record.get("sec1/fonction"),
-        "sexe": record.get("sec1/sexe"),
-        "experience": record.get("sec1/annees_experience_ministere"),
-        "score_maturite_0_7": score,
-        "niveau_maturite": level,
-        "priorite_actions": priority,
-        "gaps_cles": gaps,
-        "forces": achieved,
-        "recommandations": recos,
-        "reco_verbatim": record.get("sec6/recommandations"),
-        "obstacles": record.get("sec4/obstacles"),
-        "actions": record.get("sec4/actions"),
-        "sgtgtg_connus": record.get("sec5/sgtgtg_connus"),
-    }
-
-def summarize(rows):
-    score_counts = Counter()
-    priority_counts = Counter()
-    level_counts = Counter()
-    gap_counts = Counter()
-
-    for r in rows:
-        score_counts[str(r["score_maturite_0_7"])] += 1
-        priority_counts[r["priorite_actions"]] += 1
-        level_counts[r["niveau_maturite"]] += 1
-        for g in (r.get("gaps_cles") or []):
-            gap_counts[g] += 1
-
-    return {
-        "n": len(rows),
-        "score_distribution": dict(score_counts),
-        "priority_distribution": dict(priority_counts),
-        "level_distribution": dict(level_counts),
-        "top_gaps": dict(gap_counts.most_common(10)),
-    }
+def top_items(d: dict, n=6):
+    items = [(k, v) for k, v in (d or {}).items() if k and k != "_missing"]
+    items.sort(key=lambda x: x[1], reverse=True)
+    return items[:n]
 
 def main():
-    in_flat = Path("docs/data/submissions_flat.json")
-    out_path = Path("docs/data/analysis_recos.json")
+    stats_path = Path("docs/data/stats.json")
+    out_path = Path("docs/data/recommendations_global.json")
 
-    flat = json.loads(in_flat.read_text(encoding="utf-8"))
-    rows = [analyze_one(r) for r in flat]
+    stats = json.loads(stats_path.read_text(encoding="utf-8"))
+    c = stats.get("counters", {})
+    m = stats.get("multi", {})
+    n = stats.get("n", 0)
+
+    # Signaux clés (% Oui)
+    cellule_oui = pct(c.get("sec3/cellule_genre", {}), "Oui")
+    plan_oui = pct(c.get("sec3/plan_action_genre", {}), "Oui")
+    plan_partial = pct(c.get("sec3/plan_action_genre", {}), "Partiellement / Je ne sais pas")
+    ind_oui = pct(c.get("sec3/indicateurs_genre", {}), "Oui")
+    ind_partial = pct(c.get("sec3/indicateurs_genre", {}), "Partiellement / Je ne sais pas")
+    outils_oui = pct(c.get("sec3/outils_guide_genre", {}), "Oui")
+    formation_oui = pct(c.get("sec1/formation_genre", {}), "Oui")
+    politiques_oui = pct(c.get("sec2/politiques_genre_connaissance", {}), "Oui")
+    gtg_oui = pct(c.get("sec5/gtg_connaissance", {}), "Oui")
+
+    top_obstacles = top_items(m.get("sec4/obstacles_display", {}), 8)
+    top_actions = top_items(m.get("sec4/actions_display", {}), 8)
+
+    # Recos globales (règles simples, lisibles)
+    recos = []
+
+    # Institutionnalisation
+    if cellule_oui is None or cellule_oui < 60:
+        recos.append(
+            "Institutionnaliser une Cellule Genre dans chaque ministère (mandat, ToR, points focaux, reporting mensuel) "
+            "et clarifier les responsabilités de coordination."
+        )
+
+    # Plan / stratégie
+    if plan_oui is None or plan_oui < 55:
+        if (plan_partial or 0) >= 20:
+            recos.append(
+                "Transformer les plans/stratégies genre partiels en documents formalisés (objectifs, activités, coûts, échéances) "
+                "et intégrer un mécanisme de suivi trimestriel."
+            )
+        else:
+            recos.append(
+                "Élaborer/actualiser un plan ou une stratégie genre (12 mois) aligné sur les cadres nationaux/internationaux, "
+                "avec budget estimatif et calendrier de mise en œuvre."
+            )
+
+    # Indicateurs
+    if ind_oui is None or ind_oui < 55:
+        if (ind_partial or 0) >= 20:
+            recos.append(
+                "Standardiser l’intégration d’indicateurs sensibles au genre (minimum commun) et renforcer la désagrégation par sexe "
+                "dans les outils de reporting sectoriels."
+            )
+        else:
+            recos.append(
+                "Définir un set minimal d’indicateurs sensibles au genre (process/output/outcome) et rendre obligatoire la désagrégation par sexe "
+                "dans les rapports et tableaux de bord."
+            )
+
+    # Outils / guide
+    if outils_oui is None or outils_oui < 60:
+        recos.append(
+            "Déployer un kit d’outils opérationnels (checklist mainstreaming, fiche projet, grille d’analyse, modèle rapport) "
+            "accessible à tous (drive/portail) et accompagné d’un court guide d’utilisation."
+        )
+
+    # Formation
+    if formation_oui is None or formation_oui < 60:
+        recos.append(
+            "Mettre en œuvre un plan de renforcement des capacités (sessions courtes + coaching sur cas réels) "
+            "différencié par profils (SG, directeurs, chefs de division, agents)."
+        )
+
+    # Politiques genre
+    if politiques_oui is None or politiques_oui < 60:
+        recos.append(
+            "Renforcer l’appropriation des politiques genre (CEDAW, Beijing, Rés. 1325, cadres nationaux) via fiches synthèse "
+            "et ateliers ciblés par ministère/secteur."
+        )
+
+    # GTG / coordination
+    if gtg_oui is None or gtg_oui < 60:
+        recos.append(
+            "Accroître la visibilité et la participation au Groupe Thématique du Genre (GTG) et à ses sous-groupes "
+            "via onboarding, calendrier partagé et points de contact par ministère."
+        )
+
+    # Ancrage “evidence-based” sur obstacles/actions
+    if top_obstacles:
+        recos.append(
+            "Mettre en place un plan de mitigation des obstacles les plus fréquents (Top obstacles), avec responsables, échéances "
+            "et indicateurs de suivi."
+        )
+    if top_actions:
+        recos.append(
+            "Traduire les actions prioritaires (Top actions) en plan opérationnel commun : activités, responsables, ressources nécessaires "
+            "et modalités de redevabilité."
+        )
 
     payload = {
         "generated_at": datetime.utcnow().isoformat(timespec="seconds") + "Z",
-        "summary": summarize(rows),
-        "results": rows,
+        "n": n,
+        "signals": {
+            "cellule_genre_oui_pct": cellule_oui,
+            "plan_action_oui_pct": plan_oui,
+            "plan_action_partial_pct": plan_partial,
+            "indicateurs_oui_pct": ind_oui,
+            "indicateurs_partial_pct": ind_partial,
+            "outils_oui_pct": outils_oui,
+            "formation_oui_pct": formation_oui,
+            "politiques_connues_oui_pct": politiques_oui,
+            "gtg_connu_oui_pct": gtg_oui,
+        },
+        "top_obstacles": [{"label": k, "count": v} for k, v in top_obstacles],
+        "top_actions": [{"label": k, "count": v} for k, v in top_actions],
+        "recommendations": recos,
     }
 
     out_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"Wrote analysis -> {out_path} ({len(rows)} rows)")
+    print(f"Wrote -> {out_path}")
 
 if __name__ == "__main__":
     main()
