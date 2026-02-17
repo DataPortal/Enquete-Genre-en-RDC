@@ -1,103 +1,103 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Kobo Dashboard — Table & Visualisations</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Dashboard — Kobo</title>
+  <link rel="stylesheet" href="style.css"/>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 </head>
-<body>
+<body data-page="dashboard">
   <header class="topbar">
-    <div class="brand">
-      <h1>Dashboard Kobo</h1>
-      <p class="muted">Table & visualisations — données synchronisées automatiquement</p>
-    </div>
-    <div class="meta">
-      <div><span class="label">Dernière MAJ:</span> <span id="lastUpdate">—</span></div>
-      <div><span class="label">Nb réponses:</span> <span id="nResponses">—</span></div>
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>Plateforme Kobo — Nations Unies (style)</h1>
+          <p>Dashboard statistique • Réponses • Analyse & recommandations</p>
+        </div>
+      </div>
+
+      <nav class="nav" aria-label="Navigation">
+        <a class="active" href="./index.html">Dashboard</a>
+        <a href="./responses.html">Réponses</a>
+        <a href="./analysis.html">Analyse & recommandations</a>
+      </nav>
+
+      <div class="meta">
+        <div class="badge"><span class="dot"></span><span>Mise à jour : <strong id="lastUpdate">—</strong></span></div>
+        <div class="line">Nb réponses : <strong id="nResponses">—</strong></div>
+      </div>
     </div>
   </header>
 
   <main class="container">
-    <!-- SECTION 1: KPI + charts -->
     <section class="card">
-      <h2>Indicateurs clés</h2>
+      <h2>Vue d’ensemble</h2>
+      <p class="subhead">KPI principaux (issus de <code>stats.json</code> et <code>submissions_flat.json</code>)</p>
+
       <div class="grid">
-        <div class="kpi">
-          <div class="kpiTitle">Sexe (répartition)</div>
+        <div class="kpi col-3">
+          <div class="label">Nombre de réponses</div>
+          <div class="value" id="kpiN">—</div>
+          <div class="hint">Total soumissions synchronisées</div>
+        </div>
+        <div class="kpi col-3">
+          <div class="label">Consentement (oui)</div>
+          <div class="value" id="kpiConsent">—</div>
+          <div class="hint">% des répondants</div>
+        </div>
+        <div class="kpi col-3">
+          <div class="label">Cellule genre (oui)</div>
+          <div class="value" id="kpiCellule">—</div>
+          <div class="hint">% des répondants</div>
+        </div>
+        <div class="kpi col-3">
+          <div class="label">Formation genre (oui)</div>
+          <div class="value" id="kpiFormation">—</div>
+          <div class="hint">% des répondants</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Statistiques & graphiques</h2>
+      <p class="subhead">Graphiques calculés automatiquement.</p>
+
+      <div class="grid">
+        <div class="col-6">
+          <h2 style="margin-top:0">Sexe</h2>
           <canvas id="chartSexe"></canvas>
         </div>
-        <div class="kpi">
-          <div class="kpiTitle">Formation genre</div>
-          <canvas id="chartFormation"></canvas>
+        <div class="col-6">
+          <h2 style="margin-top:0">Ministère</h2>
+          <canvas id="chartMinistere"></canvas>
         </div>
-        <div class="kpi">
-          <div class="kpiTitle">Cellule genre</div>
-          <canvas id="chartCellule"></canvas>
+
+        <div class="col-6">
+          <h2 style="margin-top:0">Compréhension du genre</h2>
+          <canvas id="chartCompr"></canvas>
         </div>
-        <div class="kpi">
-          <div class="kpiTitle">Obstacles (Top)</div>
+        <div class="col-6">
+          <h2 style="margin-top:0">Politiques genre connues</h2>
+          <canvas id="chartPolConnues"></canvas>
+        </div>
+
+        <div class="col-6">
+          <h2 style="margin-top:0">Obstacles (Top)</h2>
           <canvas id="chartObstacles"></canvas>
+          <p class="small">Codes (obs1, obs2…) tant que le mapping libellés n’est pas fourni.</p>
+        </div>
+        <div class="col-6">
+          <h2 style="margin-top:0">Actions proposées (Top)</h2>
+          <canvas id="chartActions"></canvas>
+          <p class="small">Codes (act1, act2…) tant que le mapping libellés n’est pas fourni.</p>
         </div>
       </div>
     </section>
-
-    <!-- SECTION 2: Raw table -->
-    <section class="card">
-      <div class="row">
-        <h2>Table des réponses (essentiels)</h2>
-        <input id="search" class="search" placeholder="Rechercher (ex: feminin, plan, ministre, obs4…)">
-      </div>
-
-      <div class="tableWrap">
-        <table id="tbl">
-          <thead id="thead"></thead>
-          <tbody id="tbody"></tbody>
-        </table>
-      </div>
-
-      <div class="hint muted">
-        Astuce : les champs multi-choix (obstacles/actions) restent sous forme de codes (obs1, act2…) tant que le mapping libellés n’est pas fourni.
-      </div>
-    </section>
-
-    <!-- SECTION 3: Automated analysis + recommendations -->
-    <section class="card">
-      <div class="row">
-        <h2>Analyse automatique & recommandations</h2>
-        <input id="searchAnalysis" class="search" placeholder="Filtrer (ex: Haute, Faible, plan_action, GTG…)">
-      </div>
-
-      <div class="grid">
-        <div class="kpi">
-          <div class="kpiTitle">Score maturité (0–7)</div>
-          <canvas id="chartScoreDist"></canvas>
-        </div>
-        <div class="kpi">
-          <div class="kpiTitle">Priorité d’actions</div>
-          <canvas id="chartPriorityDist"></canvas>
-        </div>
-      </div>
-
-      <div class="tableWrap" style="margin-top:12px;">
-        <table id="tblAnalysis">
-          <thead id="theadAnalysis"></thead>
-          <tbody id="tbodyAnalysis"></tbody>
-        </table>
-      </div>
-
-      <div class="hint muted">
-        Cette table est générée automatiquement à chaque synchronisation (règles score + gaps + recommandations).
-      </div>
-    </section>
-
   </main>
 
-  <footer class="footer muted">
-    © Dashboard statique — GitHub Pages
-  </footer>
-
+  <footer class="footer">© Dashboard statique — GitHub Pages</footer>
   <script src="app.js"></script>
 </body>
 </html>
