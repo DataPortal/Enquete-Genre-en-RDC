@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Recommandations — Enquête Genre</title>
+  <link rel="stylesheet" href="style.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+</head>
+<body data-page="recommendations">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="logo"></div>
+        <div>
+          <h1>Recommandations (Globales)</h1>
+          <p>Basées sur les statistiques agrégées (pas de recommandations individuelles)</p>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a href="./index.html">Dashboard</a>
+        <a href="./responses.html">Réponses</a>
+        <a class="active" href="./recommendations.html">Recommandations</a>
+      </nav>
+
+      <div class="meta">
+        <div class="badge"><span class="dot"></span><span>Mise à jour : <strong id="lastUpdate">—</strong></span></div>
+        <div class="line">Nb réponses : <strong id="nResponses">—</strong></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <div class="sectionTitle">
+        <div>
+          <h2 style="margin:0">Signaux clés</h2>
+          <p class="subhead">Lecture globale des capacités institutionnelles.</p>
+        </div>
+        <span class="sectionChip">Synthèse</span>
+      </div>
+
+      <div class="grid">
+        <div class="kpi col-3">
+          <div class="label">Cellule Genre (Oui)</div>
+          <div class="value" id="sigCellule">—</div>
+          <div class="hint">Part des répondants</div>
+        </div>
+        <div class="kpi col-3">
+          <div class="label">Plan/stratégie (Oui)</div>
+          <div class="value" id="sigPlan">—</div>
+          <div class="hint">Part des répondants</div>
+        </div>
+        <div class="kpi col-3">
+          <div class="label">Indicateurs (Oui)</div>
+          <div class="value" id="sigInd">—</div>
+          <div class="hint">Part des répondants</div>
+        </div>
+        <div class="kpi col-3">
+          <div class="label">Outils/guide (Oui)</div>
+          <div class="value" id="sigOutils">—</div>
+          <div class="hint">Part des répondants</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="sectionTitle">
+        <div>
+          <h2 style="margin:0">Priorités issues des réponses</h2>
+          <p class="subhead">Top obstacles et Top actions (agrégé).</p>
+        </div>
+        <span class="sectionChip">Evidence-based</span>
+      </div>
+
+      <div class="grid">
+        <div class="chartCard col-6">
+          <h3>Top obstacles</h3>
+          <canvas id="chartTopObstacles"></canvas>
+        </div>
+        <div class="chartCard col-6">
+          <h3>Top actions prioritaires</h3>
+          <canvas id="chartTopActions"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="sectionTitle">
+        <div>
+          <h2 style="margin:0">Recommandations globales</h2>
+          <p class="subhead">Plan d’action institutionnel proposé à partir des signaux statistiques.</p>
+        </div>
+        <span class="sectionChip">UN Blue × UNFPA Pink</span>
+      </div>
+
+      <div class="grid">
+        <div class="recoBox col-12">
+          <h3>Actions recommandées (priorisées)</h3>
+          <ul id="globalRecos"></ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">© Dashboard statique — GitHub Pages</footer>
+  <script src="app.js"></script>
+</body>
+</html>
