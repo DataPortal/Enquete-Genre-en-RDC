@@ -20,6 +20,7 @@
   </header>
 
   <main class="container">
+    <!-- SECTION 1: KPI + charts -->
     <section class="card">
       <h2>Indicateurs clés</h2>
       <div class="grid">
@@ -42,9 +43,10 @@
       </div>
     </section>
 
+    <!-- SECTION 2: Raw table -->
     <section class="card">
       <div class="row">
-        <h2>Table des réponses</h2>
+        <h2>Table des réponses (essentiels)</h2>
         <input id="search" class="search" placeholder="Rechercher (ex: feminin, plan, ministre, obs4…)">
       </div>
 
@@ -56,9 +58,40 @@
       </div>
 
       <div class="hint muted">
-        Astuce : les champs multi-choix (obstacles/actions) restent sous forme de codes (obs1, act2…) tant que tu n’as pas fourni le mapping libellés.
+        Astuce : les champs multi-choix (obstacles/actions) restent sous forme de codes (obs1, act2…) tant que le mapping libellés n’est pas fourni.
       </div>
     </section>
+
+    <!-- SECTION 3: Automated analysis + recommendations -->
+    <section class="card">
+      <div class="row">
+        <h2>Analyse automatique & recommandations</h2>
+        <input id="searchAnalysis" class="search" placeholder="Filtrer (ex: Haute, Faible, plan_action, GTG…)">
+      </div>
+
+      <div class="grid">
+        <div class="kpi">
+          <div class="kpiTitle">Score maturité (0–7)</div>
+          <canvas id="chartScoreDist"></canvas>
+        </div>
+        <div class="kpi">
+          <div class="kpiTitle">Priorité d’actions</div>
+          <canvas id="chartPriorityDist"></canvas>
+        </div>
+      </div>
+
+      <div class="tableWrap" style="margin-top:12px;">
+        <table id="tblAnalysis">
+          <thead id="theadAnalysis"></thead>
+          <tbody id="tbodyAnalysis"></tbody>
+        </table>
+      </div>
+
+      <div class="hint muted">
+        Cette table est générée automatiquement à chaque synchronisation (règles score + gaps + recommandations).
+      </div>
+    </section>
+
   </main>
 
   <footer class="footer muted">
