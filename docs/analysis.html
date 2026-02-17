@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Analyse & recommandations — Kobo</title>
+  <link rel="stylesheet" href="style.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+</head>
+<body data-page="analysis">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>Analyse automatique & recommandations</h1>
+          <p>Basé sur <code>analysis_recos.json</code> (généré à chaque sync)</p>
+        </div>
+      </div>
+
+      <nav class="nav" aria-label="Navigation">
+        <a href="./index.html">Dashboard</a>
+        <a href="./responses.html">Réponses</a>
+        <a class="active" href="./analysis.html">Analyse & recommandations</a>
+      </nav>
+
+      <div class="meta">
+        <div class="badge"><span class="dot"></span><span>Mise à jour : <strong id="lastUpdate">—</strong></span></div>
+        <div class="line">Nb réponses : <strong id="nResponses">—</strong></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>Distribution globale</h2>
+      <p class="subhead">Niveau de maturité, score, priorités.</p>
+
+      <div class="grid">
+        <div class="col-6">
+          <h2 style="margin-top:0">Score maturité (0–7)</h2>
+          <canvas id="chartScoreDist"></canvas>
+        </div>
+        <div class="col-6">
+          <h2 style="margin-top:0">Priorité d’actions</h2>
+          <canvas id="chartPriorityDist"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="row">
+        <div>
+          <h2 style="margin:0">Table analyse par répondant</h2>
+          <p class="subhead">Gaps, forces et recommandations générées automatiquement.</p>
+        </div>
+        <input id="searchAnalysis" class="search" placeholder="Filtrer (ex: Haute, Faible, plan d’action, GTG…)"/>
+      </div>
+
+      <div class="tableWrap">
+        <table id="tblAnalysis">
+          <thead id="theadAnalysis"></thead>
+          <tbody id="tbodyAnalysis"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Recommandations globales (automatiques)</h2>
+      <p class="subhead">
+        Basées sur la fréquence des <strong>gaps</strong> observés (top 5) + actions de remédiation proposées.
+      </p>
+
+      <div class="grid">
+        <div class="reco col-6">
+          <h3>Top gaps observés</h3>
+          <div id="topGaps"></div>
+        </div>
+        <div class="reco col-6">
+          <h3>Plan d’action recommandé (priorisé)</h3>
+          <ul id="globalRecos"></ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">© Dashboard statique — GitHub Pages</footer>
+  <script src="app.js"></script>
+</body>
+</html>
