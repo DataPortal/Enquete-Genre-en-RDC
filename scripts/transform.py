@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 from collections import Counter
 
-from scripts.mappings import (
+from mappings import (
     YES_NO, YES_NO_NP, SEXE, FONCTION, EXPERIENCE, NIVEAU, VRAI_FAUX, FREQ, MINISTERE,
     OBSTACLES, ACTIONS, SGTGTG,
     map_one, map_multi
@@ -32,7 +32,6 @@ def count_multi(rows, field):
             c[it] += 1
     return dict(c)
 
-# ---- Table columns (NO system fields) + readable headers
 TABLE_SCHEMA = [
     ("Ministere", "sec1/ministere_display"),
     ("Sexe", "sec1/sexe"),
@@ -67,7 +66,6 @@ TABLE_SCHEMA = [
     ("Recommandations (verbatim)", "sec6/recommandations"),
 ]
 
-# ---- Questions (dashboard) in order (step by step)
 DASHBOARD_QUESTIONS = [
     ("Profil", "Ministère", "sec1/ministere_display", "bar"),
     ("Profil", "Sexe du répondant", "sec1/sexe", "donut"),
@@ -97,18 +95,12 @@ DASHBOARD_QUESTIONS = [
 
 def flatten_and_label(rec: dict) -> dict:
     flat = {}
+    flat["consent"] = map_one(rec.get("consent"), YES_NO)
 
-    # consent gate: keep only consent==oui responses for analysis
-    consent = rec.get("consent")
-    consent_label = map_one(consent, YES_NO)
-    flat["consent"] = consent_label
-
-    # copy sec fields
     for k, v in rec.items():
         if k.startswith("sec"):
             flat[k] = v
 
-    # map + text fields
     flat["sec1/ministere"] = map_one(flat.get("sec1/ministere"), MINISTERE)
     flat["sec1/ministere_autre"] = flat.get("sec1/ministere_autre", "")
     flat["sec1/sexe"] = map_one(flat.get("sec1/sexe"), SEXE)
@@ -157,7 +149,6 @@ def flatten_and_label(rec: dict) -> dict:
 
     flat["sec6/recommandations"] = flat.get("sec6/recommandations", "")
 
-    # ministere display
     if flat.get("sec1/ministere") == "Autre (à préciser)" and str(flat.get("sec1/ministere_autre", "")).strip():
         flat["sec1/ministere_display"] = f"{flat['sec1/ministere']} : {flat['sec1/ministere_autre'].strip()}"
     else:
@@ -171,10 +162,7 @@ def make_table_rows(flat_rows):
         row = {}
         for header, key in TABLE_SCHEMA:
             v = r.get(key)
-            if v is None or str(v).strip() == "":
-                row[header] = ""
-            else:
-                row[header] = v
+            row[header] = "" if v is None else v
         rows.append(row)
     return rows
 
@@ -188,43 +176,29 @@ def main():
     payload = json.loads(in_path.read_text(encoding="utf-8"))
     results = payload.get("results", [])
 
-    # filter consent==Oui only for analysis/table
     labeled = [flatten_and_label(r) for r in results]
     flat_rows = [r for r in labeled if r.get("consent") == "Oui"]
 
     out_flat.write_text(json.dumps(flat_rows, ensure_ascii=False, indent=2), encoding="utf-8")
     out_table.write_text(json.dumps(make_table_rows(flat_rows), ensure_ascii=False, indent=2), encoding="utf-8")
 
-    # stats (question by question)
     stats = {"n": len(flat_rows), "counters": {}, "multi": {}}
 
-    for _, _, field, _ in DASHBOARD_QUESTIONS:
-        if field.endswith("_display") or field in [
-            "sec1/sexe","sec1/fonction","sec1/annees_experience_ministere","sec1/formation_genre",
-            "sec2/compr_genre","sec2/diff_sexe_genre","sec2/genre_biologique","sec2/politiques_genre_connaissance",
-            "sec2/importance_genre_politiques_publiques",
-            "sec3/cellule_genre","sec3/plan_action_genre","sec3/indicateurs_genre","sec3/outils_guide_genre",
-            "sec3/frequence_formations_genre","sec4/importance_genre_secteur","sec5/gtg_connaissance"
-        ]:
-            stats["counters"][field] = count_single(flat_rows, field)
+    for section, title, field, chart in DASHBOARD_QUESTIONS:
+        if chart == "bar_multi":
+            continue
+        stats["counters"][field] = count_single(flat_rows, field)
 
-    # multi fields
     stats["multi"]["sec4/obstacles_display"] = count_multi(flat_rows, "sec4/obstacles_display")
     stats["multi"]["sec4/actions_display"] = count_multi(flat_rows, "sec4/actions_display")
     stats["multi"]["sec5/sgtgtg_connus_display"] = count_multi(flat_rows, "sec5/sgtgtg_connus_display")
 
     out_stats.write_text(json.dumps(stats, ensure_ascii=False, indent=2), encoding="utf-8")
 
-    # questions config for the front (titles + order + chart type)
-    q = []
-    for section, title, field, chart in DASHBOARD_QUESTIONS:
-        q.append({"section": section, "title": title, "field": field, "chart": chart})
+    q = [{"section": s, "title": t, "field": f, "chart": c} for (s,t,f,c) in DASHBOARD_QUESTIONS]
     out_questions.write_text(json.dumps(q, ensure_ascii=False, indent=2), encoding="utf-8")
 
-    print("Wrote:")
-    print(f" - {out_table}")
-    print(f" - {out_stats}")
-    print(f" - {out_questions}")
+    print("Wrote outputs OK")
 
 if __name__ == "__main__":
     main()
