@@ -3,24 +3,24 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Réponses — Kobo</title>
+  <title>Réponses — Enquête Genre</title>
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body data-page="responses">
   <header class="topbar">
     <div class="topbar-inner">
       <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
+        <div class="logo"></div>
         <div>
-          <h1>Réponses Kobo (Table)</h1>
-          <p>Données issues de <code>submissions_flat.json</code></p>
+          <h1>Réponses — Tableau</h1>
+          <p>En-têtes lisibles • pas de champs systèmes • recherche rapide</p>
         </div>
       </div>
 
-      <nav class="nav" aria-label="Navigation">
+      <nav class="nav">
         <a href="./index.html">Dashboard</a>
         <a class="active" href="./responses.html">Réponses</a>
-        <a href="./analysis.html">Analyse & recommandations</a>
+        <a href="./recommendations.html">Recommandations</a>
       </nav>
 
       <div class="meta">
@@ -32,23 +32,20 @@
 
   <main class="container">
     <section class="card">
-      <div class="row">
+      <div class="sectionTitle">
         <div>
-          <h2 style="margin:0">Table des réponses (essentiels)</h2>
-          <p class="subhead">Filtre global sur toutes les colonnes.</p>
+          <h2 style="margin:0">Table des réponses</h2>
+          <p class="subhead">Filtre global sur toutes les colonnes (données “table-ready”).</p>
         </div>
-        <input id="searchResponses" class="search" placeholder="Rechercher (ex: feminin, plan, ministre, obs4…)"/>
+        <input id="searchTable" class="search" placeholder="Rechercher (ex: Ministère du Plan, VBG, Absence de données…)"/>
       </div>
 
       <div class="tableWrap">
-        <table id="tblResponses">
-          <thead id="theadResponses"></thead>
-          <tbody id="tbodyResponses"></tbody>
+        <table id="tbl">
+          <thead id="thead"></thead>
+          <tbody id="tbody"></tbody>
         </table>
       </div>
-      <p class="small" style="margin-top:10px;">
-        Astuce : pour rendre <strong>obs1/act2</strong> lisibles, on ajoutera le mapping “choices” du XLSForm.
-      </p>
     </section>
   </main>
 
