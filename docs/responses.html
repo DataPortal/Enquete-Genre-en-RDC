@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Réponses — Kobo</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body data-page="responses">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>Réponses Kobo (Table)</h1>
+          <p>Données issues de <code>submissions_flat.json</code></p>
+        </div>
+      </div>
+
+      <nav class="nav" aria-label="Navigation">
+        <a href="./index.html">Dashboard</a>
+        <a class="active" href="./responses.html">Réponses</a>
+        <a href="./analysis.html">Analyse & recommandations</a>
+      </nav>
+
+      <div class="meta">
+        <div class="badge"><span class="dot"></span><span>Mise à jour : <strong id="lastUpdate">—</strong></span></div>
+        <div class="line">Nb réponses : <strong id="nResponses">—</strong></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <div class="row">
+        <div>
+          <h2 style="margin:0">Table des réponses (essentiels)</h2>
+          <p class="subhead">Filtre global sur toutes les colonnes.</p>
+        </div>
+        <input id="searchResponses" class="search" placeholder="Rechercher (ex: feminin, plan, ministre, obs4…)"/>
+      </div>
+
+      <div class="tableWrap">
+        <table id="tblResponses">
+          <thead id="theadResponses"></thead>
+          <tbody id="tbodyResponses"></tbody>
+        </table>
+      </div>
+      <p class="small" style="margin-top:10px;">
+        Astuce : pour rendre <strong>obs1/act2</strong> lisibles, on ajoutera le mapping “choices” du XLSForm.
+      </p>
+    </section>
+  </main>
+
+  <footer class="footer">© Dashboard statique — GitHub Pages</footer>
+  <script src="app.js"></script>
+</body>
+</html>
