@@ -1,6 +1,7 @@
 const DATA_FLAT = "data/submissions_flat.json";
 const STATS = "data/stats.json";
 const RAW = "data/submissions.json";
+const ANALYSIS = "data/analysis_recos.json";
 
 function el(id){ return document.getElementById(id); }
 
@@ -17,11 +18,19 @@ async function loadJson(path){
   return r.json();
 }
 
+function escapeHtml(str){
+  return str
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
 function buildTable(rows){
   const thead = el("thead");
   const tbody = el("tbody");
 
-  // Pick a compact set of columns (you can add/remove)
   const cols = [
     "_submission_time",
     "sec1/ministere",
@@ -34,16 +43,15 @@ function buildTable(rows){
     "sec3/cellule_genre",
     "sec3/plan_action_genre",
     "sec3/indicateurs_genre",
+    "sec3/outils_guide_genre",
     "sec4/obstacles",
     "sec4/actions",
     "sec5/gtg_connaissance",
     "sec6/recommandations"
   ];
 
-  // Header
   thead.innerHTML = `<tr>${cols.map(c => `<th>${c}</th>`).join("")}</tr>`;
 
-  // Rows
   const render = (filtered) => {
     tbody.innerHTML = filtered.map(r => {
       return `<tr>${cols.map(c => {
@@ -57,7 +65,6 @@ function buildTable(rows){
 
   render(rows);
 
-  // Search
   const input = el("search");
   input.addEventListener("input", () => {
     const q = input.value.trim().toLowerCase();
@@ -67,13 +74,50 @@ function buildTable(rows){
   });
 }
 
-function escapeHtml(str){
-  return str
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
+function buildAnalysisTable(payload){
+  const rows = payload.results || [];
+  const thead = el("theadAnalysis");
+  const tbody = el("tbodyAnalysis");
+
+  const cols = [
+    "_submission_time",
+    "ministere",
+    "sexe",
+    "fonction",
+    "score_maturite_0_7",
+    "niveau_maturite",
+    "priorite_actions",
+    "gaps_cles",
+    "forces",
+    "recommandations",
+    "reco_verbatim"
+  ];
+
+  thead.innerHTML = `<tr>${cols.map(c => `<th>${c}</th>`).join("")}</tr>`;
+
+  function cellValue(r, c){
+    let v = r[c];
+    if(c === "_submission_time") v = formatDateISO(v);
+    if(Array.isArray(v)) v = v.join(" • ");
+    if(v === undefined || v === null || v === "") v = "—";
+    return escapeHtml(String(v));
+  }
+
+  const render = (filtered) => {
+    tbody.innerHTML = filtered.map(r => {
+      return `<tr>${cols.map(c => `<td>${cellValue(r, c)}</td>`).join("")}</tr>`;
+    }).join("");
+  };
+
+  render(rows);
+
+  const input = el("searchAnalysis");
+  input.addEventListener("input", () => {
+    const q = input.value.trim().toLowerCase();
+    if(!q) return render(rows);
+    const filtered = rows.filter(r => JSON.stringify(r).toLowerCase().includes(q));
+    render(filtered);
+  });
 }
 
 function toChartData(counterObj){
@@ -112,22 +156,23 @@ function createChart(canvasId, labels, values, title){
 }
 
 async function main(){
-  const [flat, stats, raw] = await Promise.all([
+  const [flat, stats, raw, analysis] = await Promise.all([
     loadJson(DATA_FLAT),
     loadJson(STATS),
-    loadJson(RAW)
+    loadJson(RAW),
+    loadJson(ANALYSIS).catch(() => null) // analysis may not exist on first run
   ]);
 
-  el("nResponses").textContent = stats.n ?? flat.length ?? "—";
+  el("nResponses").textContent = (stats.n ?? flat.length ?? "—");
 
-  // last update: use max submission_time from flat
+  // last update: max submission_time
   const times = flat.map(r => r["_submission_time"]).filter(Boolean).map(t => new Date(t).getTime()).filter(t => !isNaN(t));
   const maxT = times.length ? new Date(Math.max(...times)).toISOString() : null;
   el("lastUpdate").textContent = maxT ? formatDateISO(maxT) : "—";
 
   buildTable(flat);
 
-  // Charts from stats
+  // Charts from stats.json
   const c = stats.counters || {};
   const m = stats.multi || {};
 
@@ -142,6 +187,26 @@ async function main(){
 
   const obstacles = toTopChartData(m["sec4/obstacles"], 8);
   createChart("chartObstacles", obstacles.labels, obstacles.values, "Obstacles (Top)");
+
+  // Analysis section (table + charts)
+  if(analysis && analysis.summary){
+    buildAnalysisTable(analysis);
+
+    const scoreDist = analysis.summary.score_distribution || {};
+    const priorityDist = analysis.summary.priority_distribution || {};
+
+    const scoreData = toChartData(scoreDist);
+    createChart("chartScoreDist", scoreData.labels, scoreData.values, "Score (0–7)");
+
+    const prioData = toChartData(priorityDist);
+    createChart("chartPriorityDist", prioData.labels, prioData.values, "Priorité");
+  } else {
+    // If analysis not generated yet, show minimal message in analysis table
+    const tbody = el("tbodyAnalysis");
+    const thead = el("theadAnalysis");
+    if (thead) thead.innerHTML = "<tr><th>Info</th></tr>";
+    if (tbody) tbody.innerHTML = "<tr><td>analysis_recos.json introuvable. Exécute scripts/analyze_recos.py (et ajoute-le au workflow).</td></tr>";
+  }
 }
 
 main().catch(err => {
