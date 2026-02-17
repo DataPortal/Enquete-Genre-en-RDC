@@ -1,0 +1,76 @@
+{
+  "n": 2,
+  "counters": {
+    "sec1/ministere": {
+      "autre": 1,
+      "plan": 1
+    },
+    "sec1/sexe": {
+      "feminin": 1,
+      "masculin": 1
+    },
+    "sec1/fonction": {
+      "autre": 1,
+      "ministre": 1
+    },
+    "sec1/annees_experience_ministere": {
+      "7_10": 1,
+      "4_6": 1
+    },
+    "sec1/formation_genre": {
+      "oui": 1,
+      "non": 1
+    },
+    "sec2/compr_genre": {
+      "bonne": 1,
+      "faible": 1
+    },
+    "sec2/politiques_genre_connaissance": {
+      "oui": 1,
+      "non": 1
+    },
+    "sec3/cellule_genre": {
+      "oui": 1,
+      "non": 1
+    },
+    "sec3/plan_action_genre": {
+      "non": 2
+    },
+    "sec3/indicateurs_genre": {
+      "non": 2
+    },
+    "sec3/outils_guide_genre": {
+      "non": 2
+    },
+    "sec5/gtg_connaissance": {
+      "oui": 1,
+      "non": 1
+    },
+    "sec4/importance_genre_secteur": {
+      "oui": 2
+    }
+  },
+  "multi": {
+    "sec4/obstacles": {
+      "obs2": 1,
+      "obs3": 1,
+      "obs4": 2,
+      "obs1": 1,
+      "obs7": 1
+    },
+    "sec4/actions": {
+      "act2": 2,
+      "act4": 2,
+      "act1": 1,
+      "act3": 1,
+      "act5": 1,
+      "act6": 1
+    },
+    "sec5/sgtgtg_connus": {
+      "vbg": 2,
+      "rpeaf": 2,
+      "essjf": 1,
+      "pplf": 1
+    }
+  }
+}
