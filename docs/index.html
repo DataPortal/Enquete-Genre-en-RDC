@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kobo Dashboard — Table & Visualisations</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <h1>Dashboard Kobo</h1>
+      <p class="muted">Table & visualisations — données synchronisées automatiquement</p>
+    </div>
+    <div class="meta">
+      <div><span class="label">Dernière MAJ:</span> <span id="lastUpdate">—</span></div>
+      <div><span class="label">Nb réponses:</span> <span id="nResponses">—</span></div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>Indicateurs clés</h2>
+      <div class="grid">
+        <div class="kpi">
+          <div class="kpiTitle">Sexe (répartition)</div>
+          <canvas id="chartSexe"></canvas>
+        </div>
+        <div class="kpi">
+          <div class="kpiTitle">Formation genre</div>
+          <canvas id="chartFormation"></canvas>
+        </div>
+        <div class="kpi">
+          <div class="kpiTitle">Cellule genre</div>
+          <canvas id="chartCellule"></canvas>
+        </div>
+        <div class="kpi">
+          <div class="kpiTitle">Obstacles (Top)</div>
+          <canvas id="chartObstacles"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="row">
+        <h2>Table des réponses</h2>
+        <input id="search" class="search" placeholder="Rechercher (ex: feminin, plan, ministre, obs4…)">
+      </div>
+
+      <div class="tableWrap">
+        <table id="tbl">
+          <thead id="thead"></thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+
+      <div class="hint muted">
+        Astuce : les champs multi-choix (obstacles/actions) restent sous forme de codes (obs1, act2…) tant que tu n’as pas fourni le mapping libellés.
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer muted">
+    © Dashboard statique — GitHub Pages
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
