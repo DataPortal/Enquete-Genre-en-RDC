@@ -8,13 +8,13 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 </head>
 <body data-page="dashboard">
-  <header class="topbar topbar--un">
+  <header class="topbar topbar--hero">
     <div class="topbar-inner">
-      <div class="brand">
+      <div class="brandBox">
         <div class="logo" aria-hidden="true"></div>
         <div>
           <h1>Enquête Genre — Dashboard</h1>
-          <p>Statistiques par question • visualisation en % (barres horizontales)</p>
+          <p>Visualisation harmonisée • smart charts (%, top) • sans champs systèmes</p>
         </div>
       </div>
 
@@ -25,7 +25,10 @@
       </nav>
 
       <div class="meta">
-        <div class="badge"><span class="dot"></span><span>Mise à jour : <strong id="lastUpdate">—</strong></span></div>
+        <div class="badge">
+          <span class="dot" aria-hidden="true"></span>
+          <span>Mise à jour : <strong id="lastUpdate">—</strong></span>
+        </div>
         <div class="line">Nb réponses (consentement oui) : <strong id="nResponses">—</strong></div>
       </div>
     </div>
@@ -38,7 +41,7 @@
           <h2 style="margin:0">Chiffres clés</h2>
           <p class="subhead">Synthèse rapide pour une lecture immédiate.</p>
         </div>
-        <span class="sectionChip">UN Blue • Smart %</span>
+        <span class="sectionChip">Vue harmonisée • KPI</span>
       </div>
 
       <div class="grid">
@@ -69,9 +72,9 @@
       <div class="sectionTitle">
         <div>
           <h2 style="margin:0">Statistiques détaillées</h2>
-          <p class="subhead">Affichage par section (questions.json).</p>
+          <p class="subhead">Affichage par section (Piloté par <code>questions.json</code>).</p>
         </div>
-        <span class="sectionChip">Smart charts</span>
+        <span class="sectionChip">Smart</span>
       </div>
 
       <div id="dashboardSections"></div>
