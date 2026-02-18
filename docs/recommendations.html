@@ -8,17 +8,17 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 </head>
 <body data-page="recommendations">
-  <header class="topbar">
+  <header class="topbar topbar--un">
     <div class="topbar-inner">
       <div class="brand">
-        <div class="logo"></div>
+        <div class="logo" aria-hidden="true"></div>
         <div>
           <h1>Recommandations (Globales)</h1>
-          <p>Basées sur les statistiques agrégées (pas de recommandations individuelles)</p>
+          <p>Basées sur statistiques agrégées • visualisation en %</p>
         </div>
       </div>
 
-      <nav class="nav">
+      <nav class="nav" aria-label="Navigation">
         <a href="./index.html">Dashboard</a>
         <a href="./responses.html">Réponses</a>
         <a class="active" href="./recommendations.html">Recommandations</a>
@@ -69,18 +69,18 @@
       <div class="sectionTitle">
         <div>
           <h2 style="margin:0">Priorités issues des réponses</h2>
-          <p class="subhead">Top obstacles et Top actions (agrégé).</p>
+          <p class="subhead">Top obstacles et Top actions (en %).</p>
         </div>
         <span class="sectionChip">Evidence-based</span>
       </div>
 
       <div class="grid">
         <div class="chartCard col-6">
-          <h3>Top obstacles</h3>
+          <h3>Top obstacles (%)</h3>
           <canvas id="chartTopObstacles"></canvas>
         </div>
         <div class="chartCard col-6">
-          <h3>Top actions prioritaires</h3>
+          <h3>Top actions prioritaires (%)</h3>
           <canvas id="chartTopActions"></canvas>
         </div>
       </div>
@@ -90,9 +90,9 @@
       <div class="sectionTitle">
         <div>
           <h2 style="margin:0">Recommandations globales</h2>
-          <p class="subhead">Plan d’action institutionnel proposé à partir des signaux statistiques.</p>
+          <p class="subhead">Plan d’action proposé à partir des signaux statistiques.</p>
         </div>
-        <span class="sectionChip">UN Blue × UNFPA Pink</span>
+        <span class="sectionChip">UN Blue</span>
       </div>
 
       <div class="grid">
