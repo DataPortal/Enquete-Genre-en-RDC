@@ -1,7 +1,7 @@
 :root{
-  --unw-blue:#448BCA;
-  --unw-blue-deep:#2B6FB3;
-  --unw-orange:#f58220;
+  /* UN Blue (approx) */
+  --un-blue:#1f5fbf;
+  --un-blue-deep:#1a56a8;
 
   --bg:#f6f8fb;
   --card:#ffffff;
@@ -9,8 +9,6 @@
   --muted:#64748b;
 
   --line: rgba(15,23,42,.08);
-  --soft: rgba(15,23,42,.05);
-
   --shadow: 0 10px 28px rgba(2,6,23,.08);
   --shadow2: 0 8px 22px rgba(2,6,23,.06);
 
@@ -40,18 +38,15 @@ body{
   padding: 18px 0 28px 0;
 }
 
-/* ===== HERO TOPBAR ONU FEMMES ===== */
+/* ===== TOPBAR UN BLUE ===== */
 .topbar{
   position: sticky;
   top: 0;
   z-index: 20;
 }
 
-.topbar--hero{
-  background:
-    radial-gradient(900px 320px at 15% 0%, rgba(255,255,255,.16), transparent 55%),
-    radial-gradient(700px 260px at 85% 15%, rgba(245,130,32,.18), transparent 55%),
-    linear-gradient(135deg, var(--unw-blue-deep), var(--unw-blue));
+.topbar--un{
+  background: linear-gradient(135deg, var(--un-blue-deep), var(--un-blue));
   color:#fff;
   border-bottom: 1px solid rgba(255,255,255,.18);
   box-shadow: 0 10px 24px rgba(2,6,23,.18);
@@ -83,14 +78,14 @@ body{
   box-shadow: 0 8px 20px rgba(2,6,23,.16);
 }
 
-.topbar--hero h1{
+.topbar--un h1{
   margin:0;
   font-size: 18px;
   letter-spacing:-0.3px;
   color:#fff;
 }
 
-.topbar--hero p{
+.topbar--un p{
   margin:6px 0 0 0;
   font-size: 12px;
   color: rgba(255,255,255,.86);
@@ -113,18 +108,15 @@ body{
   text-decoration:none;
   font-size: 13px;
   white-space: nowrap;
-}
-
-.topbar--hero .nav a{
   color: rgba(255,255,255,.88);
 }
 
-.topbar--hero .nav a:hover{
+.nav a:hover{
   background: rgba(255,255,255,.12);
   border-color: rgba(255,255,255,.18);
 }
 
-.topbar--hero .nav a.active{
+.nav a.active{
   background: rgba(255,255,255,.18);
   border-color: rgba(255,255,255,.22);
   color:#fff;
@@ -145,9 +137,6 @@ body{
   padding: 8px 10px;
   border-radius: 999px;
   font-size: 12px;
-}
-
-.topbar--hero .badge{
   background: rgba(255,255,255,.14);
   border: 1px solid rgba(255,255,255,.18);
   color:#fff;
@@ -160,12 +149,12 @@ body{
   background: #2ee59d;
 }
 
-.topbar--hero .line{
+.line{
   color: rgba(255,255,255,.85);
   font-size: 12px;
 }
 
-/* ===== CARDS / SECTIONS ===== */
+/* ===== CARDS ===== */
 .card{
   background: var(--card);
   border: 1px solid var(--line);
@@ -198,18 +187,6 @@ body{
   font-size: 12px;
   color: var(--muted);
   white-space: nowrap;
-}
-
-.small{
-  color: var(--muted);
-  font-size: 12px;
-  margin-top: 8px;
-}
-
-code{
-  background: rgba(15,23,42,.06);
-  padding: 2px 6px;
-  border-radius: 8px;
 }
 
 /* ===== GRID ===== */
@@ -247,12 +224,6 @@ code{
   box-shadow: 0 6px 18px rgba(2,6,23,.05);
 }
 
-.kpi:hover{
-  transform: translateY(-1px);
-  transition: transform .15s ease, box-shadow .15s ease;
-  box-shadow: 0 10px 26px rgba(2,6,23,.08);
-}
-
 .kpi .label{ color: var(--muted); font-weight: 650; font-size: 12px; }
 .kpi .value{ font-size: 30px; font-weight: 800; letter-spacing: -0.4px; margin-top: 6px; }
 .kpi .hint{ color: var(--muted); font-size: 12px; margin-top: 4px; }
@@ -263,17 +234,19 @@ code{
   border-radius: var(--radius2);
   border: 1px solid rgba(15,23,42,.06);
   background: rgba(255,255,255,.88);
-  backdrop-filter: blur(8px);
   box-shadow: var(--shadow2);
 }
+
 .chartCard h3{
   margin: 0 0 10px 0;
   font-weight: 780;
   letter-spacing: -0.2px;
 }
+
+/* Réduire la taille des graphiques */
 .chartCard canvas{
   width: 100% !important;
-  height: 280px !important;
+  height: 190px !important;
   display:block;
   background: transparent !important;
 }
@@ -288,8 +261,8 @@ code{
   outline: none;
 }
 .search:focus{
-  box-shadow: 0 0 0 4px rgba(68,139,202,.15);
-  border-color: rgba(68,139,202,.55);
+  box-shadow: 0 0 0 4px rgba(31,95,191,.15);
+  border-color: rgba(31,95,191,.55);
 }
 
 /* ===== TABLES ===== */
@@ -332,7 +305,7 @@ tbody td{
 }
 
 tbody tr:nth-child(even){ background: rgba(15,23,42,.02); }
-tbody tr:hover{ background: rgba(68,139,202,.08); }
+tbody tr:hover{ background: rgba(31,95,191,.08); }
 
 .muted{ color: rgba(15,23,42,.55); }
 
@@ -368,18 +341,6 @@ tbody tr:hover{ background: rgba(68,139,202,.08); }
 #globalRecos li::before{
   content: "✓";
   font-weight: 900;
-  color: var(--unw-blue);
+  color: var(--un-blue);
   flex: 0 0 auto;
-}
-
-/* Analysis page - row layout */
-.row{
-  display:flex;
-  align-items:flex-start;
-  justify-content:space-between;
-  gap: 12px;
-  margin-bottom: 10px;
-}
-@media (max-width: 760px){
-  .row{ flex-direction: column; }
 }
