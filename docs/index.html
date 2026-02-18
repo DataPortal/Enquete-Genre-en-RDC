@@ -13,15 +13,15 @@
       <div class="brandBox">
         <div class="logo" aria-hidden="true"></div>
         <div>
-          <h1>Enquête Genre — Dashboard</h1>
-          <p>Visualisation harmonisée • smart charts (%, top) • sans champs systèmes</p>
+          <h1>Dashboard — Enquête Genre</h1>
+          <p>Smart charts • % comparables • recalcul en temps réel selon les filtres</p>
         </div>
       </div>
 
       <nav class="nav" aria-label="Navigation">
-        <a class="active" href="./index.html">Dashboard</a>
         <a href="./responses.html">Réponses</a>
-        <a href="./recommendations.html">Recommandations</a>
+        <a class="active" href="./index.html">Dashboard</a>
+        <a href="./analysis.html">Analyse</a>
       </nav>
 
       <div class="meta">
@@ -29,26 +29,63 @@
           <span class="dot" aria-hidden="true"></span>
           <span>Mise à jour : <strong id="lastUpdate">—</strong></span>
         </div>
-        <div class="line">Nb réponses (consentement oui) : <strong id="nResponses">—</strong></div>
+        <div class="line">Nb réponses (filtrées) : <strong id="nResponses">—</strong></div>
       </div>
     </div>
   </header>
 
   <main class="container">
+    <!-- Filters -->
+    <section class="card filterCard">
+      <div class="sectionTitle">
+        <div>
+          <h2 style="margin:0">Filtres</h2>
+          <p class="subhead">Ces filtres recalculent tous les KPI, graphiques et insights.</p>
+        </div>
+        <button class="btn" id="btnResetFilters" type="button">Réinitialiser</button>
+      </div>
+
+      <div class="filters">
+        <div class="f">
+          <label>Province</label>
+          <select id="fProvince"></select>
+        </div>
+        <div class="f">
+          <label>Sexe</label>
+          <select id="fSexe"></select>
+        </div>
+        <div class="f">
+          <label>Ministère</label>
+          <select id="fMinistere"></select>
+        </div>
+        <div class="f">
+          <label>Type organisation</label>
+          <select id="fOrgType"></select>
+        </div>
+        <div class="f">
+          <label>Cluster / Secteur</label>
+          <select id="fCluster"></select>
+        </div>
+      </div>
+
+      <div class="chips" id="activeChips"></div>
+    </section>
+
+    <!-- KPI + Insights -->
     <section class="card">
       <div class="sectionTitle">
         <div>
-          <h2 style="margin:0">Chiffres clés</h2>
-          <p class="subhead">Synthèse rapide pour une lecture immédiate.</p>
+          <h2 style="margin:0">Vue d’ensemble</h2>
+          <p class="subhead">KPI + insights automatiques (top forces / gaps), basés sur les données filtrées.</p>
         </div>
-        <span class="sectionChip">Vue harmonisée • KPI</span>
+        <span class="sectionChip">Premium</span>
       </div>
 
       <div class="grid">
         <div class="kpi col-3">
           <div class="label">Réponses analysées</div>
           <div class="value" id="kpiN">—</div>
-          <div class="hint">Uniquement consentement = Oui</div>
+          <div class="hint">selon filtres</div>
         </div>
         <div class="kpi col-3">
           <div class="label">Formation genre (Oui)</div>
@@ -65,16 +102,27 @@
           <div class="value" id="kpiPol">—</div>
           <div class="hint">% des répondants</div>
         </div>
+
+        <div class="insightCard col-6">
+          <h3>Top Forces (signals)</h3>
+          <div id="insightsStrong" class="insightsList"></div>
+        </div>
+
+        <div class="insightCard col-6">
+          <h3>Top Gaps (priorités)</h3>
+          <div id="insightsWeak" class="insightsList"></div>
+        </div>
       </div>
     </section>
 
+    <!-- Sections / charts -->
     <section class="card">
       <div class="sectionTitle">
         <div>
-          <h2 style="margin:0">Statistiques détaillées</h2>
-          <p class="subhead">Affichage par section (Piloté par <code>questions.json</code>).</p>
+          <h2 style="margin:0">Statistiques par question</h2>
+          <p class="subhead">Graphiques “smart” : doughnut pour binaire, barres horizontales (%) pour multi.</p>
         </div>
-        <span class="sectionChip">Smart</span>
+        <span class="sectionChip">Smart charts</span>
       </div>
 
       <div id="dashboardSections"></div>
