@@ -7,9 +7,9 @@
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body data-page="responses">
-  <header class="topbar topbar--un">
+  <header class="topbar topbar--hero">
     <div class="topbar-inner">
-      <div class="brand">
+      <div class="brandBox">
         <div class="logo" aria-hidden="true"></div>
         <div>
           <h1>Réponses — Tableau</h1>
@@ -24,7 +24,10 @@
       </nav>
 
       <div class="meta">
-        <div class="badge"><span class="dot"></span><span>Mise à jour : <strong id="lastUpdate">—</strong></span></div>
+        <div class="badge">
+          <span class="dot" aria-hidden="true"></span>
+          <span>Mise à jour : <strong id="lastUpdate">—</strong></span>
+        </div>
         <div class="line">Nb réponses : <strong id="nResponses">—</strong></div>
       </div>
     </div>
@@ -35,7 +38,7 @@
       <div class="sectionTitle">
         <div>
           <h2 style="margin:0">Table des réponses</h2>
-          <p class="subhead">Filtre global sur toutes les colonnes.</p>
+          <p class="subhead">Filtre global sur toutes les colonnes (données “table-ready”).</p>
         </div>
         <input id="searchTable" class="search" placeholder="Rechercher (ex: Ministère, VBG, Absence de données…)"/>
       </div>
