@@ -7,17 +7,17 @@
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body data-page="responses">
-  <header class="topbar">
+  <header class="topbar topbar--un">
     <div class="topbar-inner">
       <div class="brand">
-        <div class="logo"></div>
+        <div class="logo" aria-hidden="true"></div>
         <div>
           <h1>Réponses — Tableau</h1>
-          <p>En-têtes lisibles • pas de champs systèmes • recherche rapide</p>
+          <p>En-têtes lisibles • sans champs systèmes • recherche rapide</p>
         </div>
       </div>
 
-      <nav class="nav">
+      <nav class="nav" aria-label="Navigation">
         <a href="./index.html">Dashboard</a>
         <a class="active" href="./responses.html">Réponses</a>
         <a href="./recommendations.html">Recommandations</a>
@@ -35,9 +35,9 @@
       <div class="sectionTitle">
         <div>
           <h2 style="margin:0">Table des réponses</h2>
-          <p class="subhead">Filtre global sur toutes les colonnes (données “table-ready”).</p>
+          <p class="subhead">Filtre global sur toutes les colonnes.</p>
         </div>
-        <input id="searchTable" class="search" placeholder="Rechercher (ex: Ministère du Plan, VBG, Absence de données…)"/>
+        <input id="searchTable" class="search" placeholder="Rechercher (ex: Ministère, VBG, Absence de données…)"/>
       </div>
 
       <div class="tableWrap">
