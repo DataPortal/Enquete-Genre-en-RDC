@@ -8,17 +8,17 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 </head>
 <body data-page="dashboard">
-  <header class="topbar">
+  <header class="topbar topbar--un">
     <div class="topbar-inner">
       <div class="brand">
-        <div class="logo"></div>
+        <div class="logo" aria-hidden="true"></div>
         <div>
           <h1>Enquête Genre — Dashboard</h1>
-          <p>Statistiques question par question (UN Blue + UNFPA Pink)</p>
+          <p>Statistiques par question • visualisation en % (barres horizontales)</p>
         </div>
       </div>
 
-      <nav class="nav">
+      <nav class="nav" aria-label="Navigation">
         <a class="active" href="./index.html">Dashboard</a>
         <a href="./responses.html">Réponses</a>
         <a href="./recommendations.html">Recommandations</a>
@@ -38,7 +38,7 @@
           <h2 style="margin:0">Chiffres clés</h2>
           <p class="subhead">Synthèse rapide pour une lecture immédiate.</p>
         </div>
-        <span class="sectionChip">Vue harmonisée • KPI + Graphiques</span>
+        <span class="sectionChip">UN Blue • Smart %</span>
       </div>
 
       <div class="grid">
@@ -69,9 +69,9 @@
       <div class="sectionTitle">
         <div>
           <h2 style="margin:0">Statistiques détaillées</h2>
-          <p class="subhead">Affichage par section (Profil → Connaissances → Pratiques → Obstacles → GTG).</p>
+          <p class="subhead">Affichage par section (questions.json).</p>
         </div>
-        <span class="sectionChip">Ordre aligné sur le questionnaire</span>
+        <span class="sectionChip">Smart charts</span>
       </div>
 
       <div id="dashboardSections"></div>
