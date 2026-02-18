@@ -13,14 +13,14 @@
         <div class="logo" aria-hidden="true"></div>
         <div>
           <h1>Réponses — Tableau</h1>
-          <p>En-têtes lisibles • sans champs systèmes • recherche rapide</p>
+          <p>Filtrage multi-critères • table premium • sans champs systèmes</p>
         </div>
       </div>
 
       <nav class="nav" aria-label="Navigation">
-        <a href="./index.html">Dashboard</a>
         <a class="active" href="./responses.html">Réponses</a>
-        <a href="./recommendations.html">Recommandations</a>
+        <a href="./index.html">Dashboard</a>
+        <a href="./analysis.html">Analyse</a>
       </nav>
 
       <div class="meta">
@@ -34,13 +34,56 @@
   </header>
 
   <main class="container">
+    <!-- Filters -->
+    <section class="card filterCard">
+      <div class="sectionTitle">
+        <div>
+          <h2 style="margin:0">Filtres</h2>
+          <p class="subhead">Appliqués à la table (et communs à toutes les pages).</p>
+        </div>
+        <button class="btn" id="btnResetFilters" type="button">Réinitialiser</button>
+      </div>
+
+      <div class="filters">
+        <div class="f">
+          <label>Province</label>
+          <select id="fProvince"></select>
+        </div>
+        <div class="f">
+          <label>Sexe</label>
+          <select id="fSexe"></select>
+        </div>
+        <div class="f">
+          <label>Ministère</label>
+          <select id="fMinistere"></select>
+        </div>
+        <div class="f">
+          <label>Type organisation</label>
+          <select id="fOrgType"></select>
+        </div>
+        <div class="f">
+          <label>Cluster / Secteur</label>
+          <select id="fCluster"></select>
+        </div>
+        <div class="f fSearch">
+          <label>Recherche</label>
+          <input id="searchTable" class="search" placeholder="Rechercher (ex: VBG, plan d’action, données…)"/>
+        </div>
+      </div>
+
+      <div class="chips" id="activeChips"></div>
+    </section>
+
+    <!-- Table -->
     <section class="card">
       <div class="sectionTitle">
         <div>
           <h2 style="margin:0">Table des réponses</h2>
-          <p class="subhead">Filtre global sur toutes les colonnes (données “table-ready”).</p>
+          <p class="subhead">Colonnes lisibles • champs systèmes supprimés.</p>
         </div>
-        <input id="searchTable" class="search" placeholder="Rechercher (ex: Ministère, VBG, Absence de données…)"/>
+        <div class="pillStat">
+          <span class="muted">Affichées :</span> <strong id="nShown">—</strong>
+        </div>
       </div>
 
       <div class="tableWrap">
