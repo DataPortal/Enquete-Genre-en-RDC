@@ -1,4 +1,4 @@
-// ---------- Data paths ----------
+// ---------- Paths ----------
 const STATS = "data/stats.json";
 const QUESTIONS = "data/questions.json";
 const TABLE = "data/submissions_table.json";
@@ -10,15 +10,6 @@ async function loadJson(path){
   const r = await fetch(path, { cache: "no-store" });
   if(!r.ok) throw new Error(`Fetch failed: ${path} ${r.status}`);
   return r.json();
-}
-
-function escapeHtml(str){
-  return String(str)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
 }
 
 function formatPct(p){
@@ -33,7 +24,16 @@ function formatDateISO(s){
   return d.toLocaleString("fr-FR");
 }
 
-// ---------- System filters (NE PAS AFFICHER) ----------
+function escapeHtml(str){
+  return String(str)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+/* ---------- System filters (NE PAS AFFICHER) ---------- */
 const SYSTEM_KEYS = new Set([
   "_missing","_id","_uuid","_index","_submission_time","_submitted_by",
   "_validation_status","_notes","formhub/uuid","_attachments"
@@ -54,122 +54,171 @@ function cleanLabel(k){
 }
 
 function headerLabel(c){
-  // rendre lisible (sans jargon système)
+  // Headers humains (évite / _)
   return String(c).replaceAll("_"," ").replaceAll("/"," • ");
 }
 
-// ---------- Percent computation ----------
+/* ---------- Counter helpers ---------- */
 function totalFromCounter(counterObj){
   const c = counterObj || {};
-  return Object.entries(c).reduce((acc,[k,v]) => (k==="_missing"?acc:acc+Number(v||0)), 0);
+  return Object.entries(c).reduce((acc,[k,v]) => (k==="_missing"?acc:acc + Number(v||0)), 0);
 }
 
-function toPercentDataSmart(counterObj, q){
+function pctFromCounter(counterObj, key){
+  const c = counterObj || {};
+  const total = totalFromCounter(c);
+  if(!total) return null;
+  const val = Number(c[key] || 0);
+  return Math.round((val/total)*100);
+}
+
+/* Semantic layer: label_map + hide + top */
+function toEntriesSmart(counterObj, q){
   const labelMap = q?.label_map || {};
   const hidden = new Set([...(q?.hide || []), "_missing"]);
-
-  const total = totalFromCounter(counterObj);
-  if(!total) return { labels: [], values: [] };
 
   let entries = Object.entries(counterObj || {})
     .filter(([k]) => !hidden.has(k))
     .map(([k,v]) => {
       const cl = cleanLabel(k);
       if(!cl) return null;
-      const pct = Math.round((Number(v||0) / total) * 100);
-      return [labelMap[k] ?? cl, pct];
+      return [labelMap[k] ?? cl, Number(v||0)];
     })
     .filter(Boolean);
 
   entries.sort((a,b)=>b[1]-a[1]);
 
-  // top N (par défaut 10 si non fourni)
-  const top = (q?.top ?? 10);
-  entries = entries.slice(0, top);
+  const top = q?.top ?? 10;
+  if(top) entries = entries.slice(0, top);
 
-  return { labels: entries.map(e=>e[0]), values: entries.map(e=>e[1]) };
+  return entries;
 }
 
-// ---------- Chart.js modern ----------
+function toPercentData(entries){
+  const total = entries.reduce((a, x)=>a + (Number(x[1])||0), 0) || 1;
+  const labels = entries.map(x=>x[0]);
+  const values = entries.map(x=>Math.round((Number(x[1]) / total) * 100));
+  return { labels, values, total };
+}
+
+/* ---------- Chart.js modern style (no frames, smart) ---------- */
 function applyModernChartDefaults(){
   if(!window.Chart) return;
-  Chart.defaults.font.family = "Segoe UI, Inter, system-ui, -apple-system, Arial";
+  Chart.defaults.font.family = "Inter, Segoe UI, system-ui, -apple-system, Arial";
   Chart.defaults.color = "#334155";
-  Chart.defaults.animation.duration = 350;
-  Chart.defaults.plugins.legend.display = false;
+  Chart.defaults.animation.duration = 400;
+  Chart.defaults.plugins.legend.labels.usePointStyle = true;
+  Chart.defaults.plugins.legend.labels.boxWidth = 8;
   Chart.defaults.plugins.tooltip.padding = 10;
   Chart.defaults.plugins.tooltip.cornerRadius = 12;
 }
 
-function modernOptions(extra = {}){
-  const base = {
+function baseOptions(){
+  return {
     responsive: true,
     maintainAspectRatio: false,
-    indexAxis: "y",
     plugins: {
       legend: { display: false },
-      tooltip: {
-        intersect: false,
-        mode: "nearest",
-        callbacks: { label: (ctx) => `${ctx.raw}%` }
-      }
-    },
+      tooltip: { intersect:false, mode:"nearest" }
+    }
+  };
+}
+
+function modernBarPctOptions(horizontal=true){
+  return {
+    ...baseOptions(),
+    indexAxis: horizontal ? "y" : "x",
     scales: {
-      x: {
+      x: horizontal ? {
         min: 0,
         max: 100,
         grid: { color: "rgba(15,23,42,0.06)" },
         border: { display: false },
         ticks: { callback: (v)=>`${v}%` }
+      } : {
+        grid: { display:false },
+        border: { display:false }
       },
-      y: {
-        grid: { display: false },
-        border: { display: false }
+      y: horizontal ? {
+        grid: { display:false },
+        border: { display:false }
+      } : {
+        min: 0,
+        max: 100,
+        grid: { color: "rgba(15,23,42,0.06)" },
+        border: { display:false },
+        ticks: { callback: (v)=>`${v}%` }
       }
     },
     elements: {
       bar: { borderRadius: 10, borderSkipped: false }
+    },
+    plugins: {
+      legend: { display:false },
+      tooltip: {
+        callbacks: {
+          label: (ctx) => `${ctx.raw}%`
+        }
+      }
     }
   };
-
-  return Object.assign({}, base, extra, {
-    plugins: Object.assign({}, base.plugins, extra.plugins || {}),
-    scales: Object.assign({}, base.scales, extra.scales || {})
-  });
 }
 
-function createPercentBarChart(canvasId, labels, values, title){
+function modernDonutOptions(){
+  return {
+    ...baseOptions(),
+    cutout: "66%",
+    plugins: {
+      legend: { display: true, position:"bottom" },
+      tooltip: {
+        callbacks: {
+          label: (ctx)=> `${ctx.label}: ${ctx.raw}%`
+        }
+      }
+    }
+  };
+}
+
+function destroyIfExists(canvas){
+  if(canvas && canvas._chart){
+    try{ canvas._chart.destroy(); } catch(e){}
+    canvas._chart = null;
+  }
+}
+
+/* Smart chart rule:
+   - <= 2 catégories => doughnut en %
+   - > 2 catégories => barres horizontales en %
+*/
+function createSmartChart(canvasId, labels, values, title){
   const c = document.getElementById(canvasId);
   if(!c || !window.Chart) return null;
 
-  if(c._chart){
-    try{ c._chart.destroy(); } catch(e){}
-    c._chart = null;
-  }
+  destroyIfExists(c);
+
+  const isBinary = labels.length <= 2;
+
+  const type = isBinary ? "doughnut" : "bar";
+  const options = isBinary ? modernDonutOptions() : modernBarPctOptions(true);
 
   const chart = new Chart(c, {
-    type: "bar",
+    type,
     data: {
       labels,
-      datasets: [{ label: title, data: values, borderWidth: 0 }]
+      datasets: [{
+        label: title,
+        data: values,
+        borderWidth: 0
+      }]
     },
-    options: modernOptions()
+    options
   });
 
   c._chart = chart;
   return chart;
 }
 
-// ---------- KPI helper ----------
-function pctFromCounter(counterObj, key){
-  const c = counterObj || {};
-  const total = Object.entries(c).reduce((acc,[k,v]) => (k==="_missing"?acc:acc+Number(v||0)), 0);
-  if(!total) return null;
-  const val = Number(c[key] || 0);
-  return Math.round((val/total)*100);
-}
-
-// ---------- Dashboard ----------
+/* ---------- Dashboard ---------- */
 function buildDashboard(stats, questions){
   const sectionsDiv = el("dashboardSections");
   if(!sectionsDiv) return;
@@ -177,7 +226,7 @@ function buildDashboard(stats, questions){
   const counters = stats.counters || {};
   const multi = stats.multi || {};
 
-  // KPI
+  // KPIs
   const n = stats.n ?? 0;
   if(el("kpiN")) el("kpiN").textContent = n;
 
@@ -194,59 +243,69 @@ function buildDashboard(stats, questions){
 
   const sectionOrder = Array.from(bySection.keys());
 
-  // Render section blocks
+  // Render DOM
   sectionsDiv.innerHTML = sectionOrder.map(sec => {
     const items = bySection.get(sec);
+
     const cards = items.map((q, idx) => {
       const chartId = `chart_${sec.replaceAll(" ","_")}_${idx}`;
+      const top = q.top ?? 10;
       return `
         <div class="chartCard col-6">
           <h3>${escapeHtml(q.title)}</h3>
           <canvas id="${chartId}"></canvas>
-          <div class="subhead" style="margin-top:8px;">% des réponses • top ${escapeHtml(q.top ?? 10)}</div>
+          <div class="miniMeta">
+            <span>% des réponses (Top ${escapeHtml(top)})</span>
+            <span><code>${escapeHtml(q.field)}</code></span>
+          </div>
         </div>
       `;
     }).join("");
 
     return `
-      <div style="margin-top:14px;">
+      <div style="margin-top:12px;">
         <div class="sectionTitle">
-          <div><h2 style="margin:0">${escapeHtml(sec)}</h2></div>
-          <span class="sectionChip">Section</span>
+          <div>
+            <h2 style="margin:0">${escapeHtml(sec)}</h2>
+            <p class="subhead">Lecture harmonisée et compacte.</p>
+          </div>
+          <span class="sectionChip">Smart</span>
         </div>
         <div class="grid">${cards}</div>
       </div>
     `;
   }).join("");
 
-  // Create charts (smart % horizontal)
+  // Create charts
   sectionOrder.forEach(sec => {
     const items = bySection.get(sec);
+
     items.forEach((q, idx) => {
       const chartId = `chart_${sec.replaceAll(" ","_")}_${idx}`;
 
-      // source: multi fields in stats.multi, otherwise stats.counters
       const source = (q.chart === "bar_multi") ? (multi[q.field] || {}) : (counters[q.field] || {});
-      const d = toPercentDataSmart(source, q);
+      const entries = toEntriesSmart(source, q);
+      const d = toPercentData(entries);
 
       if(!d.labels.length){
-        createPercentBarChart(chartId, ["—"], [0], q.title);
+        createSmartChart(chartId, ["—"], [0], q.title);
       } else {
-        createPercentBarChart(chartId, d.labels, d.values, q.title);
+        createSmartChart(chartId, d.labels, d.values, q.title);
       }
     });
   });
 }
 
-// ---------- Table (Responses) ----------
+/* ---------- Table (Responses) ---------- */
 function buildTable(rows){
   const thead = el("thead");
   const tbody = el("tbody");
   const search = el("searchTable");
   if(!thead || !tbody) return;
 
-  // remove system columns
-  const cols = rows.length ? Object.keys(rows[0]).filter(c => !isSystemKey(c)) : [];
+  const cols = rows.length
+    ? Object.keys(rows[0]).filter(c => !isSystemKey(c))
+    : [];
 
   thead.innerHTML = `<tr>${cols.map(c => `<th>${escapeHtml(headerLabel(c))}</th>`).join("")}</tr>`;
 
@@ -272,28 +331,26 @@ function buildTable(rows){
   }
 }
 
-// ---------- Recommendations (global) ----------
+/* ---------- Recommendations (global) ---------- */
 function buildGlobalRecos(payload){
   if(el("sigCellule")) el("sigCellule").textContent = formatPct(payload?.signals?.cellule_genre_oui_pct);
   if(el("sigPlan")) el("sigPlan").textContent = formatPct(payload?.signals?.plan_action_oui_pct);
   if(el("sigInd")) el("sigInd").textContent = formatPct(payload?.signals?.indicateurs_oui_pct);
   if(el("sigOutils")) el("sigOutils").textContent = formatPct(payload?.signals?.outils_oui_pct);
 
-  // Charts as % (horizontal)
   const obstacles = payload?.top_obstacles || [];
   const actions = payload?.top_actions || [];
 
-  // Obstacles -> % within listed items
-  const oTotal = obstacles.reduce((a,x)=>a+Number(x.count||0),0) || 1;
-  const oLabels = obstacles.map(x => x.label).filter(l => !isSystemKey(l));
-  const oValsPct = obstacles.slice(0, oLabels.length).map(x => Math.round((Number(x.count||0)/oTotal)*100));
-  createPercentBarChart("chartTopObstacles", oLabels, oValsPct, "Top obstacles (%)");
+  // Convert to % within list (compact)
+  const oTotal = obstacles.reduce((a,x)=>a + Number(x.count||0), 0) || 1;
+  const oLabels = obstacles.map(x=>x.label).filter(l=>!isSystemKey(l)).slice(0,10);
+  const oVals = obstacles.slice(0, oLabels.length).map(x=>Math.round((Number(x.count||0)/oTotal)*100));
+  createSmartChart("chartTopObstacles", oLabels.length?oLabels:["—"], oLabels.length?oVals:[0], "Top obstacles");
 
-  // Actions -> % within listed items
-  const aTotal = actions.reduce((a,x)=>a+Number(x.count||0),0) || 1;
-  const aLabels = actions.map(x => x.label).filter(l => !isSystemKey(l));
-  const aValsPct = actions.slice(0, aLabels.length).map(x => Math.round((Number(x.count||0)/aTotal)*100));
-  createPercentBarChart("chartTopActions", aLabels, aValsPct, "Top actions (%)");
+  const aTotal = actions.reduce((a,x)=>a + Number(x.count||0), 0) || 1;
+  const aLabels = actions.map(x=>x.label).filter(l=>!isSystemKey(l)).slice(0,10);
+  const aVals = actions.slice(0, aLabels.length).map(x=>Math.round((Number(x.count||0)/aTotal)*100));
+  createSmartChart("chartTopActions", aLabels.length?aLabels:["—"], aLabels.length?aVals:[0], "Top actions");
 
   const ul = el("globalRecos");
   if(ul){
@@ -304,7 +361,7 @@ function buildGlobalRecos(payload){
   }
 }
 
-// ---------- Meta ----------
+/* ---------- Meta ---------- */
 function setMetaFromStats(stats){
   const nEl = el("nResponses");
   if(nEl && (stats?.n !== null && stats?.n !== undefined)) nEl.textContent = stats.n;
@@ -314,9 +371,10 @@ function setMetaFromStats(stats){
   if(last) last.textContent = formatDateISO(generated || new Date().toISOString());
 }
 
-// ---------- Main ----------
+/* ---------- Main ---------- */
 async function main(){
   applyModernChartDefaults();
+
   const page = document.body.getAttribute("data-page");
 
   if(page === "dashboard"){
