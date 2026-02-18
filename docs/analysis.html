@@ -3,81 +3,109 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Analyse & recommandations — Kobo</title>
+  <title>Analyse — Enquête Genre</title>
   <link rel="stylesheet" href="style.css"/>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 </head>
 <body data-page="analysis">
-  <header class="topbar">
+  <header class="topbar topbar--hero">
     <div class="topbar-inner">
-      <div class="brand">
+      <div class="brandBox">
         <div class="logo" aria-hidden="true"></div>
         <div>
-          <h1>Analyse automatique & recommandations</h1>
-          <p>Basé sur <code>analysis_recos.json</code> (généré à chaque sync)</p>
+          <h1>Analyse — Synthèse & priorités</h1>
+          <p>Lecture stratégique • obstacles / actions • recommandations</p>
         </div>
       </div>
 
       <nav class="nav" aria-label="Navigation">
-        <a href="./index.html">Dashboard</a>
         <a href="./responses.html">Réponses</a>
-        <a class="active" href="./analysis.html">Analyse & recommandations</a>
+        <a href="./index.html">Dashboard</a>
+        <a class="active" href="./analysis.html">Analyse</a>
       </nav>
 
       <div class="meta">
-        <div class="badge"><span class="dot"></span><span>Mise à jour : <strong id="lastUpdate">—</strong></span></div>
-        <div class="line">Nb réponses : <strong id="nResponses">—</strong></div>
+        <div class="badge">
+          <span class="dot" aria-hidden="true"></span>
+          <span>Mise à jour : <strong id="lastUpdate">—</strong></span>
+        </div>
+        <div class="line">Nb réponses (filtrées) : <strong id="nResponses">—</strong></div>
       </div>
     </div>
   </header>
 
   <main class="container">
-    <section class="card">
-      <h2>Distribution globale</h2>
-      <p class="subhead">Niveau de maturité, score, priorités.</p>
-
-      <div class="grid">
-        <div class="col-6">
-          <h2 style="margin-top:0">Score maturité (0–7)</h2>
-          <canvas id="chartScoreDist"></canvas>
-        </div>
-        <div class="col-6">
-          <h2 style="margin-top:0">Priorité d’actions</h2>
-          <canvas id="chartPriorityDist"></canvas>
-        </div>
-      </div>
-    </section>
-
-    <section class="card">
-      <div class="row">
+    <!-- Filters -->
+    <section class="card filterCard">
+      <div class="sectionTitle">
         <div>
-          <h2 style="margin:0">Table analyse par répondant</h2>
-          <p class="subhead">Gaps, forces et recommandations générées automatiquement.</p>
+          <h2 style="margin:0">Filtres</h2>
+          <p class="subhead">Appliqués aux charts d’analyse et aux recommandations.</p>
         </div>
-        <input id="searchAnalysis" class="search" placeholder="Filtrer (ex: Haute, Faible, plan d’action, GTG…)"/>
+        <button class="btn" id="btnResetFilters" type="button">Réinitialiser</button>
       </div>
 
-      <div class="tableWrap">
-        <table id="tblAnalysis">
-          <thead id="theadAnalysis"></thead>
-          <tbody id="tbodyAnalysis"></tbody>
-        </table>
+      <div class="filters">
+        <div class="f">
+          <label>Province</label>
+          <select id="fProvince"></select>
+        </div>
+        <div class="f">
+          <label>Sexe</label>
+          <select id="fSexe"></select>
+        </div>
+        <div class="f">
+          <label>Ministère</label>
+          <select id="fMinistere"></select>
+        </div>
+        <div class="f">
+          <label>Type organisation</label>
+          <select id="fOrgType"></select>
+        </div>
+        <div class="f">
+          <label>Cluster / Secteur</label>
+          <select id="fCluster"></select>
+        </div>
+      </div>
+
+      <div class="chips" id="activeChips"></div>
+    </section>
+
+    <section class="card">
+      <div class="sectionTitle">
+        <div>
+          <h2 style="margin:0">Priorités (agrégées)</h2>
+          <p class="subhead">Obstacles et actions prioritaires (en %), recalculés selon les filtres.</p>
+        </div>
+        <span class="sectionChip">Evidence-based</span>
+      </div>
+
+      <div class="grid">
+        <div class="chartCard col-6">
+          <h3>Top obstacles (%)</h3>
+          <canvas id="chartTopObstacles"></canvas>
+          <div class="small">Barres horizontales • % (0–100) • Top 10</div>
+        </div>
+        <div class="chartCard col-6">
+          <h3>Top actions prioritaires (%)</h3>
+          <canvas id="chartTopActions"></canvas>
+          <div class="small">Barres horizontales • % (0–100) • Top 10</div>
+        </div>
       </div>
     </section>
 
     <section class="card">
-      <h2>Recommandations globales (automatiques)</h2>
-      <p class="subhead">
-        Basées sur la fréquence des <strong>gaps</strong> observés (top 5) + actions de remédiation proposées.
-      </p>
+      <div class="sectionTitle">
+        <div>
+          <h2 style="margin:0">Recommandations proposées</h2>
+          <p class="subhead">Liste priorisée (basée sur les signaux dominants observés).</p>
+        </div>
+        <span class="sectionChip">Plan d’action</span>
+      </div>
 
       <div class="grid">
-        <div class="reco col-6">
-          <h3>Top gaps observés</h3>
-          <div id="topGaps"></div>
-        </div>
-        <div class="reco col-6">
-          <h3>Plan d’action recommandé (priorisé)</h3>
+        <div class="recoBox col-12">
+          <h3>Actions recommandées (priorisées)</h3>
           <ul id="globalRecos"></ul>
         </div>
       </div>
