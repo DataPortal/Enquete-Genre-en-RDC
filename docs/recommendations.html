@@ -8,13 +8,13 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 </head>
 <body data-page="recommendations">
-  <header class="topbar topbar--un">
+  <header class="topbar topbar--hero">
     <div class="topbar-inner">
-      <div class="brand">
+      <div class="brandBox">
         <div class="logo" aria-hidden="true"></div>
         <div>
           <h1>Recommandations (Globales)</h1>
-          <p>Basées sur statistiques agrégées • visualisation en %</p>
+          <p>Basées sur les statistiques agrégées • smart charts en %</p>
         </div>
       </div>
 
@@ -25,7 +25,10 @@
       </nav>
 
       <div class="meta">
-        <div class="badge"><span class="dot"></span><span>Mise à jour : <strong id="lastUpdate">—</strong></span></div>
+        <div class="badge">
+          <span class="dot" aria-hidden="true"></span>
+          <span>Mise à jour : <strong id="lastUpdate">—</strong></span>
+        </div>
         <div class="line">Nb réponses : <strong id="nResponses">—</strong></div>
       </div>
     </div>
@@ -76,12 +79,14 @@
 
       <div class="grid">
         <div class="chartCard col-6">
-          <h3>Top obstacles (%)</h3>
+          <h3>Top obstacles</h3>
           <canvas id="chartTopObstacles"></canvas>
+          <div class="small">Barres horizontales • % (0–100)</div>
         </div>
         <div class="chartCard col-6">
-          <h3>Top actions prioritaires (%)</h3>
+          <h3>Top actions prioritaires</h3>
           <canvas id="chartTopActions"></canvas>
+          <div class="small">Barres horizontales • % (0–100)</div>
         </div>
       </div>
     </section>
@@ -90,9 +95,9 @@
       <div class="sectionTitle">
         <div>
           <h2 style="margin:0">Recommandations globales</h2>
-          <p class="subhead">Plan d’action proposé à partir des signaux statistiques.</p>
+          <p class="subhead">Plan d’action institutionnel proposé à partir des signaux statistiques.</p>
         </div>
-        <span class="sectionChip">UN Blue</span>
+        <span class="sectionChip">Priorisé</span>
       </div>
 
       <div class="grid">
