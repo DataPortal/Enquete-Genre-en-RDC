@@ -14,7 +14,7 @@
         <div class="logo" aria-hidden="true"></div>
         <div>
           <h1>Réponses — Enquête Genre (Ministères)</h1>
-          <p>Filtres ministériels • table premium • anonymat respecté • sans champs systèmes</p>
+          <p>Table filtrable • anonymat respecté • champs techniques retirés</p>
         </div>
       </div>
 
@@ -22,8 +22,6 @@
         <a class="active" href="./responses.html">Réponses</a>
         <a href="./index.html">Dashboard</a>
         <a href="./analysis.html">Analyse</a>
-        <!-- (optionnel si tu gardes la page) -->
-        <!-- <a href="./recommendations.html">Recommandations</a> -->
       </nav>
 
       <div class="meta">
@@ -37,67 +35,37 @@
   </header>
 
   <main class="container">
-    <!-- Filters -->
     <section class="card filterCard">
       <div class="sectionTitle">
         <div>
           <h2 style="margin:0">Filtres</h2>
-          <p class="subhead">Appliqués à la table et synchronisés avec les autres pages.</p>
+          <p class="subhead">Filtrer la table par profil institutionnel.</p>
         </div>
         <button class="btn" id="btnResetFilters" type="button">Réinitialiser</button>
       </div>
 
       <div class="filters">
-        <div class="f">
-          <label>Ministère</label>
-          <select id="fMinistere"></select>
-        </div>
-
-        <div class="f">
-          <label>Sexe</label>
-          <select id="fSexe"></select>
-        </div>
-
-        <div class="f">
-          <label>Fonction</label>
-          <select id="fFonction"></select>
-        </div>
-
-        <div class="f">
-          <label>Expérience (ministère)</label>
-          <select id="fExperience"></select>
-        </div>
-
-        <div class="f">
-          <label>Formation genre</label>
-          <select id="fFormation"></select>
-        </div>
-
-        <div class="f">
-          <label>Connaissance GTG</label>
-          <select id="fGTG"></select>
-        </div>
+        <div class="f"><label>Ministère</label><select id="fMinistere"></select></div>
+        <div class="f"><label>Sexe</label><select id="fSexe"></select></div>
+        <div class="f"><label>Fonction</label><select id="fFonction"></select></div>
+        <div class="f"><label>Expérience (ministère)</label><select id="fExperience"></select></div>
+        <div class="f"><label>Formation genre</label><select id="fFormation"></select></div>
+        <div class="f"><label>Connaissance GTG</label><select id="fGTG"></select></div>
 
         <div class="f f--wide">
           <label>Recherche</label>
-          <input id="searchTable" class="search"
-                 placeholder="Rechercher (ex: Budget, indicateurs, VBG, données désagrégées…)" />
+          <input id="searchTable" class="search" placeholder="Rechercher (ex: budget, indicateurs, VBG, données désagrégées…)" />
         </div>
       </div>
 
       <div class="chips" id="activeChips"></div>
-
-      <div class="note">
-        <strong>Note :</strong> les réponses sont affichées sans identifiants personnels. Les champs techniques/systèmes sont retirés automatiquement.
-      </div>
     </section>
 
-    <!-- Table -->
     <section class="card">
       <div class="sectionTitle">
         <div>
           <h2 style="margin:0">Table des réponses</h2>
-          <p class="subhead">Colonnes lisibles • champs systèmes supprimés automatiquement.</p>
+          <p class="subhead">Affichage des champs utiles uniquement.</p>
         </div>
         <div class="pillStat">
           <span class="muted">Affichées :</span> <strong id="nShown">—</strong>
