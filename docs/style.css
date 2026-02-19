@@ -1,10 +1,8 @@
 :root{
-  /* Palette moderne (premium) */
-  --brand:#2F80ED;      /* bleu moderne */
-  --brand2:#6A5AE0;     /* violet */
-  --accent:#FF7A59;     /* corail */
-  --teal:#12B886;       /* teal */
-  --gold:#FFB020;
+  --brand:#2F80ED;
+  --brand2:#6A5AE0;
+  --accent:#FF7A59;
+  --teal:#12B886;
 
   --bg:#f5f7fb;
   --card:#ffffff;
@@ -30,7 +28,6 @@ body{
 
 /* ---------- Hero header ---------- */
 .topbar{ position: sticky; top:0; z-index: 40; }
-
 .topbar--hero{
   background:
     radial-gradient(900px 320px at 12% 0%, rgba(255,255,255,.18), transparent 55%),
@@ -90,7 +87,6 @@ body{
   color: rgba(255,255,255,.88);
   white-space: nowrap;
 }
-
 .nav a:hover{ background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.18); }
 .nav a.active{ background: rgba(255,255,255,.18); border-color: rgba(255,255,255,.22); color:#fff; }
 
@@ -101,7 +97,6 @@ body{
   align-items:flex-end;
   min-width: 220px;
 }
-
 .badge{
   display:inline-flex;
   align-items:center;
@@ -121,7 +116,6 @@ body{
   margin: 16px auto 44px auto;
   padding: 0 14px;
 }
-
 .footer{
   text-align:center;
   color: rgba(15,23,42,.55);
@@ -165,7 +159,6 @@ body{
 
 .small{ color: var(--muted); font-size: 12px; margin-top: 6px; }
 .muted{ color: rgba(15,23,42,.55); }
-
 code{
   background: rgba(15,23,42,.06);
   padding: 2px 6px;
@@ -216,8 +209,9 @@ code{
   align-items:end;
 }
 
+/* 6 filtres => 2 colonnes chacun = 12 */
 .f{ grid-column: span 2; }
-.fSearch{ grid-column: span 4; }
+.fSearch{ grid-column: span 12; }
 
 @media (max-width: 979px){
   .f{ grid-column: span 3; }
@@ -244,7 +238,6 @@ select, .search{
   background: #fff;
   outline: none;
 }
-
 select:focus, .search:focus{
   box-shadow: 0 0 0 4px rgba(47,128,237,.16);
   border-color: rgba(47,128,237,.55);
@@ -267,7 +260,6 @@ select:focus, .search:focus{
   gap: 8px;
   margin-top: 10px;
 }
-
 .chip{
   display:inline-flex;
   align-items:center;
@@ -279,6 +271,14 @@ select:focus, .search:focus{
   font-size: 12px;
 }
 
+.pillStat{
+  border: 1px solid rgba(15,23,42,.08);
+  background: rgba(15,23,42,.03);
+  border-radius: 999px;
+  padding: 8px 10px;
+  font-size: 12px;
+}
+
 /* ---------- Chart cards ---------- */
 .chartCard{
   padding: 12px 12px;
@@ -287,26 +287,16 @@ select:focus, .search:focus{
   background: linear-gradient(180deg, rgba(255,255,255,1), rgba(255,255,255,.92));
   box-shadow: var(--shadow2);
 }
-
 .chartCard h3{
   margin: 0 0 8px 0;
   font-weight: 900;
   letter-spacing: -0.2px;
   font-size: 14px;
 }
-
 .chartCard canvas{
   width: 100% !important;
-  height: 170px !important; /* compact & cohérent */
+  height: 170px !important;
   display:block;
-}
-
-.pillStat{
-  border: 1px solid rgba(15,23,42,.08);
-  background: rgba(15,23,42,.03);
-  border-radius: 999px;
-  padding: 8px 10px;
-  font-size: 12px;
 }
 
 /* ---------- Insights ---------- */
@@ -319,19 +309,16 @@ select:focus, .search:focus{
   box-shadow: 0 8px 18px rgba(2,6,23,.06);
   padding: 12px 12px;
 }
-
 .insightCard h3{
   margin:0 0 10px 0;
   font-size: 14px;
   font-weight: 900;
 }
-
 .insightsList{
   display:flex;
   flex-direction: column;
   gap: 8px;
 }
-
 .insightRow{
   display:flex;
   align-items:center;
@@ -342,7 +329,6 @@ select:focus, .search:focus{
   border: 1px solid rgba(15,23,42,.06);
   background: rgba(15,23,42,.02);
 }
-
 .insightRow strong{ font-weight: 900; }
 .insightRow .pct{
   display:inline-flex;
@@ -350,7 +336,6 @@ select:focus, .search:focus{
   gap: 8px;
   font-weight: 900;
 }
-
 .badgeUp{ color: var(--teal); }
 .badgeDown{ color: var(--accent); }
 
@@ -361,14 +346,12 @@ select:focus, .search:focus{
   border: 1px solid rgba(15,23,42,.08);
   background: #fff;
 }
-
 table{
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
   font-size: 13px;
 }
-
 thead th{
   position: sticky;
   top: 0;
@@ -382,7 +365,6 @@ thead th{
   padding: 12px 12px;
   white-space: nowrap;
 }
-
 tbody td{
   padding: 10px 12px;
   border-bottom: 1px solid rgba(15,23,42,.06);
@@ -392,7 +374,6 @@ tbody td{
   white-space: normal;
   word-break: break-word;
 }
-
 tbody tr:nth-child(even){ background: rgba(15,23,42,.02); }
 tbody tr:hover{ background: rgba(47,128,237,.08); }
 
@@ -404,13 +385,11 @@ tbody tr:hover{ background: rgba(47,128,237,.08); }
   background: #fff;
   box-shadow: var(--shadow2);
 }
-
 #globalRecos{
   margin: 10px 0 0 0;
   padding: 0;
   list-style: none;
 }
-
 #globalRecos li{
   display:flex;
   gap: 10px;
@@ -419,7 +398,6 @@ tbody tr:hover{ background: rgba(47,128,237,.08); }
   line-height: 1.35;
 }
 #globalRecos li:last-child{ border-bottom:none; }
-
 #globalRecos li::before{
   content: "✓";
   font-weight: 900;
