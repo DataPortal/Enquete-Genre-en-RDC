@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Analyse — Enquête Genre</title>
+  <title>Analyse — Enquête Genre (Ministères RDC)</title>
   <link rel="stylesheet" href="style.css"/>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 </head>
@@ -13,8 +13,8 @@
       <div class="brandBox">
         <div class="logo" aria-hidden="true"></div>
         <div>
-          <h1>Analyse — Synthèse & priorités</h1>
-          <p>Lecture stratégique • obstacles / actions • recommandations</p>
+          <h1>Analyse — Priorités & recommandations</h1>
+          <p>Obstacles / actions (multi-sélection) • recommandations • filtrage ministériel</p>
         </div>
       </div>
 
@@ -40,31 +40,35 @@
       <div class="sectionTitle">
         <div>
           <h2 style="margin:0">Filtres</h2>
-          <p class="subhead">Appliqués aux charts d’analyse et aux recommandations.</p>
+          <p class="subhead">Appliqués aux graphiques d’analyse et aux recommandations.</p>
         </div>
         <button class="btn" id="btnResetFilters" type="button">Réinitialiser</button>
       </div>
 
       <div class="filters">
         <div class="f">
-          <label>Province</label>
-          <select id="fProvince"></select>
+          <label>Ministère</label>
+          <select id="fMinistere"></select>
         </div>
         <div class="f">
           <label>Sexe</label>
           <select id="fSexe"></select>
         </div>
         <div class="f">
-          <label>Ministère</label>
-          <select id="fMinistere"></select>
+          <label>Fonction</label>
+          <select id="fFonction"></select>
         </div>
         <div class="f">
-          <label>Type organisation</label>
-          <select id="fOrgType"></select>
+          <label>Expérience (années)</label>
+          <select id="fExperience"></select>
         </div>
         <div class="f">
-          <label>Cluster / Secteur</label>
-          <select id="fCluster"></select>
+          <label>Formation genre</label>
+          <select id="fFormation"></select>
+        </div>
+        <div class="f">
+          <label>Connaît le GTG</label>
+          <select id="fGTG"></select>
         </div>
       </div>
 
@@ -74,22 +78,22 @@
     <section class="card">
       <div class="sectionTitle">
         <div>
-          <h2 style="margin:0">Priorités (agrégées)</h2>
-          <p class="subhead">Obstacles et actions prioritaires (en %), recalculés selon les filtres.</p>
+          <h2 style="margin:0">Priorités (issues des réponses)</h2>
+          <p class="subhead">Top obstacles et Top actions (en %), recalculés selon filtres.</p>
         </div>
         <span class="sectionChip">Evidence-based</span>
       </div>
 
       <div class="grid">
         <div class="chartCard col-6">
-          <h3>Top obstacles (%)</h3>
+          <h3>Principaux obstacles (%)</h3>
           <canvas id="chartTopObstacles"></canvas>
-          <div class="small">Barres horizontales • % (0–100) • Top 10</div>
+          <div class="small">Multi-sélection • Top 10 • barres horizontales</div>
         </div>
         <div class="chartCard col-6">
-          <h3>Top actions prioritaires (%)</h3>
+          <h3>Actions prioritaires (%)</h3>
           <canvas id="chartTopActions"></canvas>
-          <div class="small">Barres horizontales • % (0–100) • Top 10</div>
+          <div class="small">Multi-sélection • Top 10 • barres horizontales</div>
         </div>
       </div>
     </section>
@@ -98,7 +102,7 @@
       <div class="sectionTitle">
         <div>
           <h2 style="margin:0">Recommandations proposées</h2>
-          <p class="subhead">Liste priorisée (basée sur les signaux dominants observés).</p>
+          <p class="subhead">Liste priorisée basée sur les signaux dominants observés.</p>
         </div>
         <span class="sectionChip">Plan d’action</span>
       </div>
