@@ -1,14 +1,53 @@
 const QUESTIONS = "data/questions.json";
 const TABLE = "data/submissions_table.json";
 const RECOS = "data/recommendations_global.json";
-const STATS = "data/stats.json"; // optional
+const STATS = "data/stats.json"; // optionnel
 
 function el(id){ return document.getElementById(id); }
 
+/* ---------- UI Error Banner ---------- */
+function showFatal(message, details=""){
+  console.error("FATAL:", message, details);
+  const barId = "fatalBar";
+  let bar = document.getElementById(barId);
+  if(!bar){
+    bar = document.createElement("div");
+    bar.id = barId;
+    bar.style.cssText = `
+      position: sticky; top: 0; z-index: 9999;
+      background: #b91c1c; color: #fff;
+      padding: 10px 14px;
+      font-family: system-ui, -apple-system, Segoe UI, Arial;
+      font-size: 13px;
+      box-shadow: 0 10px 20px rgba(0,0,0,.18);
+    `;
+    document.body.prepend(bar);
+  }
+  bar.innerHTML = `
+    <strong>Erreur chargement dashboard</strong> — ${escapeHtml(message)}
+    ${details ? `<div style="opacity:.9; margin-top:6px">${escapeHtml(details)}</div>` : ""}
+    <div style="opacity:.9; margin-top:6px">
+      Ouvre la console (F12) pour voir l’erreur exacte (404/JSON).
+    </div>
+  `;
+}
+
 async function loadJson(path){
   const r = await fetch(path, { cache: "no-store" });
-  if(!r.ok) throw new Error(`Fetch failed: ${path} ${r.status}`);
+  if(!r.ok){
+    throw new Error(`Fetch failed ${r.status} — ${path}`);
+  }
   return r.json();
+}
+
+/* ---------- Robust unwrap ---------- */
+function unwrapArray(payload){
+  if(Array.isArray(payload)) return payload;
+  if(payload && Array.isArray(payload.data)) return payload.data;
+  if(payload && Array.isArray(payload.results)) return payload.results;
+  if(payload && Array.isArray(payload.questions)) return payload.questions;
+  // fallback: if object map, return entries as array (rare)
+  return null;
 }
 
 function escapeHtml(str){
@@ -25,11 +64,6 @@ function formatDateISO(s){
   const d = new Date(s);
   if (isNaN(d.getTime())) return s;
   return d.toLocaleString("fr-FR");
-}
-
-function formatPct(p){
-  if(p === null || p === undefined) return "—";
-  return `${p}%`;
 }
 
 function normalize(v){
@@ -55,14 +89,22 @@ function buildSelect(selectEl, values, allLabel="Tous"){
   });
 }
 
-/* ---------------- Exclure champs systèmes ---------------- */
+/* ---------- Safe slug for IDs (no accents) ---------- */
+function slug(s){
+  return String(s || "")
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")  // remove accents
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "_")
+    .replace(/^_+|_+$/g, "");
+}
+
+/* ---------- System fields removal ---------- */
 const SYSTEM_KEYS = new Set([
   "_missing","_id","_uuid","_index","_submission_time","_submitted_by",
   "_validation_status","_notes","formhub/uuid","_attachments"
 ]);
 function isSystemKey(k){
-  if(k === null || k === undefined) return true;
-  const s = String(k).trim();
+  const s = String(k ?? "").trim();
   if(!s) return true;
   if(SYSTEM_KEYS.has(s)) return true;
   if(s.startsWith("_")) return true;
@@ -72,7 +114,7 @@ function headerLabel(c){
   return String(c).replaceAll("_"," ").replaceAll("/"," • ");
 }
 
-/* ---------------- Multi-sélection ---------------- */
+/* ---------- Multi select split ---------- */
 function splitMulti(val){
   const s = normalize(val);
   if(!s) return [];
@@ -82,33 +124,25 @@ function splitMulti(val){
   return [s];
 }
 
-/* ---------------- Mapping champs (ROBUSTE pour vos colonnes) ---------------- */
+/* ---------- Field candidates (adaptables) ---------- */
 const FIELDS = {
   consent: ["consent","intro/consent","consentement"],
 
-  ministere: ["ministere","intro/ministere","sec1/ministere","ministere_sg","ministere_ou_sg"],
+  ministere: ["ministere","intro/ministere","ministere_sg","ministere_ou_sg"],
   sexe: ["sexe","intro/sexe"],
   fonction: ["fonction","intro/fonction","fonction_actuelle"],
   experience: [
     "annees_experience_ministere","intro/annees_experience_ministere",
-    "experience_ministere","experience","annees_experience",
-    "nombre_annees_experience","annees_experience_au_ministere"
+    "experience_ministere","experience","annees_experience"
   ],
-  formation: ["formation_genre","intro/formation_genre","a_suivi_formation_genre","formation_sur_le_genre"],
+  formation: ["formation_genre","intro/formation_genre","a_suivi_formation_genre"],
 
-  // Knowledge / practices (vos libellés)
-  diffSexeGenre: ["diff_sexe_genre","connaissance_diff_sexe_genre","difference_sexe_genre"],
+  diffSexeGenre: ["diff_sexe_genre","difference_sexe_genre","connaissance_diff_sexe_genre"],
   celluleGenre: ["cellule_genre","presence_cellule_genre","dispose_cellule_genre"],
-  politiquesConnues: ["politiques_genre_connaissance","connaissance_politique_genre"],
-  planGenre: ["plan_strategie_genre","plan_genre","strategie_genre"],
-  indicateurs: ["indicateurs_genre","indicateurs_sensibles_genre","integration_indicateurs_genre"],
-  outilsGuides: ["outils_guides_genre","outils_genre","acces_outils_genre"],
 
-  // Obstacles/actions
   obstacles: ["obstacles","principaux_obstacles","obstacles_integration_genre","obstacles_genre"],
   actions: ["actions_prioritaires","actions","actions_pour_ameliorer","actions_integration_genre"],
 
-  // GTG
   gtgHeard: ["gtg","gtg_connu","entendu_gtg","a_entendu_parler_gtg"],
   gtgSubgroups: ["gtg_sous_groupes","sous_groupes_gtg","sous_groupes_connus"]
 };
@@ -125,11 +159,11 @@ function pickField(row, candidates){
 
 function isConsented(row){
   const v = pickField(row, FIELDS.consent).toLowerCase();
-  if(!v) return true; // si champ absent, on ne bloque pas
+  if(!v) return true;
   return (v === "oui" || v === "yes" || v === "true");
 }
 
-/* ---------------- Filtres ---------------- */
+/* ---------- Filters ---------- */
 function getCurrentFilters(){
   return {
     ministere: el("fMinistere")?.value || "__all__",
@@ -184,7 +218,7 @@ function renderChips(filters){
     : `<span class="chip"><strong>Filtres:</strong> Aucun (vue complète)</span>`;
 }
 
-/* ---------------- Charts (smart) ---------------- */
+/* ---------- Charts ---------- */
 function applyModernChartDefaults(){
   if(!window.Chart) return;
   Chart.defaults.font.family = "Inter, Segoe UI, system-ui, -apple-system, Arial";
@@ -220,13 +254,8 @@ function smartOptionsBarPct(){
       tooltip: { callbacks: { label: (ctx)=> `${ctx.raw}%` } }
     },
     scales: {
-      x: {
-        min: 0, max: 100,
-        grid: { color: "rgba(15,23,42,0.06)" },
-        border: { display:false },
-        ticks: { callback: (v)=>`${v}%` }
-      },
-      y: { grid: { display:false }, border:{ display:false } }
+      x: { min:0, max:100, ticks:{ callback:(v)=>`${v}%` }, grid:{ color:"rgba(15,23,42,0.06)" }, border:{ display:false } },
+      y: { grid:{ display:false }, border:{ display:false } }
     },
     elements: { bar: { borderRadius: 10, borderSkipped: false } }
   };
@@ -234,13 +263,10 @@ function smartOptionsBarPct(){
 
 function smartOptionsDonut(){
   return {
-    responsive: true,
-    maintainAspectRatio: false,
-    cutout: "66%",
-    plugins: {
-      legend: { display: true, position: "bottom" },
-      tooltip: { callbacks: { label: (ctx)=> `${ctx.label}: ${ctx.raw}%` } }
-    }
+    responsive:true,
+    maintainAspectRatio:false,
+    cutout:"66%",
+    plugins:{ legend:{ display:true, position:"bottom" } }
   };
 }
 
@@ -272,12 +298,11 @@ function createSmartChart(canvasId, labels, values, title){
     },
     options
   });
-
   c._chart = chart;
   return chart;
 }
 
-/* ---------------- Stats helpers ---------------- */
+/* ---------- Counters + % ---------- */
 function counterByExactField(rows, field){
   const c = {};
   for(const r of rows){
@@ -318,20 +343,28 @@ function toPercentTop(counterObj, top=10){
   };
 }
 
-function pctPositive(counterObj, positiveSet){
-  const total = Object.entries(counterObj).reduce((a,[k,v]) => (k==="_missing"?a:a+Number(v||0)), 0);
+function pctYesFromCandidates(rows, candidates){
+  const c = counterFromCandidates(rows, candidates);
+  const keys = Object.keys(c).map(x=>String(x).toLowerCase());
+  const hasOui = keys.includes("oui") || keys.includes("yes") || keys.includes("true");
+  if(!hasOui) return null;
+
+  const total = Object.entries(c).reduce((a,[k,v]) => a + Number(v||0), 0);
   if(!total) return null;
-  let pos = 0;
-  for(const [k,v] of Object.entries(counterObj)){
-    if(positiveSet.has(String(k).toLowerCase())) pos += Number(v||0);
+
+  let yes = 0;
+  for(const [k,v] of Object.entries(c)){
+    const kk = String(k).toLowerCase();
+    if(kk === "oui" || kk === "yes" || kk === "true") yes += Number(v||0);
   }
-  return Math.round((pos/total)*100);
+  return Math.round((yes/total)*100);
 }
 
-/* ---------------- Dashboard skeleton (from questions.json) ---------------- */
+/* ---------- Questions sections ---------- */
 function groupQuestionsBySection(questions){
   const bySection = new Map();
   for(const q of questions){
+    if(!q || !q.section || !q.title || !q.field) continue;
     if(!bySection.has(q.section)) bySection.set(q.section, []);
     bySection.get(q.section).push(q);
   }
@@ -348,7 +381,7 @@ function renderDashboardSkeleton(questions){
     const items = bySection.get(sec);
 
     const cards = items.map((q, idx) => {
-      const chartId = `chart_${sec.replaceAll(" ","_")}_${idx}`;
+      const chartId = `chart_${slug(sec)}_${idx}`;
       const top = q.top ?? 10;
       return `
         <div class="chartCard col-6">
@@ -374,72 +407,7 @@ function renderDashboardSkeleton(questions){
   }).join("");
 }
 
-/* ---------------- Insights (ROBUSTE) ----------------
-   - détecte Oui/Non, Vrai/Faux, Yes/No
-   - calcule un "% positif" et classe Top forces / Top gaps
-*/
-function renderInsights(rows, questions){
-  const strong = el("insightsStrong");
-  const weak = el("insightsWeak");
-  if(!strong || !weak) return;
-
-  const yesSet = new Set(["oui","yes","true"]);
-  const noSet = new Set(["non","no","false"]);
-  const vraiSet = new Set(["vrai"]);
-  const fauxSet = new Set(["faux"]);
-
-  const signals = [];
-
-  for(const q of questions){
-    if(!q.field) continue;
-
-    const c = counterByExactField(rows, q.field);
-    const keys = new Set(Object.keys(c).map(k=>String(k).toLowerCase()));
-
-    const hasYesNo = [...keys].some(k=>yesSet.has(k)) && [...keys].some(k=>noSet.has(k));
-    const hasVraiFaux = keys.has("vrai") && keys.has("faux");
-
-    if(!(hasYesNo || hasVraiFaux)) continue;
-
-    // par défaut: positif=Oui, et pour Vrai/Faux: positif=Vrai
-    // heuristique utile: si question contient "principalement biologique" -> positif = Faux
-    let positive = yesSet;
-    if(hasVraiFaux){
-      const title = (q.title || "").toLowerCase();
-      positive = title.includes("biologique") ? fauxSet : vraiSet;
-    }
-
-    const pct = pctPositive(c, positive);
-    if(pct !== null) signals.push({ title: q.title, pct });
-  }
-
-  signals.sort((a,b)=>b.pct-a.pct);
-
-  const topStrong = signals.slice(0, 4);
-  const topWeak = signals.slice(-4).reverse();
-
-  const rowHtml = (x, kind)=>`
-    <div class="insightRow">
-      <div>
-        <strong>${escapeHtml(x.title)}</strong>
-        <div class="muted" style="font-size:12px;">% réponse “positive”</div>
-      </div>
-      <div class="pct ${kind === "up" ? "badgeUp" : "badgeDown"}">
-        ${x.pct}%
-      </div>
-    </div>
-  `;
-
-  strong.innerHTML = topStrong.length
-    ? topStrong.map(x=>rowHtml(x,"up")).join("")
-    : `<div class="muted">Aucun signal binaire détecté (vérifier les valeurs Oui/Non, Vrai/Faux).</div>`;
-
-  weak.innerHTML = topWeak.length
-    ? topWeak.map(x=>rowHtml(x,"down")).join("")
-    : `<div class="muted">Aucun signal binaire détecté (vérifier les valeurs Oui/Non, Vrai/Faux).</div>`;
-}
-
-/* ---------------- Table render ---------------- */
+/* ---------- Table ---------- */
 function buildTable(filteredRows, allRows){
   const thead = el("thead");
   const tbody = el("tbody");
@@ -447,8 +415,8 @@ function buildTable(filteredRows, allRows){
   if(!thead || !tbody) return;
 
   const cols = allRows.length ? Object.keys(allRows[0]).filter(c => !isSystemKey(c)) : [];
-
   thead.innerHTML = `<tr>${cols.map(c => `<th>${escapeHtml(headerLabel(c))}</th>`).join("")}</tr>`;
+
   if(nShown) nShown.textContent = filteredRows.length;
 
   tbody.innerHTML = filteredRows.map(r => {
@@ -459,141 +427,155 @@ function buildTable(filteredRows, allRows){
   }).join("");
 }
 
-/* ---------------- Analysis charts from filtered rows ---------------- */
-function buildAnalysisFromFilteredRows(filteredRows, recosPayload){
-  const cObs = counterFromCandidates(filteredRows, FIELDS.obstacles);
-  const dObs = toPercentTop(cObs, 10);
-  createSmartChart("chartTopObstacles", dObs.labels.length?dObs.labels:["—"], dObs.values.length?dObs.values:[0], "Obstacles");
-
-  const cAct = counterFromCandidates(filteredRows, FIELDS.actions);
-  const dAct = toPercentTop(cAct, 10);
-  createSmartChart("chartTopActions", dAct.labels.length?dAct.labels:["—"], dAct.values.length?dAct.values:[0], "Actions");
-
-  const ul = el("globalRecos");
-  if(!ul) return;
-
-  const recos = (recosPayload?.recommendations || []).filter(x=>!isSystemKey(x));
-  if(recos.length){
-    ul.innerHTML = recos.map(x=>`<li>${escapeHtml(x)}</li>`).join("");
-    return;
-  }
-
-  // fallback auto si fichier recos absent
-  const auto = [];
-  if(dObs.labels[0] && dObs.labels[0] !== "—") auto.push(`Cibler en priorité : ${dObs.labels.slice(0,3).join(" ; ")}.`);
-  if(dAct.labels[0] && dAct.labels[0] !== "—") auto.push(`Actions immédiates : ${dAct.labels.slice(0,3).join(" ; ")}.`);
-  auto.push("Formaliser un dispositif de suivi : points focaux genre, indicateurs, reporting trimestriel, revue budgétaire sensible au genre.");
-  ul.innerHTML = auto.map(x=>`<li>${escapeHtml(x)}</li>`).join("");
-}
-
-/* ---------------- Meta ---------------- */
+/* ---------- Meta ---------- */
 function setMeta(generatedAt, n){
   if(el("lastUpdate")) el("lastUpdate").textContent = formatDateISO(generatedAt || new Date().toISOString());
   if(el("nResponses")) el("nResponses").textContent = n ?? "—";
 }
 
-/* ---------------- Main ---------------- */
+/* ---------- Main ---------- */
 async function main(){
-  applyModernChartDefaults();
+  try{
+    applyModernChartDefaults();
 
-  const page = document.body.getAttribute("data-page");
+    const page = document.body.getAttribute("data-page");
+    console.log("APP START page=", page);
 
-  const [questions, allRows, statsMaybe, recos] = await Promise.all([
-    loadJson(QUESTIONS),
-    loadJson(TABLE),
-    loadJson(STATS).catch(()=>null),
-    loadJson(RECOS).catch(()=>null)
-  ]);
+    // load (with per-file diagnostics)
+    const qPayload = await loadJson(QUESTIONS).catch(e => { throw new Error(`questions.json: ${e.message}`); });
+    const tPayload = await loadJson(TABLE).catch(e => { throw new Error(`submissions_table.json: ${e.message}`); });
+    const statsMaybe = await loadJson(STATS).catch(()=>null);
+    const recos = await loadJson(RECOS).catch(()=>null);
 
-  const generatedAt = statsMaybe?.generated_at || statsMaybe?.meta?.generated_at || null;
+    const questions = unwrapArray(qPayload);
+    const allRows = unwrapArray(tPayload);
 
-  const consented = allRows.filter(isConsented);
+    if(!questions) throw new Error("questions.json n'est pas un tableau (array) ni {data:[…]} / {questions:[…]}");
+    if(!allRows) throw new Error("submissions_table.json n'est pas un tableau (array) ni {data:[…]} / {results:[…]}");
 
-  // options filtres
-  const ministeres = uniq(consented.map(r=>pickField(r, FIELDS.ministere)));
-  const sexes = uniq(consented.map(r=>pickField(r, FIELDS.sexe)));
-  const fonctions = uniq(consented.map(r=>pickField(r, FIELDS.fonction)));
-  const experiences = uniq(consented.map(r=>pickField(r, FIELDS.experience)));
-  const formations = uniq(consented.map(r=>pickField(r, FIELDS.formation)));
-  const gtgVals = uniq(consented.map(r=>pickField(r, FIELDS.gtgHeard)));
+    if(!Array.isArray(questions) || !questions.length) throw new Error("questions.json est vide ou invalide");
+    if(!Array.isArray(allRows)) throw new Error("submissions_table.json invalide (doit être array d'objets)");
 
-  buildSelect(el("fMinistere"), ministeres);
-  buildSelect(el("fSexe"), sexes);
-  buildSelect(el("fFonction"), fonctions);
-  buildSelect(el("fExperience"), experiences);
-  buildSelect(el("fFormation"), formations);
-  buildSelect(el("fGTG"), gtgVals);
+    console.log("Loaded:", { questions: questions.length, rows: allRows.length });
 
-  const btnReset = el("btnResetFilters");
-  if(btnReset){
-    btnReset.addEventListener("click", ()=>{
-      ["fMinistere","fSexe","fFonction","fExperience","fFormation","fGTG"].forEach(id=>{
-        if(el(id)) el(id).value = "__all__";
+    const generatedAt = statsMaybe?.generated_at || statsMaybe?.meta?.generated_at || null;
+
+    const consented = allRows.filter(isConsented);
+
+    // options
+    const ministeres = uniq(consented.map(r=>pickField(r, FIELDS.ministere)));
+    const sexes = uniq(consented.map(r=>pickField(r, FIELDS.sexe)));
+    const fonctions = uniq(consented.map(r=>pickField(r, FIELDS.fonction)));
+    const experiences = uniq(consented.map(r=>pickField(r, FIELDS.experience)));
+    const formations = uniq(consented.map(r=>pickField(r, FIELDS.formation)));
+    const gtgVals = uniq(consented.map(r=>pickField(r, FIELDS.gtgHeard)));
+
+    buildSelect(el("fMinistere"), ministeres);
+    buildSelect(el("fSexe"), sexes);
+    buildSelect(el("fFonction"), fonctions);
+    buildSelect(el("fExperience"), experiences);
+    buildSelect(el("fFormation"), formations);
+    buildSelect(el("fGTG"), gtgVals);
+
+    // reset
+    const btnReset = el("btnResetFilters");
+    if(btnReset){
+      btnReset.addEventListener("click", ()=>{
+        ["fMinistere","fSexe","fFonction","fExperience","fFormation","fGTG"].forEach(id=>{
+          if(el(id)) el(id).value = "__all__";
+        });
+        if(el("searchTable")) el("searchTable").value = "";
+        refresh();
       });
-      if(el("searchTable")) el("searchTable").value = "";
-      refresh();
-    });
-  }
-
-  if(page === "dashboard"){
-    renderDashboardSkeleton(questions);
-  }
-
-  ["fMinistere","fSexe","fFonction","fExperience","fFormation","fGTG","searchTable"].forEach(id=>{
-    const x = el(id);
-    if(!x) return;
-    x.addEventListener(id === "searchTable" ? "input" : "change", refresh);
-  });
-
-  function refresh(){
-    const f = getCurrentFilters();
-    renderChips(f);
-
-    const filteredRows = allRows.filter(r=>matchRow(r, f));
-    setMeta(generatedAt, filteredRows.length);
-
-    if(page === "responses"){
-      buildTable(filteredRows, allRows);
-      return;
     }
 
     if(page === "dashboard"){
-      if(el("kpiN")) el("kpiN").textContent = filteredRows.length;
-
-      // ✅ KPI alignés sur vos VRAIS champs
-      if(el("kpiFormation")) el("kpiFormation").textContent = formatPct(pctPositive(counterFromCandidates(filteredRows, FIELDS.formation), new Set(["oui","yes","true"])));
-      if(el("kpiDiff")) el("kpiDiff").textContent = formatPct(pctPositive(counterFromCandidates(filteredRows, FIELDS.diffSexeGenre), new Set(["oui","yes","true"])));
-      if(el("kpiCellule")) el("kpiCellule").textContent = formatPct(pctPositive(counterFromCandidates(filteredRows, FIELDS.celluleGenre), new Set(["oui","yes","true"])));
-
-      // charts questions.json (field doit matcher une colonne)
-      const {bySection, sectionOrder} = groupQuestionsBySection(questions);
-
-      sectionOrder.forEach(sec=>{
-        const items = bySection.get(sec);
-        items.forEach((q, idx)=>{
-          const chartId = `chart_${sec.replaceAll(" ","_")}_${idx}`;
-          const top = q.top ?? 10;
-          const c = counterByExactField(filteredRows, q.field);
-          const d = toPercentTop(c, top);
-          createSmartChart(chartId, d.labels.length?d.labels:["—"], d.values.length?d.values:[0], q.title);
-        });
-      });
-
-      // ✅ Insights robustes
-      renderInsights(filteredRows, questions);
-      return;
+      renderDashboardSkeleton(questions);
     }
 
-    if(page === "analysis"){
-      buildAnalysisFromFilteredRows(filteredRows, recos);
-      return;
+    // hooks
+    ["fMinistere","fSexe","fFonction","fExperience","fFormation","fGTG","searchTable"].forEach(id=>{
+      const x = el(id);
+      if(!x) return;
+      x.addEventListener(id === "searchTable" ? "input" : "change", refresh);
+    });
+
+    function refresh(){
+      try{
+        const f = getCurrentFilters();
+        renderChips(f);
+
+        const filteredRows = allRows.filter(r=>matchRow(r, f));
+        setMeta(generatedAt, filteredRows.length);
+
+        if(page === "responses"){
+          buildTable(filteredRows, allRows);
+          return;
+        }
+
+        if(page === "dashboard"){
+          if(el("kpiN")) el("kpiN").textContent = filteredRows.length;
+
+          const k1 = pctYesFromCandidates(filteredRows, FIELDS.formation);
+          const k2 = pctYesFromCandidates(filteredRows, FIELDS.diffSexeGenre);
+          const k3 = pctYesFromCandidates(filteredRows, FIELDS.celluleGenre);
+
+          if(el("kpiFormation")) el("kpiFormation").textContent = k1 === null ? "—" : `${k1}%`;
+          if(el("kpiDiff")) el("kpiDiff").textContent = k2 === null ? "—" : `${k2}%`;
+          if(el("kpiCellule")) el("kpiCellule").textContent = k3 === null ? "—" : `${k3}%`;
+
+          // charts
+          const {bySection, sectionOrder} = groupQuestionsBySection(questions);
+          sectionOrder.forEach(sec=>{
+            const items = bySection.get(sec);
+            items.forEach((q, idx)=>{
+              const chartId = `chart_${slug(sec)}_${idx}`;
+              const top = q.top ?? 10;
+
+              // IMPORTANT: q.field doit exister exactement dans submissions_table.json
+              const c = counterByExactField(filteredRows, q.field);
+              const d = toPercentTop(c, top);
+
+              createSmartChart(
+                chartId,
+                d.labels.length ? d.labels : ["—"],
+                d.values.length ? d.values : [0],
+                q.title
+              );
+            });
+          });
+          return;
+        }
+
+        if(page === "analysis"){
+          // obstacles / actions (si canvas existent)
+          const cObs = counterFromCandidates(filteredRows, FIELDS.obstacles);
+          const dObs = toPercentTop(cObs, 10);
+          createSmartChart("chartTopObstacles", dObs.labels.length?dObs.labels:["—"], dObs.values.length?dObs.values:[0], "Obstacles");
+
+          const cAct = counterFromCandidates(filteredRows, FIELDS.actions);
+          const dAct = toPercentTop(cAct, 10);
+          createSmartChart("chartTopActions", dAct.labels.length?dAct.labels:["—"], dAct.values.length?dAct.values:[0], "Actions");
+
+          const ul = el("globalRecos");
+          if(ul){
+            const list = (recos?.recommendations || []);
+            ul.innerHTML = list.length
+              ? list.map(x=>`<li>${escapeHtml(x)}</li>`).join("")
+              : `<li>Recommandations non disponibles (fichier recommendations_global.json absent ou vide).</li>`;
+          }
+          return;
+        }
+      } catch(e){
+        showFatal("Erreur dans refresh()", e.message);
+      }
     }
+
+    refresh();
+
+  } catch(e){
+    showFatal("Impossible d'initialiser le dashboard", e.message);
   }
-
-  refresh();
 }
 
-main().catch(err => {
-  console.error(err);
-  alert("Erreur chargement données. Ouvre la console (F12) pour voir le détail.");
-});
+main();
