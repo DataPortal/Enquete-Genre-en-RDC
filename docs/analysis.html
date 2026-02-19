@@ -15,7 +15,7 @@
         <div class="logo" aria-hidden="true"></div>
         <div>
           <h1>Analyse — Priorités & recommandations</h1>
-          <p>Obstacles / actions (multi-sélection) • recommandations • filtrage ministériel</p>
+          <p>Lecture des obstacles et actions prioritaires • visualisation en %</p>
         </div>
       </div>
 
@@ -36,51 +36,26 @@
   </header>
 
   <main class="container">
-    <!-- Filters -->
     <section class="card filterCard">
       <div class="sectionTitle">
         <div>
           <h2 style="margin:0">Filtres</h2>
-          <p class="subhead">Appliqués aux graphiques d’analyse et aux recommandations.</p>
+          <p class="subhead">Appliqués aux graphiques et aux recommandations.</p>
         </div>
         <button class="btn" id="btnResetFilters" type="button">Réinitialiser</button>
       </div>
 
       <div class="filters">
-        <div class="f">
-          <label>Ministère</label>
-          <select id="fMinistere"></select>
-        </div>
+        <div class="f"><label>Ministère</label><select id="fMinistere"></select></div>
+        <div class="f"><label>Sexe</label><select id="fSexe"></select></div>
+        <div class="f"><label>Fonction</label><select id="fFonction"></select></div>
+        <div class="f"><label>Expérience (ministère)</label><select id="fExperience"></select></div>
+        <div class="f"><label>Formation genre</label><select id="fFormation"></select></div>
+        <div class="f"><label>Connaissance GTG</label><select id="fGTG"></select></div>
 
-        <div class="f">
-          <label>Sexe</label>
-          <select id="fSexe"></select>
-        </div>
-
-        <div class="f">
-          <label>Fonction</label>
-          <select id="fFonction"></select>
-        </div>
-
-        <div class="f">
-          <label>Expérience (ministère)</label>
-          <select id="fExperience"></select>
-        </div>
-
-        <div class="f">
-          <label>Formation genre</label>
-          <select id="fFormation"></select>
-        </div>
-
-        <div class="f">
-          <label>Connaissance GTG</label>
-          <select id="fGTG"></select>
-        </div>
-
-        <!-- ✅ Recherche globale (optionnelle mais utile) -->
         <div class="f f--wide">
           <label>Recherche</label>
-          <input id="searchTable" class="search" placeholder="Rechercher (ex: données désagrégées, financement, hiérarchie…)" />
+          <input id="searchTable" class="search" placeholder="Rechercher (ex: financement, hiérarchie, données…)"/>
         </div>
       </div>
 
@@ -90,23 +65,21 @@
     <section class="card">
       <div class="sectionTitle">
         <div>
-          <h2 style="margin:0">Priorités (issues des réponses)</h2>
-          <p class="subhead">Top obstacles et Top actions (en %), recalculés selon filtres.</p>
+          <h2 style="margin:0">Priorités</h2>
+          <p class="subhead">Distribution en pourcentage (selon filtres).</p>
         </div>
-        <span class="sectionChip">Evidence-based</span>
+        <span class="sectionChip">Evidence</span>
       </div>
 
       <div class="grid">
         <div class="chartCard col-6">
           <h3>Principaux obstacles (%)</h3>
           <canvas id="chartTopObstacles"></canvas>
-          <div class="small">Multi-sélection • Top 10 • barres horizontales</div>
         </div>
 
         <div class="chartCard col-6">
           <h3>Actions prioritaires (%)</h3>
           <canvas id="chartTopActions"></canvas>
-          <div class="small">Multi-sélection • Top 10 • barres horizontales</div>
         </div>
       </div>
     </section>
@@ -115,14 +88,14 @@
       <div class="sectionTitle">
         <div>
           <h2 style="margin:0">Recommandations proposées</h2>
-          <p class="subhead">Liste priorisée basée sur les signaux dominants observés.</p>
+          <p class="subhead">Plan d’action priorisé.</p>
         </div>
         <span class="sectionChip">Plan d’action</span>
       </div>
 
       <div class="grid">
         <div class="recoBox col-12">
-          <h3>Actions recommandées (priorisées)</h3>
+          <h3>Actions recommandées</h3>
           <ul id="globalRecos"></ul>
         </div>
       </div>
