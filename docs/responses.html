@@ -6,6 +6,7 @@
   <title>Réponses — Enquête Genre (Ministères RDC)</title>
   <link rel="stylesheet" href="style.css"/>
 </head>
+
 <body data-page="responses">
   <header class="topbar topbar--hero">
     <div class="topbar-inner">
@@ -21,6 +22,8 @@
         <a class="active" href="./responses.html">Réponses</a>
         <a href="./index.html">Dashboard</a>
         <a href="./analysis.html">Analyse</a>
+        <!-- (optionnel si tu gardes la page) -->
+        <!-- <a href="./recommendations.html">Recommandations</a> -->
       </nav>
 
       <div class="meta">
@@ -49,34 +52,44 @@
           <label>Ministère</label>
           <select id="fMinistere"></select>
         </div>
+
         <div class="f">
           <label>Sexe</label>
           <select id="fSexe"></select>
         </div>
+
         <div class="f">
           <label>Fonction</label>
           <select id="fFonction"></select>
         </div>
+
         <div class="f">
-          <label>Expérience (années)</label>
+          <label>Expérience (ministère)</label>
           <select id="fExperience"></select>
         </div>
+
         <div class="f">
           <label>Formation genre</label>
           <select id="fFormation"></select>
         </div>
+
         <div class="f">
-          <label>Connaît le GTG</label>
+          <label>Connaissance GTG</label>
           <select id="fGTG"></select>
         </div>
 
-        <div class="f fSearch">
+        <div class="f f--wide">
           <label>Recherche</label>
-          <input id="searchTable" class="search" placeholder="Rechercher (ex: Budget, indicateurs, VBG, données désagrégées…)"/>
+          <input id="searchTable" class="search"
+                 placeholder="Rechercher (ex: Budget, indicateurs, VBG, données désagrégées…)" />
         </div>
       </div>
 
       <div class="chips" id="activeChips"></div>
+
+      <div class="note">
+        <strong>Note :</strong> les réponses sont affichées sans identifiants personnels. Les champs techniques/systèmes sont retirés automatiquement.
+      </div>
     </section>
 
     <!-- Table -->
