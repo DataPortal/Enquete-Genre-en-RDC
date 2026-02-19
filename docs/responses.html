@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Réponses — Enquête Genre</title>
+  <title>Réponses — Enquête Genre (Ministères RDC)</title>
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body data-page="responses">
@@ -12,8 +12,8 @@
       <div class="brandBox">
         <div class="logo" aria-hidden="true"></div>
         <div>
-          <h1>Réponses — Tableau</h1>
-          <p>Filtrage multi-critères • table premium • sans champs systèmes</p>
+          <h1>Réponses — Enquête Genre (Ministères)</h1>
+          <p>Filtres ministériels • table premium • anonymat respecté • sans champs systèmes</p>
         </div>
       </div>
 
@@ -28,7 +28,7 @@
           <span class="dot" aria-hidden="true"></span>
           <span>Mise à jour : <strong id="lastUpdate">—</strong></span>
         </div>
-        <div class="line">Nb réponses : <strong id="nResponses">—</strong></div>
+        <div class="line">Nb réponses (filtrées) : <strong id="nResponses">—</strong></div>
       </div>
     </div>
   </header>
@@ -39,35 +39,40 @@
       <div class="sectionTitle">
         <div>
           <h2 style="margin:0">Filtres</h2>
-          <p class="subhead">Appliqués à la table (et communs à toutes les pages).</p>
+          <p class="subhead">Appliqués à la table et synchronisés avec les autres pages.</p>
         </div>
         <button class="btn" id="btnResetFilters" type="button">Réinitialiser</button>
       </div>
 
       <div class="filters">
         <div class="f">
-          <label>Province</label>
-          <select id="fProvince"></select>
+          <label>Ministère</label>
+          <select id="fMinistere"></select>
         </div>
         <div class="f">
           <label>Sexe</label>
           <select id="fSexe"></select>
         </div>
         <div class="f">
-          <label>Ministère</label>
-          <select id="fMinistere"></select>
+          <label>Fonction</label>
+          <select id="fFonction"></select>
         </div>
         <div class="f">
-          <label>Type organisation</label>
-          <select id="fOrgType"></select>
+          <label>Expérience (années)</label>
+          <select id="fExperience"></select>
         </div>
         <div class="f">
-          <label>Cluster / Secteur</label>
-          <select id="fCluster"></select>
+          <label>Formation genre</label>
+          <select id="fFormation"></select>
         </div>
+        <div class="f">
+          <label>Connaît le GTG</label>
+          <select id="fGTG"></select>
+        </div>
+
         <div class="f fSearch">
           <label>Recherche</label>
-          <input id="searchTable" class="search" placeholder="Rechercher (ex: VBG, plan d’action, données…)"/>
+          <input id="searchTable" class="search" placeholder="Rechercher (ex: Budget, indicateurs, VBG, données désagrégées…)"/>
         </div>
       </div>
 
@@ -79,7 +84,7 @@
       <div class="sectionTitle">
         <div>
           <h2 style="margin:0">Table des réponses</h2>
-          <p class="subhead">Colonnes lisibles • champs systèmes supprimés.</p>
+          <p class="subhead">Colonnes lisibles • champs systèmes supprimés automatiquement.</p>
         </div>
         <div class="pillStat">
           <span class="muted">Affichées :</span> <strong id="nShown">—</strong>
