@@ -1,7 +1,7 @@
 const QUESTIONS = "data/questions.json";
 const TABLE = "data/submissions_table.json";
 const RECOS = "data/recommendations_global.json";
-const STATS = "data/stats.json"; // optional, for generated_at
+const STATS = "data/stats.json"; // optional
 
 function el(id){ return document.getElementById(id); }
 
@@ -55,7 +55,7 @@ function buildSelect(selectEl, values, allLabel="Tous"){
   });
 }
 
-/* ---------- Exclure les champs systèmes ---------- */
+/* ---------------- Exclure champs systèmes ---------------- */
 const SYSTEM_KEYS = new Set([
   "_missing","_id","_uuid","_index","_submission_time","_submitted_by",
   "_validation_status","_notes","formhub/uuid","_attachments"
@@ -72,45 +72,45 @@ function headerLabel(c){
   return String(c).replaceAll("_"," ").replaceAll("/"," • ");
 }
 
-/* ---------- Multi-sélection (obstacles/actions/GTG subgroups) ---------- */
+/* ---------------- Multi-sélection ---------------- */
 function splitMulti(val){
   const s = normalize(val);
   if(!s) return [];
-  // support ; , | and new lines
   if(/[;,|\n]/.test(s)){
     return s.split(/[;,|\n]+/).map(x=>x.trim()).filter(Boolean);
   }
   return [s];
 }
 
-/* ---------- Mapping champs (robuste) ---------- */
+/* ---------------- Mapping champs (ROBUSTE pour vos colonnes) ---------------- */
 const FIELDS = {
   consent: ["consent","intro/consent","consentement"],
+
   ministere: ["ministere","intro/ministere","sec1/ministere","ministere_sg","ministere_ou_sg"],
   sexe: ["sexe","intro/sexe"],
   fonction: ["fonction","intro/fonction","fonction_actuelle"],
-  experience: ["annees_experience_ministere","intro/annees_experience_ministere","experience","annees_experience"],
-  formation: ["formation_genre","sec1/formation_genre","intro/formation_genre"],
+  experience: [
+    "annees_experience_ministere","intro/annees_experience_ministere",
+    "experience_ministere","experience","annees_experience",
+    "nombre_annees_experience","annees_experience_au_ministere"
+  ],
+  formation: ["formation_genre","intro/formation_genre","a_suivi_formation_genre","formation_sur_le_genre"],
 
-  // knowledge
-  diffSexeGenre: ["diff_sexe_genre","sec2/diff_sexe_genre"],
-  genreBioStatement: ["genre_biologique","sec2/genre_biologique"],
-  politiquesConnues: ["politiques_genre_connaissance","sec2/politiques_genre_connaissance"],
-  importancePolPub: ["importance_genre","sec2/importance_genre"],
+  // Knowledge / practices (vos libellés)
+  diffSexeGenre: ["diff_sexe_genre","connaissance_diff_sexe_genre","difference_sexe_genre"],
+  celluleGenre: ["cellule_genre","presence_cellule_genre","dispose_cellule_genre"],
+  politiquesConnues: ["politiques_genre_connaissance","connaissance_politique_genre"],
+  planGenre: ["plan_strategie_genre","plan_genre","strategie_genre"],
+  indicateurs: ["indicateurs_genre","indicateurs_sensibles_genre","integration_indicateurs_genre"],
+  outilsGuides: ["outils_guides_genre","outils_genre","acces_outils_genre"],
 
-  // institutional
-  celluleGenre: ["cellule_genre","sec3/cellule_genre"],
-  planGenre: ["plan_strategie_genre","plan_strategie","sec3/plan_strategie"],
-  indicateurs: ["indicateurs_genre","sec3/indicateurs_genre"],
-  outilsGuides: ["outils_guides_genre","outils_genre","sec3/outils_guides_genre"],
+  // Obstacles/actions
+  obstacles: ["obstacles","principaux_obstacles","obstacles_integration_genre","obstacles_genre"],
+  actions: ["actions_prioritaires","actions","actions_pour_ameliorer","actions_integration_genre"],
 
-  // obstacles/actions
-  obstacles: ["obstacles_genre","principaux_obstacles","sec4/obstacles"],
-  actions: ["actions_prioritaires","sec4/actions_prioritaires"],
-
-  // gtg
-  gtgHeard: ["gtg_connu","entendu_gtg","sec5/gtg_entendu"],
-  gtgSubgroups: ["gtg_sous_groupes","sec5/gtg_sousgroupes"]
+  // GTG
+  gtgHeard: ["gtg","gtg_connu","entendu_gtg","a_entendu_parler_gtg"],
+  gtgSubgroups: ["gtg_sous_groupes","sous_groupes_gtg","sous_groupes_connus"]
 };
 
 function pickField(row, candidates){
@@ -123,14 +123,13 @@ function pickField(row, candidates){
   return "";
 }
 
-/* ---------- Consent filter (important) ---------- */
 function isConsented(row){
   const v = pickField(row, FIELDS.consent).toLowerCase();
-  if(!v) return true; // fallback if no field
+  if(!v) return true; // si champ absent, on ne bloque pas
   return (v === "oui" || v === "yes" || v === "true");
 }
 
-/* ---------- Filters state ---------- */
+/* ---------------- Filtres ---------------- */
 function getCurrentFilters(){
   return {
     ministere: el("fMinistere")?.value || "__all__",
@@ -185,7 +184,7 @@ function renderChips(filters){
     : `<span class="chip"><strong>Filtres:</strong> Aucun (vue complète)</span>`;
 }
 
-/* ---------- Chart.js premium ---------- */
+/* ---------------- Charts (smart) ---------------- */
 function applyModernChartDefaults(){
   if(!window.Chart) return;
   Chart.defaults.font.family = "Inter, Segoe UI, system-ui, -apple-system, Arial";
@@ -222,8 +221,7 @@ function smartOptionsBarPct(){
     },
     scales: {
       x: {
-        min: 0,
-        max: 100,
+        min: 0, max: 100,
         grid: { color: "rgba(15,23,42,0.06)" },
         border: { display:false },
         ticks: { callback: (v)=>`${v}%` }
@@ -279,11 +277,23 @@ function createSmartChart(canvasId, labels, values, title){
   return chart;
 }
 
-/* ---------- Aggregations from filtered rows ---------- */
-function counterFromRows(rows, fieldCandidates){
+/* ---------------- Stats helpers ---------------- */
+function counterByExactField(rows, field){
   const c = {};
   for(const r of rows){
-    const v = pickField(r, fieldCandidates);
+    const v = normalize(r[field]);
+    if(!v) continue;
+    for(const part of splitMulti(v)){
+      c[part] = (c[part] || 0) + 1;
+    }
+  }
+  return c;
+}
+
+function counterFromCandidates(rows, candidates){
+  const c = {};
+  for(const r of rows){
+    const v = pickField(r, candidates);
     if(!v) continue;
     for(const part of splitMulti(v)){
       c[part] = (c[part] || 0) + 1;
@@ -308,15 +318,17 @@ function toPercentTop(counterObj, top=10){
   };
 }
 
-function pctYesFromRows(rows, fieldCandidates){
-  const c = counterFromRows(rows, fieldCandidates);
-  const yes = c["Oui"] || c["OUI"] || c["Yes"] || c["YES"] || 0;
-  const total = Object.entries(c).reduce((a,[k,v]) => (k==="_missing"?a:a+Number(v||0)), 0);
+function pctPositive(counterObj, positiveSet){
+  const total = Object.entries(counterObj).reduce((a,[k,v]) => (k==="_missing"?a:a+Number(v||0)), 0);
   if(!total) return null;
-  return Math.round((yes/total)*100);
+  let pos = 0;
+  for(const [k,v] of Object.entries(counterObj)){
+    if(positiveSet.has(String(k).toLowerCase())) pos += Number(v||0);
+  }
+  return Math.round((pos/total)*100);
 }
 
-/* ---------- Dashboard sections from questions.json ---------- */
+/* ---------------- Dashboard skeleton (from questions.json) ---------------- */
 function groupQuestionsBySection(questions){
   const bySection = new Map();
   for(const q of questions){
@@ -362,50 +374,47 @@ function renderDashboardSkeleton(questions){
   }).join("");
 }
 
-/* ---------- Insights (Top forces/gaps) ---------- */
+/* ---------------- Insights (ROBUSTE) ----------------
+   - détecte Oui/Non, Vrai/Faux, Yes/No
+   - calcule un "% positif" et classe Top forces / Top gaps
+*/
 function renderInsights(rows, questions){
   const strong = el("insightsStrong");
   const weak = el("insightsWeak");
   if(!strong || !weak) return;
 
+  const yesSet = new Set(["oui","yes","true"]);
+  const noSet = new Set(["non","no","false"]);
+  const vraiSet = new Set(["vrai"]);
+  const fauxSet = new Set(["faux"]);
+
   const signals = [];
 
   for(const q of questions){
-    const field = q.field;
-    if(!field) continue;
+    if(!q.field) continue;
 
-    // compute distribution using direct key in row; also support if q.field is nested-like
-    const c = {};
-    for(const r of rows){
-      const v = normalize(r[field]);
-      if(!v) continue;
-      for(const part of splitMulti(v)){
-        c[part] = (c[part] || 0) + 1;
-      }
+    const c = counterByExactField(rows, q.field);
+    const keys = new Set(Object.keys(c).map(k=>String(k).toLowerCase()));
+
+    const hasYesNo = [...keys].some(k=>yesSet.has(k)) && [...keys].some(k=>noSet.has(k));
+    const hasVraiFaux = keys.has("vrai") && keys.has("faux");
+
+    if(!(hasYesNo || hasVraiFaux)) continue;
+
+    // par défaut: positif=Oui, et pour Vrai/Faux: positif=Vrai
+    // heuristique utile: si question contient "principalement biologique" -> positif = Faux
+    let positive = yesSet;
+    if(hasVraiFaux){
+      const title = (q.title || "").toLowerCase();
+      positive = title.includes("biologique") ? fauxSet : vraiSet;
     }
 
-    const hasOui = ("Oui" in c) || ("OUI" in c) || ("Yes" in c) || ("YES" in c);
-    const hasNon = ("Non" in c) || ("NON" in c) || ("No" in c) || ("NO" in c);
-    const hasVrai = ("Vrai" in c) || ("Faux" in c);
-
-    if((hasOui && hasNon) || hasVrai){
-      let pct = null;
-      if(hasVrai){
-        const total = (c["Vrai"]||0) + (c["Faux"]||0);
-        if(total) pct = Math.round(((c["Frai"]||0) / total)*100);
-        // NOTE: some datasets may store "Vrai" / "Faux" with exact spelling
-        const total2 = (c["Vrai"]||0) + (c["Faux"]||0);
-        if(total2) pct = Math.round(((c["Vrai"]||0) / total2)*100);
-      } else {
-        const yes = c["Oui"] || c["OUI"] || c["Yes"] || c["YES"] || 0;
-        const total = Object.entries(c).reduce((a,[k,v]) => a + Number(v||0), 0) || 0;
-        if(total) pct = Math.round((yes/total)*100);
-      }
-      if(pct !== null) signals.push({ title: q.title, pct });
-    }
+    const pct = pctPositive(c, positive);
+    if(pct !== null) signals.push({ title: q.title, pct });
   }
 
   signals.sort((a,b)=>b.pct-a.pct);
+
   const topStrong = signals.slice(0, 4);
   const topWeak = signals.slice(-4).reverse();
 
@@ -413,7 +422,7 @@ function renderInsights(rows, questions){
     <div class="insightRow">
       <div>
         <strong>${escapeHtml(x.title)}</strong>
-        <div class="muted" style="font-size:12px;">Signal binaire (% positif)</div>
+        <div class="muted" style="font-size:12px;">% réponse “positive”</div>
       </div>
       <div class="pct ${kind === "up" ? "badgeUp" : "badgeDown"}">
         ${x.pct}%
@@ -423,14 +432,14 @@ function renderInsights(rows, questions){
 
   strong.innerHTML = topStrong.length
     ? topStrong.map(x=>rowHtml(x,"up")).join("")
-    : `<div class="muted">Pas assez de signaux binaires détectés.</div>`;
+    : `<div class="muted">Aucun signal binaire détecté (vérifier les valeurs Oui/Non, Vrai/Faux).</div>`;
 
   weak.innerHTML = topWeak.length
     ? topWeak.map(x=>rowHtml(x,"down")).join("")
-    : `<div class="muted">Pas assez de signaux binaires détectés.</div>`;
+    : `<div class="muted">Aucun signal binaire détecté (vérifier les valeurs Oui/Non, Vrai/Faux).</div>`;
 }
 
-/* ---------- Table render ---------- */
+/* ---------------- Table render ---------------- */
 function buildTable(filteredRows, allRows){
   const thead = el("thead");
   const tbody = el("tbody");
@@ -440,7 +449,6 @@ function buildTable(filteredRows, allRows){
   const cols = allRows.length ? Object.keys(allRows[0]).filter(c => !isSystemKey(c)) : [];
 
   thead.innerHTML = `<tr>${cols.map(c => `<th>${escapeHtml(headerLabel(c))}</th>`).join("")}</tr>`;
-
   if(nShown) nShown.textContent = filteredRows.length;
 
   tbody.innerHTML = filteredRows.map(r => {
@@ -451,19 +459,16 @@ function buildTable(filteredRows, allRows){
   }).join("");
 }
 
-/* ---------- Analysis page: obstacles/actions from filtered rows ---------- */
+/* ---------------- Analysis charts from filtered rows ---------------- */
 function buildAnalysisFromFilteredRows(filteredRows, recosPayload){
-  // Obstacles
-  const cObs = counterFromRows(filteredRows, FIELDS.obstacles);
+  const cObs = counterFromCandidates(filteredRows, FIELDS.obstacles);
   const dObs = toPercentTop(cObs, 10);
   createSmartChart("chartTopObstacles", dObs.labels.length?dObs.labels:["—"], dObs.values.length?dObs.values:[0], "Obstacles");
 
-  // Actions
-  const cAct = counterFromRows(filteredRows, FIELDS.actions);
+  const cAct = counterFromCandidates(filteredRows, FIELDS.actions);
   const dAct = toPercentTop(cAct, 10);
   createSmartChart("chartTopActions", dAct.labels.length?dAct.labels:["—"], dAct.values.length?dAct.values:[0], "Actions");
 
-  // Recommendations list (fallback to recos json, else auto from top obstacles/actions)
   const ul = el("globalRecos");
   if(!ul) return;
 
@@ -473,25 +478,21 @@ function buildAnalysisFromFilteredRows(filteredRows, recosPayload){
     return;
   }
 
-  // Auto-generate (if no recos file)
+  // fallback auto si fichier recos absent
   const auto = [];
-  if(dObs.labels[0] && dObs.labels[0] !== "—"){
-    auto.push(`Cibler en priorité : ${dObs.labels.slice(0,3).join(" ; ")}.`);
-  }
-  if(dAct.labels[0] && dAct.labels[0] !== "—"){
-    auto.push(`Actions immédiates recommandées : ${dAct.labels.slice(0,3).join(" ; ")}.`);
-  }
-  auto.push("Mettre en place un mécanisme de suivi : points focaux genre, indicateurs, reporting trimestriel et revue budgétaire sensible au genre.");
+  if(dObs.labels[0] && dObs.labels[0] !== "—") auto.push(`Cibler en priorité : ${dObs.labels.slice(0,3).join(" ; ")}.`);
+  if(dAct.labels[0] && dAct.labels[0] !== "—") auto.push(`Actions immédiates : ${dAct.labels.slice(0,3).join(" ; ")}.`);
+  auto.push("Formaliser un dispositif de suivi : points focaux genre, indicateurs, reporting trimestriel, revue budgétaire sensible au genre.");
   ul.innerHTML = auto.map(x=>`<li>${escapeHtml(x)}</li>`).join("");
 }
 
-/* ---------- Meta ---------- */
+/* ---------------- Meta ---------------- */
 function setMeta(generatedAt, n){
   if(el("lastUpdate")) el("lastUpdate").textContent = formatDateISO(generatedAt || new Date().toISOString());
   if(el("nResponses")) el("nResponses").textContent = n ?? "—";
 }
 
-/* ---------- Main ---------- */
+/* ---------------- Main ---------------- */
 async function main(){
   applyModernChartDefaults();
 
@@ -506,9 +507,9 @@ async function main(){
 
   const generatedAt = statsMaybe?.generated_at || statsMaybe?.meta?.generated_at || null;
 
-  // filter options (from consented rows only for clean filter lists)
   const consented = allRows.filter(isConsented);
 
+  // options filtres
   const ministeres = uniq(consented.map(r=>pickField(r, FIELDS.ministere)));
   const sexes = uniq(consented.map(r=>pickField(r, FIELDS.sexe)));
   const fonctions = uniq(consented.map(r=>pickField(r, FIELDS.fonction)));
@@ -534,12 +535,10 @@ async function main(){
     });
   }
 
-  // dashboard skeleton once
   if(page === "dashboard"){
     renderDashboardSkeleton(questions);
   }
 
-  // hooks
   ["fMinistere","fSexe","fFonction","fExperience","fFormation","fGTG","searchTable"].forEach(id=>{
     const x = el(id);
     if(!x) return;
@@ -561,32 +560,26 @@ async function main(){
     if(page === "dashboard"){
       if(el("kpiN")) el("kpiN").textContent = filteredRows.length;
 
-      // KPI aligned to questionnaire
-      if(el("kpiFormation")) el("kpiFormation").textContent = formatPct(pctYesFromRows(filteredRows, FIELDS.formation));
-      if(el("kpiDiff")) el("kpiDiff").textContent = formatPct(pctYesFromRows(filteredRows, FIELDS.diffSexeGenre));
-      if(el("kpiCellule")) el("kpiCellule").textContent = formatPct(pctYesFromRows(filteredRows, FIELDS.celluleGenre));
+      // ✅ KPI alignés sur vos VRAIS champs
+      if(el("kpiFormation")) el("kpiFormation").textContent = formatPct(pctPositive(counterFromCandidates(filteredRows, FIELDS.formation), new Set(["oui","yes","true"])));
+      if(el("kpiDiff")) el("kpiDiff").textContent = formatPct(pctPositive(counterFromCandidates(filteredRows, FIELDS.diffSexeGenre), new Set(["oui","yes","true"])));
+      if(el("kpiCellule")) el("kpiCellule").textContent = formatPct(pctPositive(counterFromCandidates(filteredRows, FIELDS.celluleGenre), new Set(["oui","yes","true"])));
 
-      // charts per question from questions.json (field must match row keys)
+      // charts questions.json (field doit matcher une colonne)
       const {bySection, sectionOrder} = groupQuestionsBySection(questions);
+
       sectionOrder.forEach(sec=>{
         const items = bySection.get(sec);
         items.forEach((q, idx)=>{
           const chartId = `chart_${sec.replaceAll(" ","_")}_${idx}`;
           const top = q.top ?? 10;
-
-          const counter = {};
-          for(const r of filteredRows){
-            const v = normalize(r[q.field]);
-            if(!v) continue;
-            for(const part of splitMulti(v)){
-              counter[part] = (counter[part] || 0) + 1;
-            }
-          }
-          const d = toPercentTop(counter, top);
+          const c = counterByExactField(filteredRows, q.field);
+          const d = toPercentTop(c, top);
           createSmartChart(chartId, d.labels.length?d.labels:["—"], d.values.length?d.values:[0], q.title);
         });
       });
 
+      // ✅ Insights robustes
       renderInsights(filteredRows, questions);
       return;
     }
