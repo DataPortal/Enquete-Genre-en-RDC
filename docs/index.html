@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="style.css"/>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 </head>
+
 <body data-page="dashboard">
   <header class="topbar topbar--hero">
     <div class="topbar-inner">
@@ -50,25 +51,36 @@
           <label>Ministère</label>
           <select id="fMinistere"></select>
         </div>
+
         <div class="f">
           <label>Sexe</label>
           <select id="fSexe"></select>
         </div>
+
         <div class="f">
           <label>Fonction</label>
           <select id="fFonction"></select>
         </div>
+
         <div class="f">
-          <label>Expérience (années)</label>
+          <label>Expérience (ministère)</label>
           <select id="fExperience"></select>
         </div>
+
         <div class="f">
           <label>Formation genre</label>
           <select id="fFormation"></select>
         </div>
+
         <div class="f">
-          <label>Connaît le GTG</label>
+          <label>Connaissance GTG</label>
           <select id="fGTG"></select>
+        </div>
+
+        <!-- ✅ Recherche globale (optionnelle mais utile) -->
+        <div class="f f--wide">
+          <label>Recherche</label>
+          <input id="searchTable" class="search" placeholder="Rechercher (ex: Plan, VBG, données désagrégées, budget…)" />
         </div>
       </div>
 
@@ -91,16 +103,19 @@
           <div class="value" id="kpiN">—</div>
           <div class="hint">selon filtres</div>
         </div>
+
         <div class="kpi col-3">
           <div class="label">Formation genre (Oui)</div>
           <div class="value" id="kpiFormation">—</div>
           <div class="hint">% des répondants</div>
         </div>
+
         <div class="kpi col-3">
           <div class="label">Différence sexe/genre (Oui)</div>
           <div class="value" id="kpiDiff">—</div>
           <div class="hint">% des répondants</div>
         </div>
+
         <div class="kpi col-3">
           <div class="label">Cellule Genre (Oui)</div>
           <div class="value" id="kpiCellule">—</div>
@@ -129,6 +144,7 @@
         <span class="sectionChip">Smart charts</span>
       </div>
 
+      <!-- ✅ Injecté par app.js (buildDashboardLayout) -->
       <div id="dashboardSections"></div>
     </section>
   </main>
