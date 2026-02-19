@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Dashboard — Enquête Genre</title>
+  <title>Dashboard — Enquête Genre (Ministères RDC)</title>
   <link rel="stylesheet" href="style.css"/>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 </head>
@@ -13,8 +13,8 @@
       <div class="brandBox">
         <div class="logo" aria-hidden="true"></div>
         <div>
-          <h1>Dashboard — Enquête Genre</h1>
-          <p>Smart charts • % comparables • recalcul en temps réel selon les filtres</p>
+          <h1>Dashboard — Connaissance du Genre (Ministères)</h1>
+          <p>Smart charts (%) • KPI institutionnels • insights forces/gaps • filtrage ministériel</p>
         </div>
       </div>
 
@@ -40,31 +40,35 @@
       <div class="sectionTitle">
         <div>
           <h2 style="margin:0">Filtres</h2>
-          <p class="subhead">Ces filtres recalculent tous les KPI, graphiques et insights.</p>
+          <p class="subhead">Recalcul immédiat de tous les KPI, graphiques et insights.</p>
         </div>
         <button class="btn" id="btnResetFilters" type="button">Réinitialiser</button>
       </div>
 
       <div class="filters">
         <div class="f">
-          <label>Province</label>
-          <select id="fProvince"></select>
+          <label>Ministère</label>
+          <select id="fMinistere"></select>
         </div>
         <div class="f">
           <label>Sexe</label>
           <select id="fSexe"></select>
         </div>
         <div class="f">
-          <label>Ministère</label>
-          <select id="fMinistere"></select>
+          <label>Fonction</label>
+          <select id="fFonction"></select>
         </div>
         <div class="f">
-          <label>Type organisation</label>
-          <select id="fOrgType"></select>
+          <label>Expérience (années)</label>
+          <select id="fExperience"></select>
         </div>
         <div class="f">
-          <label>Cluster / Secteur</label>
-          <select id="fCluster"></select>
+          <label>Formation genre</label>
+          <select id="fFormation"></select>
+        </div>
+        <div class="f">
+          <label>Connaît le GTG</label>
+          <select id="fGTG"></select>
         </div>
       </div>
 
@@ -76,9 +80,9 @@
       <div class="sectionTitle">
         <div>
           <h2 style="margin:0">Vue d’ensemble</h2>
-          <p class="subhead">KPI + insights automatiques (top forces / gaps), basés sur les données filtrées.</p>
+          <p class="subhead">KPI clés + insights automatiques alignés sur le questionnaire.</p>
         </div>
-        <span class="sectionChip">Premium</span>
+        <span class="sectionChip">Institutionnel</span>
       </div>
 
       <div class="grid">
@@ -93,13 +97,13 @@
           <div class="hint">% des répondants</div>
         </div>
         <div class="kpi col-3">
-          <div class="label">Cellule Genre (Oui)</div>
-          <div class="value" id="kpiCellule">—</div>
+          <div class="label">Différence sexe/genre (Oui)</div>
+          <div class="value" id="kpiDiff">—</div>
           <div class="hint">% des répondants</div>
         </div>
         <div class="kpi col-3">
-          <div class="label">Politiques genre connues (Oui)</div>
-          <div class="value" id="kpiPol">—</div>
+          <div class="label">Cellule Genre (Oui)</div>
+          <div class="value" id="kpiCellule">—</div>
           <div class="hint">% des répondants</div>
         </div>
 
@@ -115,12 +119,12 @@
       </div>
     </section>
 
-    <!-- Sections / charts -->
+    <!-- Question charts -->
     <section class="card">
       <div class="sectionTitle">
         <div>
           <h2 style="margin:0">Statistiques par question</h2>
-          <p class="subhead">Graphiques “smart” : doughnut pour binaire, barres horizontales (%) pour multi.</p>
+          <p class="subhead">Doughnut pour binaire • barres horizontales (%) pour multi / multi-sélection.</p>
         </div>
         <span class="sectionChip">Smart charts</span>
       </div>
