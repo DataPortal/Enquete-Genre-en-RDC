@@ -3,24 +3,26 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Recommandations — Enquête Genre</title>
+  <title>Recommandations — Enquête Genre (Ministères RDC)</title>
   <link rel="stylesheet" href="style.css"/>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 </head>
+
 <body data-page="recommendations">
   <header class="topbar topbar--hero">
     <div class="topbar-inner">
       <div class="brandBox">
         <div class="logo" aria-hidden="true"></div>
         <div>
-          <h1>Recommandations (Globales)</h1>
-          <p>Basées sur les statistiques agrégées • smart charts en %</p>
+          <h1>Recommandations — Lecture institutionnelle</h1>
+          <p>Signaux (Oui) • priorités (obstacles/actions) • plan d’action • filtres dynamiques</p>
         </div>
       </div>
 
       <nav class="nav" aria-label="Navigation">
-        <a href="./index.html">Dashboard</a>
         <a href="./responses.html">Réponses</a>
+        <a href="./index.html">Dashboard</a>
+        <a href="./analysis.html">Analyse</a>
         <a class="active" href="./recommendations.html">Recommandations</a>
       </nav>
 
@@ -29,73 +31,130 @@
           <span class="dot" aria-hidden="true"></span>
           <span>Mise à jour : <strong id="lastUpdate">—</strong></span>
         </div>
-        <div class="line">Nb réponses : <strong id="nResponses">—</strong></div>
+        <div class="line">Nb réponses (filtrées) : <strong id="nResponses">—</strong></div>
       </div>
     </div>
   </header>
 
   <main class="container">
+    <!-- Filters -->
+    <section class="card filterCard">
+      <div class="sectionTitle">
+        <div>
+          <h2 style="margin:0">Filtres</h2>
+          <p class="subhead">Impacte les KPI, les priorités et le plan d’action.</p>
+        </div>
+        <button class="btn" id="btnResetFilters" type="button">Réinitialiser</button>
+      </div>
+
+      <div class="filters">
+        <div class="f">
+          <label>Ministère</label>
+          <select id="fMinistere"></select>
+        </div>
+
+        <div class="f">
+          <label>Sexe</label>
+          <select id="fSexe"></select>
+        </div>
+
+        <div class="f">
+          <label>Fonction</label>
+          <select id="fFonction"></select>
+        </div>
+
+        <div class="f">
+          <label>Expérience (ministère)</label>
+          <select id="fExperience"></select>
+        </div>
+
+        <div class="f">
+          <label>Formation genre</label>
+          <select id="fFormation"></select>
+        </div>
+
+        <div class="f">
+          <label>Connaissance GTG</label>
+          <select id="fGTG"></select>
+        </div>
+
+        <div class="f f--wide">
+          <label>Recherche</label>
+          <input id="searchTable" class="search" placeholder="Rechercher (ex: budget, données désagrégées, hiérarchie…)" />
+        </div>
+      </div>
+
+      <div class="chips" id="activeChips"></div>
+    </section>
+
+    <!-- Signals -->
     <section class="card">
       <div class="sectionTitle">
         <div>
-          <h2 style="margin:0">Signaux clés</h2>
-          <p class="subhead">Lecture globale des capacités institutionnelles.</p>
+          <h2 style="margin:0">Signaux clés (institutionnels)</h2>
+          <p class="subhead">Part des répondants déclarant “Oui” (selon filtres).</p>
         </div>
         <span class="sectionChip">Synthèse</span>
       </div>
 
       <div class="grid">
         <div class="kpi col-3">
-          <div class="label">Cellule Genre (Oui)</div>
+          <div class="label">Cellule genre (Oui)</div>
           <div class="value" id="sigCellule">—</div>
-          <div class="hint">Part des répondants</div>
+          <div class="hint">% des répondants</div>
         </div>
+
         <div class="kpi col-3">
-          <div class="label">Plan/stratégie (Oui)</div>
+          <div class="label">Plan/stratégie genre (Oui)</div>
           <div class="value" id="sigPlan">—</div>
-          <div class="hint">Part des répondants</div>
+          <div class="hint">% des répondants</div>
         </div>
+
         <div class="kpi col-3">
-          <div class="label">Indicateurs (Oui)</div>
+          <div class="label">Indicateurs sensibles (Oui)</div>
           <div class="value" id="sigInd">—</div>
-          <div class="hint">Part des répondants</div>
+          <div class="hint">% des répondants</div>
         </div>
+
         <div class="kpi col-3">
-          <div class="label">Outils/guide (Oui)</div>
+          <div class="label">Outils/guide genre (Oui)</div>
           <div class="value" id="sigOutils">—</div>
-          <div class="hint">Part des répondants</div>
+          <div class="hint">% des répondants</div>
         </div>
       </div>
     </section>
 
+    <!-- Priorities -->
     <section class="card">
       <div class="sectionTitle">
         <div>
           <h2 style="margin:0">Priorités issues des réponses</h2>
-          <p class="subhead">Top obstacles et Top actions (en %).</p>
+          <p class="subhead">Top obstacles et Top actions (en %), recalculés selon filtres.</p>
         </div>
         <span class="sectionChip">Evidence-based</span>
       </div>
 
       <div class="grid">
         <div class="chartCard col-6">
-          <h3>Top obstacles</h3>
+          <h3>Top obstacles (%)</h3>
           <canvas id="chartTopObstacles"></canvas>
-          <div class="small">Barres horizontales • % (0–100)</div>
+          <div class="small">Multi-sélection • Top 10 • barres horizontales</div>
         </div>
+
         <div class="chartCard col-6">
-          <h3>Top actions prioritaires</h3>
+          <h3>Top actions prioritaires (%)</h3>
           <canvas id="chartTopActions"></canvas>
-          <div class="small">Barres horizontales • % (0–100)</div>
+          <div class="small">Multi-sélection • Top 10 • barres horizontales</div>
         </div>
       </div>
     </section>
 
+    <!-- Action plan -->
     <section class="card">
       <div class="sectionTitle">
         <div>
-          <h2 style="margin:0">Recommandations globales</h2>
-          <p class="subhead">Plan d’action institutionnel proposé à partir des signaux statistiques.</p>
+          <h2 style="margin:0">Plan d’action recommandé</h2>
+          <p class="subhead">Liste priorisée (si <code>recommendations_global.json</code> est disponible).</p>
         </div>
         <span class="sectionChip">Priorisé</span>
       </div>
