@@ -1,40 +1,14 @@
 // ===============================
 // Enquête Genre RDC — APP (Robuste)
 // Aligné sur colonnes "humaines" (Ministere, Sexe, etc.)
+// + UN Blue/Orange charts + % labels
 // ===============================
 
-const TABLE = "data/submissions_table.json";                 // votre JSON (array d'objets)
-const RECOS = "data/recommendations_global.json";            // optionnel
-const STATS = "data/stats.json";                             // optionnel
-const QUESTIONS = "data/questions.json";                     // optionnel (non requis)
+const TABLE = "data/submissions_table.json";
+const RECOS = "data/recommendations_global.json";   // optionnel
+const STATS = "data/stats.json";                    // optionnel
 
-// ---------- Helpers DOM ----------
 function el(id){ return document.getElementById(id); }
-
-// ---------- UI Error Banner ----------
-function showFatal(message, details=""){
-  console.error("FATAL:", message, details);
-  const barId = "fatalBar";
-  let bar = document.getElementById(barId);
-  if(!bar){
-    bar = document.createElement("div");
-    bar.id = barId;
-    bar.style.cssText = `
-      position: sticky; top: 0; z-index: 9999;
-      background: #b91c1c; color: #fff;
-      padding: 10px 14px;
-      font-family: system-ui, -apple-system, Segoe UI, Arial;
-      font-size: 13px;
-      box-shadow: 0 10px 20px rgba(0,0,0,.18);
-    `;
-    document.body.prepend(bar);
-  }
-  bar.innerHTML = `
-    <strong>Erreur chargement dashboard</strong> — ${escapeHtml(message)}
-    ${details ? `<div style="opacity:.9; margin-top:6px">${escapeHtml(details)}</div>` : ""}
-    <div style="opacity:.9; margin-top:6px">Ouvrez la console (F12) pour voir l’erreur exacte.</div>
-  `;
-}
 
 async function loadJson(path){
   const r = await fetch(path, { cache: "no-store" });
@@ -92,7 +66,6 @@ function buildSelect(selectEl, values, allLabel="Tous"){
 function splitMulti(val){
   const s = normalize(val);
   if(!s) return [];
-  // Inclure le bullet "•"
   if(/[•;,|\n]/.test(s)){
     return s
       .split(/[•;,|\n]+/)
@@ -102,7 +75,7 @@ function splitMulti(val){
   return [s];
 }
 
-// ---------- Colonnes réelles (d'après votre sample) ----------
+// ---------- Colonnes réelles ----------
 const COL = {
   ministere: "Ministere",
   sexe: "Sexe",
@@ -132,7 +105,7 @@ const COL = {
   recoVerbatim: "Recommandations (verbatim)"
 };
 
-// ---------- System keys (dans votre cas, quasi aucun) ----------
+// ---------- System keys ----------
 function isSystemKey(k){
   const s = String(k ?? "").trim();
   if(!s) return true;
@@ -196,91 +169,6 @@ function renderChips(filters){
     : `<span class="chip"><strong>Filtres:</strong> Aucun (vue complète)</span>`;
 }
 
-// ---------- Chart.js modern defaults ----------
-function applyModernChartDefaults(){
-  if(!window.Chart) return;
-  Chart.defaults.font.family = "Inter, Segoe UI, system-ui, -apple-system, Arial";
-  Chart.defaults.color = "#334155";
-  Chart.defaults.animation.duration = 450;
-  Chart.defaults.plugins.legend.labels.usePointStyle = true;
-  Chart.defaults.plugins.legend.labels.boxWidth = 8;
-  Chart.defaults.plugins.tooltip.padding = 10;
-  Chart.defaults.plugins.tooltip.cornerRadius = 12;
-}
-
-function destroyIfExists(canvas){
-  if(canvas && canvas._chart){
-    try{ canvas._chart.destroy(); } catch(e){}
-    canvas._chart = null;
-  }
-}
-
-function makeGradient(ctx, area){
-  const g = ctx.createLinearGradient(area.left, area.top, area.right, area.bottom);
-  g.addColorStop(0, "rgba(47,128,237,0.88)");
-  g.addColorStop(1, "rgba(106,90,224,0.88)");
-  return g;
-}
-
-function smartOptionsBarPct(){
-  return {
-    responsive: true,
-    maintainAspectRatio: false,
-    indexAxis: "y",
-    plugins: {
-      legend: { display: false },
-      tooltip: { callbacks: { label: (ctx)=> `${ctx.raw}%` } }
-    },
-    scales: {
-      x: { min:0, max:100, ticks:{ callback:(v)=>`${v}%` }, grid:{ color:"rgba(15,23,42,0.06)" }, border:{ display:false } },
-      y: { grid:{ display:false }, border:{ display:false } }
-    },
-    elements: { bar: { borderRadius: 10, borderSkipped: false } }
-  };
-}
-
-function smartOptionsDonut(){
-  return {
-    responsive:true,
-    maintainAspectRatio:false,
-    cutout:"66%",
-    plugins:{ legend:{ display:true, position:"bottom" } }
-  };
-}
-
-function createSmartChart(canvasId, labels, values, title){
-  const c = document.getElementById(canvasId);
-  if(!c || !window.Chart) return null;
-  destroyIfExists(c);
-
-  const isBinary = labels.length <= 2;
-  const type = isBinary ? "doughnut" : "bar";
-  const options = isBinary ? smartOptionsDonut() : smartOptionsBarPct();
-
-  const chart = new Chart(c, {
-    type,
-    data: {
-      labels,
-      datasets: [{
-        label: title,
-        data: values,
-        borderWidth: 0,
-        backgroundColor: (ctx)=>{
-          if(type !== "bar") return undefined;
-          const {chart} = ctx;
-          const {ctx: cctx, chartArea} = chart;
-          if(!chartArea) return "rgba(47,128,237,0.85)";
-          return makeGradient(cctx, chartArea);
-        }
-      }]
-    },
-    options
-  });
-
-  c._chart = chart;
-  return chart;
-}
-
 // ---------- Counters ----------
 function counterField(rows, colName){
   const c = {};
@@ -294,6 +182,8 @@ function counterField(rows, colName){
   return c;
 }
 
+// Convert counter to % (Top N). For multi-select, we compute % within Top slice to keep 0–100 readable.
+// If you prefer % of respondents, tell me and I adjust.
 function toPercentTop(counterObj, top=10){
   const entries = Object.entries(counterObj || {})
     .filter(([k]) => !isSystemKey(k))
@@ -319,7 +209,6 @@ function pctYes(rows, colName){
     const kk = String(k).toLowerCase();
     if(kk === "oui" || kk === "yes" || kk === "true") yes += Number(v||0);
   }
-  if(yes === 0) return 0;
   return Math.round((yes/total)*100);
 }
 
@@ -329,118 +218,267 @@ function setMeta(generatedAt, n){
   if(el("kpiN")) el("kpiN").textContent = n ?? "—";
 }
 
-// ---------- Dashboard definitions (sans questions.json) ----------
+// ===============================
+// CHARTS — UN Blue + Orange + % labels
+// ===============================
+const UN = {
+  blue:   "#1F4E79",
+  orange: "#F58220",
+  ink:    "#0f172a",
+  grid:   "rgba(15,23,42,0.08)"
+};
+
+function applyModernChartDefaults(){
+  if(!window.Chart) return;
+
+  Chart.defaults.font.family = "Inter, Segoe UI, system-ui, -apple-system, Arial";
+  Chart.defaults.color = "#334155";
+  Chart.defaults.animation.duration = 450;
+
+  Chart.defaults.plugins.legend.labels.usePointStyle = true;
+  Chart.defaults.plugins.legend.labels.boxWidth = 8;
+
+  Chart.defaults.plugins.tooltip.padding = 10;
+  Chart.defaults.plugins.tooltip.cornerRadius = 12;
+
+  // Plugin maison: % sur barres horizontales et doughnuts
+  Chart.register({
+    id: "valueLabels",
+    afterDatasetsDraw(chart, args, pluginOptions){
+      const opts = pluginOptions || {};
+      if(opts.enabled === false) return;
+
+      const { ctx } = chart;
+      const type = chart.config.type;
+
+      ctx.save();
+      ctx.fillStyle = opts.color || UN.ink;
+      ctx.font = `${opts.fontWeight || 700} ${opts.fontSize || 11}px Inter, Segoe UI, system-ui`;
+      ctx.textBaseline = "middle";
+
+      chart.data.datasets.forEach((dataset, di) => {
+        const meta = chart.getDatasetMeta(di);
+        if(meta.hidden) return;
+
+        meta.data.forEach((element, i) => {
+          const val = dataset.data[i];
+          if(val === null || val === undefined) return;
+
+          // barres horizontales
+          if(type === "bar"){
+            const x = element.x;
+            const y = element.y;
+            ctx.textAlign = "left";
+            ctx.fillText(`${val}%`, x + 8, y);
+          }
+
+          // doughnut
+          if(type === "doughnut"){
+            const p = element.tooltipPosition();
+            ctx.textAlign = "center";
+            ctx.fillText(`${val}%`, p.x, p.y);
+          }
+        });
+      });
+
+      ctx.restore();
+    }
+  });
+}
+
+function destroyIfExists(canvas){
+  if(canvas && canvas._chart){
+    try{ canvas._chart.destroy(); } catch(e){}
+    canvas._chart = null;
+  }
+}
+
+function smartOptionsBarPct(){
+  return {
+    responsive: true,
+    maintainAspectRatio: false,
+    indexAxis: "y",
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: (ctx)=> `${ctx.raw}%` } },
+      valueLabels: { enabled: true, fontSize: 11, color: UN.ink }
+    },
+    scales: {
+      x: {
+        min: 0, max: 100,
+        ticks: { callback: (v)=> `${v}%` },
+        grid: { color: UN.grid },
+        border: { display:false }
+      },
+      y: {
+        grid: { display:false },
+        border: { display:false }
+      }
+    },
+    elements: { bar: { borderRadius: 10, borderSkipped: false } }
+  };
+}
+
+function smartOptionsDonut(){
+  return {
+    responsive: true,
+    maintainAspectRatio: false,
+    cutout: "66%",
+    plugins: {
+      legend: { display: true, position: "bottom" },
+      valueLabels: { enabled: true, fontSize: 11, color: UN.ink }
+    }
+  };
+}
+
+// Option couleur (pour différencier obstacles/actions si voulu)
+function createSmartChart(canvasId, labels, values, title, forcedColor=null){
+  const c = document.getElementById(canvasId);
+  if(!c || !window.Chart) return null;
+  destroyIfExists(c);
+
+  const isBinary = labels.length <= 2;
+  const type = isBinary ? "doughnut" : "bar";
+  const options = isBinary ? smartOptionsDonut() : smartOptionsBarPct();
+
+  const donutColors = [UN.blue, UN.orange, "#93C5FD", "#FDBA74"];
+
+  const chart = new Chart(c, {
+    type,
+    data: {
+      labels,
+      datasets: [{
+        label: title,
+        data: values,
+        borderWidth: 0,
+        backgroundColor: type === "bar"
+          ? (forcedColor || UN.blue)
+          : labels.map((_, i)=> donutColors[i % donutColors.length])
+      }]
+    },
+    options
+  });
+
+  c._chart = chart;
+  return chart;
+}
+
+// ===============================
+// DASHBOARD LAYOUT + CHARTS
+// ===============================
 function buildDashboardLayout(){
   const host = el("dashboardSections");
   if(!host) return;
 
-  // On construit une grille stable avec IDs connus
   host.innerHTML = `
     <div style="margin-top:12px;">
       <div class="sectionTitle">
-        <div><h2 style="margin:0">Profil</h2><p class="subhead">Lecture compacte et comparable.</p></div>
-        <span class="sectionChip">Smart charts</span>
+        <div><h2 style="margin:0">Profil</h2></div>
+        <span class="sectionChip">Smart</span>
       </div>
       <div class="grid">
-        <div class="chartCard col-6"><h3>Ministère</h3><canvas id="ch_ministere"></canvas><div class="small">Smart • % • Top 10</div></div>
-        <div class="chartCard col-6"><h3>Sexe</h3><canvas id="ch_sexe"></canvas><div class="small">Smart • % • Top 10</div></div>
-        <div class="chartCard col-6"><h3>Fonction</h3><canvas id="ch_fonction"></canvas><div class="small">Smart • % • Top 10</div></div>
-        <div class="chartCard col-6"><h3>Expérience</h3><canvas id="ch_experience"></canvas><div class="small">Smart • % • Top 10</div></div>
-        <div class="chartCard col-6"><h3>Formation genre</h3><canvas id="ch_formation"></canvas><div class="small">Smart • %</div></div>
+        <div class="chartCard col-6"><h3>Ministère</h3><canvas id="ch_ministere"></canvas></div>
+        <div class="chartCard col-6"><h3>Sexe</h3><canvas id="ch_sexe"></canvas></div>
+        <div class="chartCard col-6"><h3>Fonction</h3><canvas id="ch_fonction"></canvas></div>
+        <div class="chartCard col-6"><h3>Expérience</h3><canvas id="ch_experience"></canvas></div>
+        <div class="chartCard col-6"><h3>Formation genre</h3><canvas id="ch_formation"></canvas></div>
       </div>
     </div>
 
     <div style="margin-top:12px;">
       <div class="sectionTitle">
-        <div><h2 style="margin:0">Connaissances</h2><p class="subhead">Compréhension et notions clés.</p></div>
-        <span class="sectionChip">Smart charts</span>
+        <div><h2 style="margin:0">Connaissances</h2></div>
+        <span class="sectionChip">Smart</span>
       </div>
       <div class="grid">
-        <div class="chartCard col-6"><h3>Compréhension du genre</h3><canvas id="ch_comprehension"></canvas><div class="small">Smart • %</div></div>
-        <div class="chartCard col-6"><h3>Différence sexe/genre</h3><canvas id="ch_diff"></canvas><div class="small">Smart • %</div></div>
-        <div class="chartCard col-6"><h3>« Genre = biologique »</h3><canvas id="ch_bio"></canvas><div class="small">Smart • %</div></div>
-        <div class="chartCard col-6"><h3>Connaît politique genre</h3><canvas id="ch_pol"></canvas><div class="small">Smart • %</div></div>
-        <div class="chartCard col-6"><h3>Genre important en politiques publiques</h3><canvas id="ch_pp"></canvas><div class="small">Smart • %</div></div>
+        <div class="chartCard col-6"><h3>Compréhension du genre</h3><canvas id="ch_comprehension"></canvas></div>
+        <div class="chartCard col-6"><h3>Différence sexe/genre</h3><canvas id="ch_diff"></canvas></div>
+        <div class="chartCard col-6"><h3>« Genre = biologique »</h3><canvas id="ch_bio"></canvas></div>
+        <div class="chartCard col-6"><h3>Connaît politique genre</h3><canvas id="ch_pol"></canvas></div>
+        <div class="chartCard col-6"><h3>Genre important en politiques publiques</h3><canvas id="ch_pp"></canvas></div>
       </div>
     </div>
 
     <div style="margin-top:12px;">
       <div class="sectionTitle">
-        <div><h2 style="margin:0">Pratiques institutionnelles</h2><p class="subhead">Dispositifs, planification, outils.</p></div>
-        <span class="sectionChip">Smart charts</span>
+        <div><h2 style="margin:0">Pratiques institutionnelles</h2></div>
+        <span class="sectionChip">Smart</span>
       </div>
       <div class="grid">
-        <div class="chartCard col-6"><h3>Cellule genre</h3><canvas id="ch_cellule"></canvas><div class="small">Smart • %</div></div>
-        <div class="chartCard col-6"><h3>Plan/stratégie genre</h3><canvas id="ch_plan"></canvas><div class="small">Smart • %</div></div>
-        <div class="chartCard col-6"><h3>Indicateurs sensibles au genre</h3><canvas id="ch_ind"></canvas><div class="small">Smart • %</div></div>
-        <div class="chartCard col-6"><h3>Outils/guide genre</h3><canvas id="ch_outils"></canvas><div class="small">Smart • %</div></div>
-        <div class="chartCard col-6"><h3>Fréquence formations genre</h3><canvas id="ch_freq"></canvas><div class="small">Smart • %</div></div>
+        <div class="chartCard col-6"><h3>Cellule genre</h3><canvas id="ch_cellule"></canvas></div>
+        <div class="chartCard col-6"><h3>Plan/stratégie genre</h3><canvas id="ch_plan"></canvas></div>
+        <div class="chartCard col-6"><h3>Indicateurs sensibles au genre</h3><canvas id="ch_ind"></canvas></div>
+        <div class="chartCard col-6"><h3>Outils/guide genre</h3><canvas id="ch_outils"></canvas></div>
+        <div class="chartCard col-6"><h3>Fréquence formations genre</h3><canvas id="ch_freq"></canvas></div>
       </div>
     </div>
 
     <div style="margin-top:12px;">
       <div class="sectionTitle">
-        <div><h2 style="margin:0">Perceptions & obstacles</h2><p class="subhead">Freins et actions prioritaires.</p></div>
+        <div><h2 style="margin:0">Perceptions & obstacles</h2></div>
         <span class="sectionChip">Evidence</span>
       </div>
       <div class="grid">
-        <div class="chartCard col-6"><h3>Genre important pour le secteur</h3><canvas id="ch_secteur"></canvas><div class="small">Smart • %</div></div>
-        <div class="chartCard col-6"><h3>Top obstacles</h3><canvas id="ch_obs"></canvas><div class="small">Barres horizontales (%)</div></div>
-        <div class="chartCard col-6"><h3>Top actions prioritaires</h3><canvas id="ch_act"></canvas><div class="small">Barres horizontales (%)</div></div>
+        <div class="chartCard col-6"><h3>Genre important pour le secteur</h3><canvas id="ch_secteur"></canvas></div>
+        <div class="chartCard col-6"><h3>Top obstacles</h3><canvas id="ch_obs"></canvas></div>
+        <div class="chartCard col-6"><h3>Top actions prioritaires</h3><canvas id="ch_act"></canvas></div>
       </div>
     </div>
 
     <div style="margin-top:12px;">
       <div class="sectionTitle">
-        <div><h2 style="margin:0">Coordination (GTG)</h2><p class="subhead">Connaissance et sous-groupes.</p></div>
+        <div><h2 style="margin:0">Coordination (GTG)</h2></div>
         <span class="sectionChip">GTG</span>
       </div>
       <div class="grid">
-        <div class="chartCard col-6"><h3>Connaissance GTG</h3><canvas id="ch_gtg"></canvas><div class="small">Smart • %</div></div>
-        <div class="chartCard col-6"><h3>Sous-groupes GTG connus</h3><canvas id="ch_sg"></canvas><div class="small">Barres horizontales (%)</div></div>
+        <div class="chartCard col-6"><h3>Connaissance GTG</h3><canvas id="ch_gtg"></canvas></div>
+        <div class="chartCard col-6"><h3>Sous-groupes GTG connus</h3><canvas id="ch_sg"></canvas></div>
       </div>
     </div>
   `;
 }
 
 function renderDashboardCharts(rows){
-  // KPI (si vos IDs existent dans le HTML)
-  if(el("kpiFormation")) el("kpiFormation").textContent = (pctYes(rows, COL.formation) ?? "—") + (pctYes(rows, COL.formation)===null?"":"%");
-  if(el("kpiDiff")) el("kpiDiff").textContent = (pctYes(rows, COL.diffSexeGenre) ?? "—") + (pctYes(rows, COL.diffSexeGenre)===null?"":"%");
-  if(el("kpiCellule")) el("kpiCellule").textContent = (pctYes(rows, COL.celluleGenre) ?? "—") + (pctYes(rows, COL.celluleGenre)===null?"":"%");
+  // KPI
+  const pFormation = pctYes(rows, COL.formation);
+  const pDiff = pctYes(rows, COL.diffSexeGenre);
+  const pCellule = pctYes(rows, COL.celluleGenre);
 
-  // charts (smart)
-  const mk = (id, col, top=10)=>{
+  if(el("kpiFormation")) el("kpiFormation").textContent = (pFormation === null ? "—" : `${pFormation}%`);
+  if(el("kpiDiff")) el("kpiDiff").textContent = (pDiff === null ? "—" : `${pDiff}%`);
+  if(el("kpiCellule")) el("kpiCellule").textContent = (pCellule === null ? "—" : `${pCellule}%`);
+
+  const mk = (id, col, top=10, color=null)=>{
     const d = toPercentTop(counterField(rows, col), top);
-    createSmartChart(id, d.labels.length?d.labels:["—"], d.values.length?d.values:[0], col);
+    createSmartChart(id, d.labels.length?d.labels:["—"], d.values.length?d.values:[0], col, color);
   };
 
-  mk("ch_ministere", COL.ministere, 10);
-  mk("ch_sexe", COL.sexe, 10);
-  mk("ch_fonction", COL.fonction, 10);
-  mk("ch_experience", COL.experience, 10);
-  mk("ch_formation", COL.formation, 10);
+  mk("ch_ministere", COL.ministere, 10, UN.blue);
+  mk("ch_sexe", COL.sexe, 10, UN.blue);
+  mk("ch_fonction", COL.fonction, 10, UN.blue);
+  mk("ch_experience", COL.experience, 10, UN.blue);
+  mk("ch_formation", COL.formation, 10, UN.blue);
 
-  mk("ch_comprehension", COL.comprehension, 10);
-  mk("ch_diff", COL.diffSexeGenre, 10);
-  mk("ch_bio", COL.genreBio, 10);
-  mk("ch_pol", COL.connaitPolitique, 10);
-  mk("ch_pp", COL.genreImportantPP, 10);
+  mk("ch_comprehension", COL.comprehension, 10, UN.blue);
+  mk("ch_diff", COL.diffSexeGenre, 10, UN.blue);
+  mk("ch_bio", COL.genreBio, 10, UN.blue);
+  mk("ch_pol", COL.connaitPolitique, 10, UN.blue);
+  mk("ch_pp", COL.genreImportantPP, 10, UN.blue);
 
-  mk("ch_cellule", COL.celluleGenre, 10);
-  mk("ch_plan", COL.planGenre, 10);
-  mk("ch_ind", COL.indicateurs, 10);
-  mk("ch_outils", COL.outils, 10);
-  mk("ch_freq", COL.freqFormations, 10);
+  mk("ch_cellule", COL.celluleGenre, 10, UN.blue);
+  mk("ch_plan", COL.planGenre, 10, UN.blue);
+  mk("ch_ind", COL.indicateurs, 10, UN.blue);
+  mk("ch_outils", COL.outils, 10, UN.blue);
+  mk("ch_freq", COL.freqFormations, 10, UN.blue);
 
-  mk("ch_secteur", COL.genreImportantSecteur, 10);
+  mk("ch_secteur", COL.genreImportantSecteur, 10, UN.blue);
 
-  // Multi-sélection (obstacles/actions/sous-groupes) : déjà géré via splitMulti()
-  mk("ch_obs", COL.obstacles, 10);
-  mk("ch_act", COL.actions, 10);
+  // Differencier visuellement obstacles vs actions
+  mk("ch_obs", COL.obstacles, 10, UN.blue);
+  mk("ch_act", COL.actions, 10, UN.orange);
 
-  mk("ch_gtg", COL.gtg, 10);
-  mk("ch_sg", COL.sousGroupes, 10);
+  mk("ch_gtg", COL.gtg, 10, UN.blue);
+  mk("ch_sg", COL.sousGroupes, 10, UN.blue);
 }
 
 // ---------- Table page ----------
@@ -463,102 +501,116 @@ function buildTable(filteredRows, allRows){
   }).join("");
 }
 
-// ---------- Main ----------
-async function main(){
-  try{
-    applyModernChartDefaults();
-    const page = document.body.getAttribute("data-page");
-    console.log("APP page=", page);
-
-    const tPayload = await loadJson(TABLE);
-    const allRows = unwrapArray(tPayload);
-    if(!allRows) throw new Error("submissions_table.json doit être un array ou {data:[…]} / {results:[…]}");
-    if(!allRows.length) throw new Error("submissions_table.json est vide");
-
-    const statsMaybe = await loadJson(STATS).catch(()=>null);
-    const recosMaybe = await loadJson(RECOS).catch(()=>null);
-    await loadJson(QUESTIONS).catch(()=>null); // non utilisé ici, juste toléré
-
-    const generatedAt = statsMaybe?.generated_at || statsMaybe?.meta?.generated_at || null;
-
-    // construire options filtres
-    const ministeres = uniq(allRows.map(r=>normalize(r[COL.ministere])));
-    const sexes = uniq(allRows.map(r=>normalize(r[COL.sexe])));
-    const fonctions = uniq(allRows.map(r=>normalize(r[COL.fonction])));
-    const experiences = uniq(allRows.map(r=>normalize(r[COL.experience])));
-    const formations = uniq(allRows.map(r=>normalize(r[COL.formation])));
-    const gtgVals = uniq(allRows.map(r=>normalize(r[COL.gtg])));
-
-    buildSelect(el("fMinistere"), ministeres);
-    buildSelect(el("fSexe"), sexes);
-    buildSelect(el("fFonction"), fonctions);
-    buildSelect(el("fExperience"), experiences);
-    buildSelect(el("fFormation"), formations);
-    buildSelect(el("fGTG"), gtgVals);
-
-    // bouton reset si existe
-    el("btnResetFilters")?.addEventListener("click", ()=>{
-      ["fMinistere","fSexe","fFonction","fExperience","fFormation","fGTG"].forEach(id=>{
-        if(el(id)) el(id).value = "__all__";
-      });
-      if(el("searchTable")) el("searchTable").value = "";
-      refresh();
-    });
-
-    // Dashboard layout
-    if(page === "dashboard"){
-      buildDashboardLayout();
-    }
-
-    // events
-    ["fMinistere","fSexe","fFonction","fExperience","fFormation","fGTG","searchTable"].forEach(id=>{
-      const x = el(id);
-      if(!x) return;
-      x.addEventListener(id === "searchTable" ? "input" : "change", refresh);
-    });
-
-    function refresh(){
-      const f = getCurrentFilters();
-      renderChips(f);
-
-      const filtered = allRows.filter(r=>matchRow(r,f));
-      setMeta(generatedAt, filtered.length);
-
-      if(page === "responses"){
-        buildTable(filtered, allRows);
-        return;
-      }
-
-      if(page === "dashboard"){
-        renderDashboardCharts(filtered);
-        return;
-      }
-
-      if(page === "analysis" || page === "recommendations"){
-        // si vous avez des canvas sur ces pages, on peut réutiliser mêmes charts
-        // (laisser simple: obstacles/actions + liste recos)
-        const dObs = toPercentTop(counterField(filtered, COL.obstacles), 10);
-        createSmartChart("chartTopObstacles", dObs.labels.length?dObs.labels:["—"], dObs.values.length?dObs.values:[0], "Top obstacles");
-
-        const dAct = toPercentTop(counterField(filtered, COL.actions), 10);
-        createSmartChart("chartTopActions", dAct.labels.length?dAct.labels:["—"], dAct.values.length?dAct.values:[0], "Top actions");
-
-        const ul = el("globalRecos");
-        if(ul){
-          const list = (recosMaybe?.recommendations || []);
-          ul.innerHTML = list.length
-            ? list.map(x=>`<li>${escapeHtml(x)}</li>`).join("")
-            : `<li>Recommandations globales non disponibles (fichier recommendations_global.json absent/vide).</li>`;
-        }
-        return;
-      }
-    }
-
-    refresh();
-
-  } catch(e){
-    showFatal("Impossible d'initialiser", e.message);
-  }
+// ---------- Recommendations list helper ----------
+function fillGlobalRecos(recosMaybe){
+  const ul = el("globalRecos");
+  if(!ul) return;
+  const list = (recosMaybe?.recommendations || []);
+  ul.innerHTML = list.length
+    ? list.map(x=>`<li>${escapeHtml(x)}</li>`).join("")
+    : `<li>Recommandations globales non disponibles (fichier recommendations_global.json absent/vide).</li>`;
 }
 
-main();
+// ---------- Main ----------
+async function main(){
+  applyModernChartDefaults();
+
+  const page = document.body.getAttribute("data-page");
+
+  const tPayload = await loadJson(TABLE);
+  const allRows = unwrapArray(tPayload);
+  if(!allRows || !allRows.length) throw new Error("submissions_table.json vide/invalide");
+
+  const statsMaybe = await loadJson(STATS).catch(()=>null);
+  const recosMaybe = await loadJson(RECOS).catch(()=>null);
+
+  const generatedAt = statsMaybe?.generated_at || statsMaybe?.meta?.generated_at || null;
+
+  // options filtres
+  buildSelect(el("fMinistere"), uniq(allRows.map(r=>normalize(r[COL.ministere]))));
+  buildSelect(el("fSexe"), uniq(allRows.map(r=>normalize(r[COL.sexe]))));
+  buildSelect(el("fFonction"), uniq(allRows.map(r=>normalize(r[COL.fonction]))));
+  buildSelect(el("fExperience"), uniq(allRows.map(r=>normalize(r[COL.experience]))));
+  buildSelect(el("fFormation"), uniq(allRows.map(r=>normalize(r[COL.formation]))));
+  buildSelect(el("fGTG"), uniq(allRows.map(r=>normalize(r[COL.gtg]))));
+
+  // reset
+  el("btnResetFilters")?.addEventListener("click", ()=>{
+    ["fMinistere","fSexe","fFonction","fExperience","fFormation","fGTG"].forEach(id=>{
+      if(el(id)) el(id).value = "__all__";
+    });
+    if(el("searchTable")) el("searchTable").value = "";
+    refresh();
+  });
+
+  // dashboard sections injection
+  if(page === "dashboard"){
+    buildDashboardLayout();
+  }
+
+  // events
+  ["fMinistere","fSexe","fFonction","fExperience","fFormation","fGTG","searchTable"].forEach(id=>{
+    const x = el(id);
+    if(!x) return;
+    x.addEventListener(id === "searchTable" ? "input" : "change", refresh);
+  });
+
+  function refresh(){
+    const f = getCurrentFilters();
+    renderChips(f);
+
+    const filtered = allRows.filter(r=>matchRow(r,f));
+    setMeta(generatedAt, filtered.length);
+
+    if(page === "responses"){
+      buildTable(filtered, allRows);
+      return;
+    }
+
+    if(page === "dashboard"){
+      renderDashboardCharts(filtered);
+      return;
+    }
+
+    if(page === "analysis" || page === "recommendations"){
+      // KPI signaux (si présents sur la page)
+      const sigCell = pctYes(filtered, COL.celluleGenre);
+      const sigPlan = pctYes(filtered, COL.planGenre);
+      const sigInd  = pctYes(filtered, COL.indicateurs);
+      const sigOut  = pctYes(filtered, COL.outils);
+
+      if(el("sigCellule")) el("sigCellule").textContent = (sigCell === null ? "—" : `${sigCell}%`);
+      if(el("sigPlan"))    el("sigPlan").textContent    = (sigPlan === null ? "—" : `${sigPlan}%`);
+      if(el("sigInd"))     el("sigInd").textContent     = (sigInd === null ? "—" : `${sigInd}%`);
+      if(el("sigOutils"))  el("sigOutils").textContent  = (sigOut === null ? "—" : `${sigOut}%`);
+
+      // Charts
+      const dObs = toPercentTop(counterField(filtered, COL.obstacles), 10);
+      createSmartChart("chartTopObstacles",
+        dObs.labels.length?dObs.labels:["—"],
+        dObs.values.length?dObs.values:[0],
+        "Top obstacles",
+        UN.blue
+      );
+
+      const dAct = toPercentTop(counterField(filtered, COL.actions), 10);
+      createSmartChart("chartTopActions",
+        dAct.labels.length?dAct.labels:["—"],
+        dAct.values.length?dAct.values:[0],
+        "Top actions",
+        UN.orange
+      );
+
+      fillGlobalRecos(recosMaybe);
+      return;
+    }
+  }
+
+  // initial
+  refresh();
+}
+
+main().catch(err => {
+  console.error(err);
+  alert("Erreur chargement données. Ouvre la console (F12) pour voir le détail.");
+});
