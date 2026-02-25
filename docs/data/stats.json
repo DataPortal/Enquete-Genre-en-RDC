@@ -1,5 +1,5 @@
 {
-  "n": 72,
+  "n": 77,
   "counters": {
     "sec1/ministere_display": {
       "Autre (à préciser)": 2,
@@ -10,9 +10,9 @@
       "Ministère de la Pêche et de l’Élevage": 1,
       "Ministère du Développement Rural": 1,
       "Ministère de l’Intérieur, Sécurité et Affaires Coutumières": 1,
-      "Ministère du Genre, Famille et Enfant": 24,
+      "Ministère du Genre, Famille et Enfant": 25,
       "Autre (à préciser) : Croix rouge Rdc": 1,
-      "Ministère du Budget": 3,
+      "Ministère du Budget": 4,
       "Ministère de l’Industrie": 1,
       "Autre (à préciser) : chancellerie des ordres nationaux": 1,
       "Autre (à préciser) : Min provinciale du genre/Kinshasa": 1,
@@ -33,88 +33,91 @@
       "Ministère des Mines": 1,
       "Ministère de la Fonction Publique, Modernisation de l’Administration et Innovation du Service Public": 1,
       "Autre (à préciser) : Secretariat General a la Recherche Scientifique et Innovation": 1,
-      "Autre (à préciser) : Ministère provincial genre et famille": 1
+      "Autre (à préciser) : Ministère provincial genre et famille": 1,
+      "Autre (à préciser) : Secrétariat Général de la Recherche Scientifique et Innovations": 1,
+      "Autre (à préciser) : Ministère de l'entrepreneuriat et Développement des Petites et Moyennes Entreprises": 1,
+      "Autre (à préciser) : Ministère de l'Entrepreneuriat, développement des petites et moyennes entreprises": 1
     },
     "sec1/sexe": {
-      "Féminin": 49,
-      "Masculin": 23
+      "Féminin": 53,
+      "Masculin": 24
     },
     "sec1/fonction": {
       "Autre": 24,
       "Ministre": 1,
-      "Chef de Division": 7,
+      "Chef de Division": 8,
       "Chef de Bureau": 18,
-      "Directeur(trice)": 2,
-      "Attaché·e / Agent·e": 20
+      "Directeur(trice)": 5,
+      "Attaché·e / Agent·e": 21
     },
     "sec1/annees_experience_ministere": {
-      "7 à 10 ans": 9,
-      "4 à 6 ans": 16,
-      "Plus de 15 ans": 14,
+      "7 à 10 ans": 11,
+      "4 à 6 ans": 17,
+      "Plus de 15 ans": 16,
       "Moins de 1 an": 10,
       "1 à 3 ans": 15,
       "11 à 15 ans": 8
     },
     "sec1/formation_genre": {
-      "Oui": 41,
-      "Non": 31
+      "Oui": 45,
+      "Non": 32
     },
     "sec2/compr_genre": {
-      "Bonne": 39,
+      "Bonne": 44,
       "Faible": 12,
       "Moyenne": 21
     },
     "sec2/diff_sexe_genre": {
-      "Oui": 64,
+      "Oui": 69,
       "Non": 8
     },
     "sec2/genre_biologique": {
-      "Faux": 44,
-      "Vrai": 28
+      "Faux": 47,
+      "Vrai": 30
     },
     "sec2/politiques_genre_connaissance": {
-      "Oui": 43,
-      "Non": 29
+      "Oui": 47,
+      "Non": 30
     },
     "sec2/importance_genre_politiques_publiques": {
-      "Oui": 71,
+      "Oui": 76,
       "Non": 1
     },
     "sec3/cellule_genre": {
-      "Oui": 60,
+      "Oui": 65,
       "Non": 12
     },
     "sec3/plan_action_genre": {
       "Non": 17,
-      "Oui": 35,
-      "Partiellement / Je ne sais pas": 20
+      "Oui": 37,
+      "Partiellement / Je ne sais pas": 23
     },
     "sec3/indicateurs_genre": {
       "Non": 12,
       "Partiellement / Je ne sais pas": 17,
-      "Oui": 43
+      "Oui": 48
     },
     "sec3/outils_guide_genre": {
-      "Non": 42,
-      "Oui": 30
+      "Non": 45,
+      "Oui": 32
     },
     "sec3/frequence_formations_genre": {
       "Annuelle": 14,
-      "Jamais / Non organisé": 18,
+      "Jamais / Non organisé": 19,
       "Mensuelle": 12,
-      "Semestrielle": 5,
+      "Semestrielle": 6,
       "Trimestrielle": 11,
-      "Ad hoc / Occasionnelle": 11,
+      "Ad hoc / Occasionnelle": 14,
       "_missing": 1
     },
     "sec4/importance_genre_secteur": {
-      "Oui": 69,
+      "Oui": 74,
       "Partiellement / Je ne sais pas": 2,
       "Non": 1
     },
     "sec5/gtg_connaissance": {
-      "Oui": 46,
-      "Non": 26
+      "Oui": 49,
+      "Non": 28
     }
   },
   "multi": {
@@ -122,28 +125,28 @@
       "Manque de ressources humaines qualifiées": 22,
       "Faible engagement de la hiérarchie": 25,
       "Absence de données désagrégées par sexe": 15,
-      "Manque de financement dédié au genre": 50,
+      "Manque de financement dédié au genre": 54,
       "Priorités sectorielles non sensibles au genre": 20,
       "Absence de politique ou stratégie claire": 18,
       "Manque de coordination interinstitutionnelle": 17,
       "Autre : Résistances socioculturelles et normes de genre persistantes.": 2
     },
     "sec4/actions_display": {
-      "Nommer et former les points focaux genre": 29,
-      "Produire des données désagrégées par sexe": 19,
-      "Renforcer les capacités du personnel": 51,
-      "Intégrer le genre dans la planification et le budget": 36,
-      "Allouer un budget spécifique au genre": 28,
-      "Créer un cadre de concertation interinstitutionnel": 25,
+      "Nommer et former les points focaux genre": 32,
+      "Produire des données désagrégées par sexe": 20,
+      "Renforcer les capacités du personnel": 54,
+      "Intégrer le genre dans la planification et le budget": 38,
+      "Allouer un budget spécifique au genre": 31,
+      "Créer un cadre de concertation interinstitutionnel": 26,
       "Autre : Renforcer le plaidoyer et la sensibilisation des décideurs": 1,
       "Autre : Renforcer le plaidoyer et la sensibilisation des décideurs. »": 1,
       "Autre : Renforcer les capacités et allouer un budget spécifique au genre.": 1
     },
     "sec5/sgtgtg_connus_display": {
-      "Violences Basées sur le Genre (VBG)": 44,
-      "Renforcement du Pouvoir Économique et Autonomisation de la Femme (RPEAF)": 23,
-      "Égalité des Sexes et Habilitation du Statut Juridique de la Femme (ESSJF)": 23,
-      "Participation Politique de la Femme et Leadership Féminin (PPLF)": 26
+      "Violences Basées sur le Genre (VBG)": 48,
+      "Renforcement du Pouvoir Économique et Autonomisation de la Femme (RPEAF)": 24,
+      "Égalité des Sexes et Habilitation du Statut Juridique de la Femme (ESSJF)": 24,
+      "Participation Politique de la Femme et Leadership Féminin (PPLF)": 28
     }
   }
 }
