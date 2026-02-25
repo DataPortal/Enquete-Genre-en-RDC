@@ -1,82 +1,91 @@
 {
-  "generated_at": "2026-02-25T10:39:51Z",
-  "n": 22,
+  "generated_at": "2026-02-25T10:57:15Z",
+  "n": 33,
   "signals": {
-    "formation_oui_pct": 55,
-    "cellule_genre_oui_pct": 55,
-    "plan_action_oui_pct": 32,
+    "formation_oui_pct": 58,
+    "cellule_genre_oui_pct": 67,
+    "plan_action_oui_pct": 39,
     "plan_action_np_pct": 27,
-    "indicateurs_oui_pct": 45,
-    "indicateurs_np_pct": 36,
-    "outils_oui_pct": 36,
-    "politiques_connues_oui_pct": 59,
-    "gtg_connu_oui_pct": 50
+    "indicateurs_oui_pct": 52,
+    "indicateurs_np_pct": 27,
+    "outils_oui_pct": 30,
+    "politiques_connues_oui_pct": 64,
+    "gtg_connu_oui_pct": 61
   },
   "top_obstacles": [
     {
-      "label": "Faible engagement de la hiérarchie",
-      "count": 10
-    },
-    {
       "label": "Manque de financement dédié au genre",
-      "count": 10
+      "count": 19
     },
     {
-      "label": "Manque de ressources humaines qualifiées",
-      "count": 7
+      "label": "Faible engagement de la hiérarchie",
+      "count": 17
     },
     {
       "label": "Priorités sectorielles non sensibles au genre",
-      "count": 7
+      "count": 15
     },
     {
-      "label": "Absence de politique ou stratégie claire",
-      "count": 6
+      "label": "Manque de ressources humaines qualifiées",
+      "count": 13
     },
     {
       "label": "Absence de données désagrégées par sexe",
-      "count": 5
+      "count": 11
     },
     {
       "label": "Manque de coordination interinstitutionnelle",
-      "count": 5
+      "count": 11
+    },
+    {
+      "label": "Absence de politique ou stratégie claire",
+      "count": 10
+    },
+    {
+      "label": "Autre : Résistances socioculturelles et normes de genre persistantes.",
+      "count": 2
     }
   ],
   "top_actions": [
     {
       "label": "Renforcer les capacités du personnel",
-      "count": 19
+      "count": 29
     },
     {
       "label": "Intégrer le genre dans la planification et le budget",
-      "count": 13
+      "count": 22
     },
     {
       "label": "Allouer un budget spécifique au genre",
-      "count": 10
+      "count": 18
     },
     {
       "label": "Créer un cadre de concertation interinstitutionnel",
-      "count": 10
+      "count": 17
     },
     {
       "label": "Nommer et former les points focaux genre",
-      "count": 8
+      "count": 16
     },
     {
       "label": "Produire des données désagrégées par sexe",
-      "count": 8
+      "count": 14
+    },
+    {
+      "label": "Autre : Renforcer le plaidoyer et la sensibilisation des décideurs",
+      "count": 1
+    },
+    {
+      "label": "Autre : Renforcer le plaidoyer et la sensibilisation des décideurs. »",
+      "count": 1
     }
   ],
   "recommendations": [
-    "Institutionnaliser une Cellule Genre dans chaque ministère (mandat, ToR, points focaux, mécanisme de reporting) et formaliser la chaîne de redevabilité.",
     "Convertir les éléments partiels liés au plan/stratégie genre en document formalisé (objectifs, activités, coûts, échéancier, responsables) et instaurer une revue trimestrielle.",
     "Standardiser l’intégration d’indicateurs sensibles au genre dans les programmes (minimum commun) et renforcer la désagrégation par sexe (collecte, analyse, reporting).",
     "Déployer un kit d’outils opérationnels (checklist mainstreaming, fiche projet, grille d’analyse, modèle rapport) accessible à tous (drive/portail) et accompagné d’un guide court.",
     "Mettre en œuvre un plan de renforcement des capacités (sessions courtes + coaching sur cas réels), différencié selon les profils (SG, directions, divisions, agents).",
-    "Renforcer l’appropriation des politiques genre (CEDAW, Beijing, Rés. 1325, cadres nationaux) via fiches synthèse, sessions d’appropriation et intégration dans les processus internes.",
-    "Accroître la visibilité et la participation au Groupe Thématique du Genre (GTG) et aux sous-groupes via onboarding, calendrier partagé et points de contact par ministère.",
-    "Traiter en priorité les obstacles les plus fréquents identifiés par les répondants (Top : Faible engagement de la hiérarchie, Manque de financement dédié au genre, Manque de ressources humaines qualifiées, Priorités sectorielles non sensibles au genre, Absence de politique ou stratégie claire) avec un plan de mitigation (responsables, échéances, indicateurs).",
+    "Traiter en priorité les obstacles les plus fréquents identifiés par les répondants (Top : Manque de financement dédié au genre, Faible engagement de la hiérarchie, Priorités sectorielles non sensibles au genre, Manque de ressources humaines qualifiées, Absence de données désagrégées par sexe) avec un plan de mitigation (responsables, échéances, indicateurs).",
     "Opérationnaliser les actions prioritaires déclarées (Top : Renforcer les capacités du personnel, Intégrer le genre dans la planification et le budget, Allouer un budget spécifique au genre, Créer un cadre de concertation interinstitutionnel, Nommer et former les points focaux genre) en plan d’actions inter-ministériel (qui fait quoi, quand, avec quels moyens)."
   ]
 }
