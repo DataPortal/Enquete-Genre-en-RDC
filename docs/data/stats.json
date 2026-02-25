@@ -1,5 +1,5 @@
 {
-  "n": 80,
+  "n": 81,
   "counters": {
     "sec1/ministere_display": {
       "Autre (à préciser)": 2,
@@ -10,7 +10,7 @@
       "Ministère de la Pêche et de l’Élevage": 1,
       "Ministère du Développement Rural": 1,
       "Ministère de l’Intérieur, Sécurité et Affaires Coutumières": 1,
-      "Ministère du Genre, Famille et Enfant": 27,
+      "Ministère du Genre, Famille et Enfant": 28,
       "Autre (à préciser) : Croix rouge Rdc": 1,
       "Ministère du Budget": 4,
       "Ministère de l’Industrie": 1,
@@ -40,10 +40,10 @@
     },
     "sec1/sexe": {
       "Féminin": 56,
-      "Masculin": 24
+      "Masculin": 25
     },
     "sec1/fonction": {
-      "Autre": 26,
+      "Autre": 27,
       "Ministre": 1,
       "Chef de Division": 9,
       "Chef de Bureau": 18,
@@ -54,76 +54,76 @@
       "7 à 10 ans": 12,
       "4 à 6 ans": 17,
       "Plus de 15 ans": 16,
-      "Moins de 1 an": 10,
+      "Moins de 1 an": 11,
       "1 à 3 ans": 17,
       "11 à 15 ans": 8
     },
     "sec1/formation_genre": {
       "Oui": 47,
-      "Non": 33
+      "Non": 34
     },
     "sec2/compr_genre": {
-      "Bonne": 46,
+      "Bonne": 47,
       "Faible": 12,
       "Moyenne": 22
     },
     "sec2/diff_sexe_genre": {
-      "Oui": 72,
+      "Oui": 73,
       "Non": 8
     },
     "sec2/genre_biologique": {
       "Faux": 48,
-      "Vrai": 32
+      "Vrai": 33
     },
     "sec2/politiques_genre_connaissance": {
       "Oui": 48,
-      "Non": 32
+      "Non": 33
     },
     "sec2/importance_genre_politiques_publiques": {
-      "Oui": 78,
+      "Oui": 79,
       "Non": 2
     },
     "sec3/cellule_genre": {
-      "Oui": 68,
+      "Oui": 69,
       "Non": 12
     },
     "sec3/plan_action_genre": {
       "Non": 18,
       "Oui": 39,
-      "Partiellement / Je ne sais pas": 23
+      "Partiellement / Je ne sais pas": 24
     },
     "sec3/indicateurs_genre": {
       "Non": 13,
-      "Partiellement / Je ne sais pas": 18,
+      "Partiellement / Je ne sais pas": 19,
       "Oui": 49
     },
     "sec3/outils_guide_genre": {
       "Non": 47,
-      "Oui": 33
+      "Oui": 34
     },
     "sec3/frequence_formations_genre": {
       "Annuelle": 14,
       "Jamais / Non organisé": 19,
       "Mensuelle": 13,
-      "Semestrielle": 6,
+      "Semestrielle": 7,
       "Trimestrielle": 13,
       "Ad hoc / Occasionnelle": 14,
       "_missing": 1
     },
     "sec4/importance_genre_secteur": {
-      "Oui": 77,
+      "Oui": 78,
       "Partiellement / Je ne sais pas": 2,
       "Non": 1
     },
     "sec5/gtg_connaissance": {
-      "Oui": 51,
+      "Oui": 52,
       "Non": 29
     }
   },
   "multi": {
     "sec4/obstacles_display": {
       "Manque de ressources humaines qualifiées": 22,
-      "Faible engagement de la hiérarchie": 27,
+      "Faible engagement de la hiérarchie": 28,
       "Absence de données désagrégées par sexe": 15,
       "Manque de financement dédié au genre": 55,
       "Priorités sectorielles non sensibles au genre": 21,
@@ -134,7 +134,7 @@
     "sec4/actions_display": {
       "Nommer et former les points focaux genre": 32,
       "Produire des données désagrégées par sexe": 21,
-      "Renforcer les capacités du personnel": 55,
+      "Renforcer les capacités du personnel": 56,
       "Intégrer le genre dans la planification et le budget": 40,
       "Allouer un budget spécifique au genre": 33,
       "Créer un cadre de concertation interinstitutionnel": 26,
@@ -143,7 +143,7 @@
       "Autre : Renforcer les capacités et allouer un budget spécifique au genre.": 1
     },
     "sec5/sgtgtg_connus_display": {
-      "Violences Basées sur le Genre (VBG)": 50,
+      "Violences Basées sur le Genre (VBG)": 51,
       "Renforcement du Pouvoir Économique et Autonomisation de la Femme (RPEAF)": 25,
       "Égalité des Sexes et Habilitation du Statut Juridique de la Femme (ESSJF)": 24,
       "Participation Politique de la Femme et Leadership Féminin (PPLF)": 29
