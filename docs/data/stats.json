@@ -1,5 +1,5 @@
 {
-  "n": 12,
+  "n": 14,
   "counters": {
     "sec1/ministere_display": {
       "Autre (à préciser)": 1,
@@ -10,69 +10,70 @@
       "Ministère de la Pêche et de l’Élevage": 1,
       "Ministère du Développement Rural": 1,
       "Ministère de l’Intérieur, Sécurité et Affaires Coutumières": 1,
-      "Ministère du Genre, Famille et Enfant": 2,
-      "Autre (à préciser) : Croix rouge Rdc": 1
+      "Ministère du Genre, Famille et Enfant": 3,
+      "Autre (à préciser) : Croix rouge Rdc": 1,
+      "Ministère du Budget": 1
     },
     "sec1/sexe": {
-      "Féminin": 8,
+      "Féminin": 10,
       "Masculin": 4
     },
     "sec1/fonction": {
       "Autre": 5,
       "Ministre": 1,
       "Chef de Division": 1,
-      "Chef de Bureau": 2,
+      "Chef de Bureau": 3,
       "Directeur(trice)": 1,
-      "Attaché·e / Agent·e": 2
+      "Attaché·e / Agent·e": 3
     },
     "sec1/annees_experience_ministere": {
       "7 à 10 ans": 2,
-      "4 à 6 ans": 2,
-      "Plus de 15 ans": 2,
+      "4 à 6 ans": 3,
+      "Plus de 15 ans": 3,
       "Moins de 1 an": 3,
       "1 à 3 ans": 3
     },
     "sec1/formation_genre": {
-      "Oui": 6,
+      "Oui": 8,
       "Non": 6
     },
     "sec2/compr_genre": {
-      "Bonne": 7,
+      "Bonne": 9,
       "Faible": 3,
       "Moyenne": 2
     },
     "sec2/diff_sexe_genre": {
-      "Oui": 10,
+      "Oui": 12,
       "Non": 2
     },
     "sec2/genre_biologique": {
       "Faux": 7,
-      "Vrai": 5
+      "Vrai": 7
     },
     "sec2/politiques_genre_connaissance": {
-      "Oui": 5,
+      "Oui": 7,
       "Non": 7
     },
     "sec2/importance_genre_politiques_publiques": {
-      "Oui": 11,
+      "Oui": 13,
       "Non": 1
     },
     "sec3/cellule_genre": {
-      "Oui": 7,
-      "Non": 5
+      "Oui": 8,
+      "Non": 6
     },
     "sec3/plan_action_genre": {
       "Non": 5,
-      "Oui": 4,
-      "Partiellement / Je ne sais pas": 3
+      "Oui": 5,
+      "Partiellement / Je ne sais pas": 4
     },
     "sec3/indicateurs_genre": {
       "Non": 4,
       "Partiellement / Je ne sais pas": 4,
-      "Oui": 4
+      "Oui": 6
     },
     "sec3/outils_guide_genre": {
-      "Non": 7,
+      "Non": 9,
       "Oui": 5
     },
     "sec3/frequence_formations_genre": {
@@ -80,16 +81,17 @@
       "Jamais / Non organisé": 2,
       "Mensuelle": 2,
       "Semestrielle": 2,
-      "Trimestrielle": 1
+      "Trimestrielle": 1,
+      "Ad hoc / Occasionnelle": 2
     },
     "sec4/importance_genre_secteur": {
-      "Oui": 9,
+      "Oui": 11,
       "Partiellement / Je ne sais pas": 2,
       "Non": 1
     },
     "sec5/gtg_connaissance": {
       "Oui": 7,
-      "Non": 5
+      "Non": 7
     }
   },
   "multi": {
@@ -97,7 +99,7 @@
       "Manque de ressources humaines qualifiées": 2,
       "Faible engagement de la hiérarchie": 6,
       "Absence de données désagrégées par sexe": 3,
-      "Manque de financement dédié au genre": 3,
+      "Manque de financement dédié au genre": 4,
       "Priorités sectorielles non sensibles au genre": 4,
       "Absence de politique ou stratégie claire": 3,
       "Manque de coordination interinstitutionnelle": 3
@@ -105,16 +107,16 @@
     "sec4/actions_display": {
       "Nommer et former les points focaux genre": 4,
       "Produire des données désagrégées par sexe": 5,
-      "Renforcer les capacités du personnel": 10,
+      "Renforcer les capacités du personnel": 12,
       "Intégrer le genre dans la planification et le budget": 8,
       "Allouer un budget spécifique au genre": 6,
       "Créer un cadre de concertation interinstitutionnel": 7
     },
     "sec5/sgtgtg_connus_display": {
-      "Violences Basées sur le Genre (VBG)": 9,
+      "Violences Basées sur le Genre (VBG)": 10,
       "Renforcement du Pouvoir Économique et Autonomisation de la Femme (RPEAF)": 5,
       "Égalité des Sexes et Habilitation du Statut Juridique de la Femme (ESSJF)": 5,
-      "Participation Politique de la Femme et Leadership Féminin (PPLF)": 3
+      "Participation Politique de la Femme et Leadership Féminin (PPLF)": 4
     }
   }
 }

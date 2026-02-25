@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-02-25T10:31:36Z",
-  "n": 12,
+  "generated_at": "2026-02-25T10:34:30Z",
+  "n": 14,
   "signals": {
-    "formation_oui_pct": 50,
-    "cellule_genre_oui_pct": 58,
-    "plan_action_oui_pct": 33,
-    "plan_action_np_pct": 25,
-    "indicateurs_oui_pct": 33,
-    "indicateurs_np_pct": 33,
-    "outils_oui_pct": 42,
-    "politiques_connues_oui_pct": 42,
-    "gtg_connu_oui_pct": 58
+    "formation_oui_pct": 57,
+    "cellule_genre_oui_pct": 57,
+    "plan_action_oui_pct": 36,
+    "plan_action_np_pct": 29,
+    "indicateurs_oui_pct": 43,
+    "indicateurs_np_pct": 29,
+    "outils_oui_pct": 36,
+    "politiques_connues_oui_pct": 50,
+    "gtg_connu_oui_pct": 50
   },
   "top_obstacles": [
     {
@@ -18,15 +18,15 @@
       "count": 6
     },
     {
+      "label": "Manque de financement dédié au genre",
+      "count": 4
+    },
+    {
       "label": "Priorités sectorielles non sensibles au genre",
       "count": 4
     },
     {
       "label": "Absence de données désagrégées par sexe",
-      "count": 3
-    },
-    {
-      "label": "Manque de financement dédié au genre",
       "count": 3
     },
     {
@@ -45,7 +45,7 @@
   "top_actions": [
     {
       "label": "Renforcer les capacités du personnel",
-      "count": 10
+      "count": 12
     },
     {
       "label": "Intégrer le genre dans la planification et le budget",
@@ -76,7 +76,7 @@
     "Mettre en œuvre un plan de renforcement des capacités (sessions courtes + coaching sur cas réels), différencié selon les profils (SG, directions, divisions, agents).",
     "Renforcer l’appropriation des politiques genre (CEDAW, Beijing, Rés. 1325, cadres nationaux) via fiches synthèse, sessions d’appropriation et intégration dans les processus internes.",
     "Accroître la visibilité et la participation au Groupe Thématique du Genre (GTG) et aux sous-groupes via onboarding, calendrier partagé et points de contact par ministère.",
-    "Traiter en priorité les obstacles les plus fréquents identifiés par les répondants (Top : Faible engagement de la hiérarchie, Priorités sectorielles non sensibles au genre, Absence de données désagrégées par sexe, Manque de financement dédié au genre, Absence de politique ou stratégie claire) avec un plan de mitigation (responsables, échéances, indicateurs).",
+    "Traiter en priorité les obstacles les plus fréquents identifiés par les répondants (Top : Faible engagement de la hiérarchie, Manque de financement dédié au genre, Priorités sectorielles non sensibles au genre, Absence de données désagrégées par sexe, Absence de politique ou stratégie claire) avec un plan de mitigation (responsables, échéances, indicateurs).",
     "Opérationnaliser les actions prioritaires déclarées (Top : Renforcer les capacités du personnel, Intégrer le genre dans la planification et le budget, Créer un cadre de concertation interinstitutionnel, Allouer un budget spécifique au genre, Produire des données désagrégées par sexe) en plan d’actions inter-ministériel (qui fait quoi, quand, avec quels moyens)."
   ]
 }
