@@ -1,5 +1,5 @@
 {
-  "n": 78,
+  "n": 80,
   "counters": {
     "sec1/ministere_display": {
       "Autre (à préciser)": 2,
@@ -10,7 +10,7 @@
       "Ministère de la Pêche et de l’Élevage": 1,
       "Ministère du Développement Rural": 1,
       "Ministère de l’Intérieur, Sécurité et Affaires Coutumières": 1,
-      "Ministère du Genre, Famille et Enfant": 25,
+      "Ministère du Genre, Famille et Enfant": 27,
       "Autre (à préciser) : Croix rouge Rdc": 1,
       "Ministère du Budget": 4,
       "Ministère de l’Industrie": 1,
@@ -39,11 +39,11 @@
       "Autre (à préciser) : Ministère de l'Entrepreneuriat, développement des petites et moyennes entreprises": 1
     },
     "sec1/sexe": {
-      "Féminin": 54,
+      "Féminin": 56,
       "Masculin": 24
     },
     "sec1/fonction": {
-      "Autre": 24,
+      "Autre": 26,
       "Ministre": 1,
       "Chef de Division": 9,
       "Chef de Bureau": 18,
@@ -55,75 +55,75 @@
       "4 à 6 ans": 17,
       "Plus de 15 ans": 16,
       "Moins de 1 an": 10,
-      "1 à 3 ans": 15,
+      "1 à 3 ans": 17,
       "11 à 15 ans": 8
     },
     "sec1/formation_genre": {
-      "Oui": 46,
-      "Non": 32
+      "Oui": 47,
+      "Non": 33
     },
     "sec2/compr_genre": {
-      "Bonne": 44,
+      "Bonne": 46,
       "Faible": 12,
       "Moyenne": 22
     },
     "sec2/diff_sexe_genre": {
-      "Oui": 70,
+      "Oui": 72,
       "Non": 8
     },
     "sec2/genre_biologique": {
       "Faux": 48,
-      "Vrai": 30
+      "Vrai": 32
     },
     "sec2/politiques_genre_connaissance": {
-      "Oui": 47,
-      "Non": 31
+      "Oui": 48,
+      "Non": 32
     },
     "sec2/importance_genre_politiques_publiques": {
-      "Oui": 77,
-      "Non": 1
+      "Oui": 78,
+      "Non": 2
     },
     "sec3/cellule_genre": {
-      "Oui": 66,
+      "Oui": 68,
       "Non": 12
     },
     "sec3/plan_action_genre": {
       "Non": 18,
-      "Oui": 37,
+      "Oui": 39,
       "Partiellement / Je ne sais pas": 23
     },
     "sec3/indicateurs_genre": {
-      "Non": 12,
+      "Non": 13,
       "Partiellement / Je ne sais pas": 18,
-      "Oui": 48
+      "Oui": 49
     },
     "sec3/outils_guide_genre": {
-      "Non": 46,
-      "Oui": 32
+      "Non": 47,
+      "Oui": 33
     },
     "sec3/frequence_formations_genre": {
       "Annuelle": 14,
       "Jamais / Non organisé": 19,
       "Mensuelle": 13,
       "Semestrielle": 6,
-      "Trimestrielle": 11,
+      "Trimestrielle": 13,
       "Ad hoc / Occasionnelle": 14,
       "_missing": 1
     },
     "sec4/importance_genre_secteur": {
-      "Oui": 75,
+      "Oui": 77,
       "Partiellement / Je ne sais pas": 2,
       "Non": 1
     },
     "sec5/gtg_connaissance": {
-      "Oui": 50,
-      "Non": 28
+      "Oui": 51,
+      "Non": 29
     }
   },
   "multi": {
     "sec4/obstacles_display": {
       "Manque de ressources humaines qualifiées": 22,
-      "Faible engagement de la hiérarchie": 25,
+      "Faible engagement de la hiérarchie": 27,
       "Absence de données désagrégées par sexe": 15,
       "Manque de financement dédié au genre": 55,
       "Priorités sectorielles non sensibles au genre": 21,
@@ -135,16 +135,16 @@
       "Nommer et former les points focaux genre": 32,
       "Produire des données désagrégées par sexe": 21,
       "Renforcer les capacités du personnel": 55,
-      "Intégrer le genre dans la planification et le budget": 39,
-      "Allouer un budget spécifique au genre": 32,
+      "Intégrer le genre dans la planification et le budget": 40,
+      "Allouer un budget spécifique au genre": 33,
       "Créer un cadre de concertation interinstitutionnel": 26,
       "Autre : Renforcer le plaidoyer et la sensibilisation des décideurs": 1,
       "Autre : Renforcer le plaidoyer et la sensibilisation des décideurs. »": 1,
       "Autre : Renforcer les capacités et allouer un budget spécifique au genre.": 1
     },
     "sec5/sgtgtg_connus_display": {
-      "Violences Basées sur le Genre (VBG)": 49,
-      "Renforcement du Pouvoir Économique et Autonomisation de la Femme (RPEAF)": 24,
+      "Violences Basées sur le Genre (VBG)": 50,
+      "Renforcement du Pouvoir Économique et Autonomisation de la Femme (RPEAF)": 25,
       "Égalité des Sexes et Habilitation du Statut Juridique de la Femme (ESSJF)": 24,
       "Participation Politique de la Femme et Leadership Féminin (PPLF)": 29
     }
