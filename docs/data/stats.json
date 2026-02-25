@@ -1,5 +1,5 @@
 {
-  "n": 33,
+  "n": 60,
   "counters": {
     "sec1/ministere_display": {
       "Autre (à préciser)": 2,
@@ -10,7 +10,7 @@
       "Ministère de la Pêche et de l’Élevage": 1,
       "Ministère du Développement Rural": 1,
       "Ministère de l’Intérieur, Sécurité et Affaires Coutumières": 1,
-      "Ministère du Genre, Famille et Enfant": 7,
+      "Ministère du Genre, Famille et Enfant": 22,
       "Autre (à préciser) : Croix rouge Rdc": 1,
       "Ministère du Budget": 3,
       "Ministère de l’Industrie": 1,
@@ -19,120 +19,127 @@
       "Autre (à préciser) : FEFCO: Forum d'entrepreneuriat des femmes congolaises": 1,
       "Ministère des Finances": 1,
       "Autre (à préciser) : Chancellerie des ordres nationaux": 1,
-      "Ministère des Relations avec le Parlement": 1,
+      "Ministère des Relations avec le Parlement": 2,
       "Ministère des Droits Humains": 2,
       "Autre (à préciser) : Société civile :": 1,
-      "Ministère de la Culture, Arts et Patrimoine": 1,
-      "Ministère des Transports, Voies de Communication et Désenclavement": 1
+      "Ministère de la Culture, Arts et Patrimoine": 2,
+      "Ministère des Transports, Voies de Communication et Désenclavement": 1,
+      "Autre (à préciser) : office national du tourisme": 1,
+      "Ministère de la Jeunesse et Éveil Patriotique": 5,
+      "Ministère de la Santé Publique, Hygiène et Prévention": 1,
+      "Autre (à préciser) : Secrétariat Général à la Primature RDC": 1,
+      "Ministère du Commerce Extérieur": 1,
+      "Ministère des Ressources Hydrauliques et Électricité": 1
     },
     "sec1/sexe": {
-      "Féminin": 23,
-      "Masculin": 10
+      "Féminin": 41,
+      "Masculin": 19
     },
     "sec1/fonction": {
-      "Autre": 11,
+      "Autre": 22,
       "Ministre": 1,
-      "Chef de Division": 2,
-      "Chef de Bureau": 7,
+      "Chef de Division": 4,
+      "Chef de Bureau": 16,
       "Directeur(trice)": 1,
-      "Attaché·e / Agent·e": 11
+      "Attaché·e / Agent·e": 16
     },
     "sec1/annees_experience_ministere": {
-      "7 à 10 ans": 6,
-      "4 à 6 ans": 9,
-      "Plus de 15 ans": 6,
-      "Moins de 1 an": 4,
-      "1 à 3 ans": 7,
-      "11 à 15 ans": 1
+      "7 à 10 ans": 7,
+      "4 à 6 ans": 15,
+      "Plus de 15 ans": 9,
+      "Moins de 1 an": 9,
+      "1 à 3 ans": 13,
+      "11 à 15 ans": 7
     },
     "sec1/formation_genre": {
-      "Oui": 19,
-      "Non": 14
+      "Oui": 33,
+      "Non": 27
     },
     "sec2/compr_genre": {
-      "Bonne": 21,
-      "Faible": 5,
-      "Moyenne": 7
+      "Bonne": 35,
+      "Faible": 9,
+      "Moyenne": 16
     },
     "sec2/diff_sexe_genre": {
-      "Oui": 28,
-      "Non": 5
+      "Oui": 54,
+      "Non": 6
     },
     "sec2/genre_biologique": {
-      "Faux": 18,
-      "Vrai": 15
+      "Faux": 35,
+      "Vrai": 25
     },
     "sec2/politiques_genre_connaissance": {
-      "Oui": 21,
-      "Non": 12
+      "Oui": 36,
+      "Non": 24
     },
     "sec2/importance_genre_politiques_publiques": {
-      "Oui": 32,
+      "Oui": 59,
       "Non": 1
     },
     "sec3/cellule_genre": {
-      "Oui": 22,
+      "Oui": 49,
       "Non": 11
     },
     "sec3/plan_action_genre": {
-      "Non": 11,
-      "Oui": 13,
-      "Partiellement / Je ne sais pas": 9
+      "Non": 13,
+      "Oui": 29,
+      "Partiellement / Je ne sais pas": 18
     },
     "sec3/indicateurs_genre": {
-      "Non": 7,
-      "Partiellement / Je ne sais pas": 9,
-      "Oui": 17
+      "Non": 8,
+      "Partiellement / Je ne sais pas": 15,
+      "Oui": 37
     },
     "sec3/outils_guide_genre": {
-      "Non": 23,
-      "Oui": 10
+      "Non": 34,
+      "Oui": 26
     },
     "sec3/frequence_formations_genre": {
-      "Annuelle": 6,
-      "Jamais / Non organisé": 9,
-      "Mensuelle": 2,
+      "Annuelle": 12,
+      "Jamais / Non organisé": 15,
+      "Mensuelle": 9,
       "Semestrielle": 4,
-      "Trimestrielle": 4,
-      "Ad hoc / Occasionnelle": 7,
+      "Trimestrielle": 10,
+      "Ad hoc / Occasionnelle": 9,
       "_missing": 1
     },
     "sec4/importance_genre_secteur": {
-      "Oui": 30,
+      "Oui": 57,
       "Partiellement / Je ne sais pas": 2,
       "Non": 1
     },
     "sec5/gtg_connaissance": {
-      "Oui": 20,
-      "Non": 13
+      "Oui": 40,
+      "Non": 20
     }
   },
   "multi": {
     "sec4/obstacles_display": {
-      "Manque de ressources humaines qualifiées": 13,
-      "Faible engagement de la hiérarchie": 17,
+      "Manque de ressources humaines qualifiées": 17,
+      "Faible engagement de la hiérarchie": 21,
       "Absence de données désagrégées par sexe": 11,
-      "Manque de financement dédié au genre": 19,
+      "Manque de financement dédié au genre": 41,
       "Priorités sectorielles non sensibles au genre": 15,
-      "Absence de politique ou stratégie claire": 10,
-      "Manque de coordination interinstitutionnelle": 11,
+      "Absence de politique ou stratégie claire": 12,
+      "Manque de coordination interinstitutionnelle": 13,
       "Autre : Résistances socioculturelles et normes de genre persistantes.": 2
     },
     "sec4/actions_display": {
-      "Nommer et former les points focaux genre": 16,
+      "Nommer et former les points focaux genre": 25,
       "Produire des données désagrégées par sexe": 14,
-      "Renforcer les capacités du personnel": 29,
-      "Intégrer le genre dans la planification et le budget": 22,
-      "Allouer un budget spécifique au genre": 18,
-      "Créer un cadre de concertation interinstitutionnel": 17,
+      "Renforcer les capacités du personnel": 44,
+      "Intégrer le genre dans la planification et le budget": 28,
+      "Allouer un budget spécifique au genre": 22,
+      "Créer un cadre de concertation interinstitutionnel": 19,
       "Autre : Renforcer le plaidoyer et la sensibilisation des décideurs": 1,
-      "Autre : Renforcer le plaidoyer et la sensibilisation des décideurs. »": 1
+      "Autre : Renforcer le plaidoyer et la sensibilisation des décideurs. »": 1,
+      "Autre : Renforcer les capacités et allouer un budget spécifique au genre.": 1
     },
     "sec5/sgtgtg_connus_display": {
-      "Violences Basées sur le Genre (VBG)": 23,
-      "Renforcement du Pouvoir Économique et Autonomisation de la Femme (RPEAF)": 15,
-      "Égalité des Sexes et Habilitation du Statut Juridique de la Femme (ESSJF)": 13,
-      "Participation Politique de la Femme et Leadership Féminin (PPLF)": 12
+      "Violences Basées sur le Genre (VBG)": 39,
+      "Renforcement du Pouvoir Économique et Autonomisation de la Femme (RPEAF)": 20,
+      "Égalité des Sexes et Habilitation du Statut Juridique de la Femme (ESSJF)": 19,
+      "Participation Politique de la Femme et Leadership Féminin (PPLF)": 22
     }
   }
 }
