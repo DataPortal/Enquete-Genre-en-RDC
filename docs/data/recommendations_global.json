@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-02-26T08:27:32Z",
-  "n": 76,
+  "generated_at": "2026-02-26T09:27:53Z",
+  "n": 77,
   "signals": {
-    "formation_oui_pct": 59,
+    "formation_oui_pct": 58,
     "cellule_genre_oui_pct": 88,
-    "plan_action_oui_pct": 50,
-    "plan_action_np_pct": 32,
-    "indicateurs_oui_pct": 64,
-    "indicateurs_np_pct": 24,
+    "plan_action_oui_pct": 51,
+    "plan_action_np_pct": 31,
+    "indicateurs_oui_pct": 65,
+    "indicateurs_np_pct": 23,
     "outils_oui_pct": 43,
     "politiques_connues_oui_pct": 61,
     "gtg_connu_oui_pct": 66
@@ -15,31 +15,31 @@
   "top_obstacles": [
     {
       "label": "Manque de financement dédié au genre",
-      "count": 54
+      "count": 55
     },
     {
       "label": "Faible engagement de la hiérarchie",
-      "count": 25
+      "count": 26
     },
     {
       "label": "Manque de ressources humaines qualifiées",
-      "count": 21
+      "count": 22
     },
     {
       "label": "Priorités sectorielles non sensibles au genre",
-      "count": 19
+      "count": 20
     },
     {
       "label": "Absence de politique ou stratégie claire",
-      "count": 16
+      "count": 17
     },
     {
       "label": "Manque de coordination interinstitutionnelle",
-      "count": 15
+      "count": 16
     },
     {
       "label": "Absence de données désagrégées par sexe",
-      "count": 13
+      "count": 14
     },
     {
       "label": "Autre : Résistances socioculturelles et normes de genre persistantes.",
@@ -49,27 +49,27 @@
   "top_actions": [
     {
       "label": "Renforcer les capacités du personnel",
-      "count": 53
+      "count": 54
     },
     {
       "label": "Intégrer le genre dans la planification et le budget",
-      "count": 37
+      "count": 38
     },
     {
       "label": "Nommer et former les points focaux genre",
-      "count": 30
+      "count": 31
     },
     {
       "label": "Allouer un budget spécifique au genre",
-      "count": 30
+      "count": 31
     },
     {
       "label": "Créer un cadre de concertation interinstitutionnel",
-      "count": 24
+      "count": 25
     },
     {
       "label": "Produire des données désagrégées par sexe",
-      "count": 18
+      "count": 19
     },
     {
       "label": "Autre : Renforcer le plaidoyer et la sensibilisation des décideurs",
