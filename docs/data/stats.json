@@ -1,12 +1,12 @@
 {
-  "n": 81,
+  "n": 82,
   "counters": {
     "sec1/ministere_display": {
       "Autre (à préciser) : Indépendante": 1,
       "Ministère de la Pêche et de l’Élevage": 1,
       "Ministère du Développement Rural": 1,
       "Ministère de l’Intérieur, Sécurité et Affaires Coutumières": 1,
-      "Ministère du Genre, Famille et Enfant": 28,
+      "Ministère du Genre, Famille et Enfant": 29,
       "Autre (à préciser) : Croix rouge Rdc": 1,
       "Ministère du Budget": 4,
       "Ministère de l’Industrie": 1,
@@ -40,11 +40,11 @@
     },
     "sec1/sexe": {
       "Féminin": 55,
-      "Masculin": 26
+      "Masculin": 27
     },
     "sec1/fonction": {
       "Autre": 29,
-      "Attaché·e / Agent·e": 21,
+      "Attaché·e / Agent·e": 22,
       "Chef de Bureau": 18,
       "Chef de Division": 9,
       "Directeur(trice)": 4
@@ -53,52 +53,52 @@
       "4 à 6 ans": 16,
       "1 à 3 ans": 17,
       "7 à 10 ans": 13,
-      "Moins de 1 an": 11,
+      "Moins de 1 an": 12,
       "Plus de 15 ans": 16,
       "11 à 15 ans": 8
     },
     "sec1/formation_genre": {
       "Oui": 48,
-      "Non": 33
+      "Non": 34
     },
     "sec2/compr_genre": {
-      "Bonne": 50,
+      "Bonne": 51,
       "Moyenne": 22,
       "Faible": 9
     },
     "sec2/diff_sexe_genre": {
-      "Oui": 75,
+      "Oui": 76,
       "Non": 6
     },
     "sec2/genre_biologique": {
-      "Faux": 48,
+      "Faux": 49,
       "Vrai": 33
     },
     "sec2/politiques_genre_connaissance": {
-      "Oui": 50,
+      "Oui": 51,
       "Non": 31
     },
     "sec2/importance_genre_politiques_publiques": {
       "Oui": 80,
-      "Non": 1
+      "Non": 2
     },
     "sec3/cellule_genre": {
-      "Oui": 72,
+      "Oui": 73,
       "Non": 9
     },
     "sec3/plan_action_genre": {
-      "Oui": 41,
+      "Oui": 42,
       "Non": 15,
       "Partiellement / Je ne sais pas": 25
     },
     "sec3/indicateurs_genre": {
-      "Oui": 53,
+      "Oui": 54,
       "Partiellement / Je ne sais pas": 19,
       "Non": 9
     },
     "sec3/outils_guide_genre": {
       "Oui": 35,
-      "Non": 46
+      "Non": 47
     },
     "sec3/frequence_formations_genre": {
       "Annuelle": 12,
@@ -107,47 +107,49 @@
       "Mensuelle": 13,
       "Ad hoc / Occasionnelle": 17,
       "Jamais / Non organisé": 17,
-      "_missing": 1
+      "_missing": 2
     },
     "sec4/importance_genre_secteur": {
-      "Oui": 79,
+      "Oui": 80,
       "Non": 1,
       "Partiellement / Je ne sais pas": 1
     },
     "sec5/gtg_connaissance": {
-      "Oui": 55,
+      "Oui": 56,
       "Non": 26
     }
   },
   "multi": {
     "sec4/obstacles_display": {
-      "Faible engagement de la hiérarchie": 26,
-      "Manque de financement dédié au genre": 57,
-      "Manque de ressources humaines qualifiées": 24,
-      "Absence de données désagrégées par sexe": 16,
-      "Absence de politique ou stratégie claire": 18,
-      "Manque de coordination interinstitutionnelle": 18,
-      "Priorités sectorielles non sensibles au genre": 21,
+      "Faible engagement de la hiérarchie": 27,
+      "Manque de financement dédié au genre": 58,
+      "Manque de ressources humaines qualifiées": 25,
+      "Absence de données désagrégées par sexe": 17,
+      "Absence de politique ou stratégie claire": 19,
+      "Manque de coordination interinstitutionnelle": 19,
+      "Priorités sectorielles non sensibles au genre": 22,
       "Autre : Résistances socioculturelles et normes de genre persistantes.": 2,
-      "Autre : Certaines femmes ont encore des difficultés pour être et rester loyale envers une autre femme élevée en dignité. La plupart de femmes ont encore des difficultés d’accepter d’autres femmes et ainsi elles ne votent pas les femmes comme elles. Certaines femmes connaissent encore des difficultés pour saisir l’ampleur de la responsabilité qui repose sur les épaules de nos collègues femmes promues à des rôles stratégiques dans notre Pays. En lieu et place d’être prompte et enthousiastes à les aider, les soutenir et à les accompagner, certaines choisissent de les décourager, de troubler leur morale pour entraver leur travail ou encore de leur mettre des bâtons dans les roues pour freiner leurs avancées. Pourtant leurs progrès, leurs percés constituent notre fierté à nous femmes congolaises..": 1
+      "Autre : Certaines femmes ont encore des difficultés pour être et rester loyale envers une autre femme élevée en dignité. La plupart de femmes ont encore des difficultés d’accepter d’autres femmes et ainsi elles ne votent pas les femmes comme elles. Certaines femmes connaissent encore des difficultés pour saisir l’ampleur de la responsabilité qui repose sur les épaules de nos collègues femmes promues à des rôles stratégiques dans notre Pays. En lieu et place d’être prompte et enthousiastes à les aider, les soutenir et à les accompagner, certaines choisissent de les décourager, de troubler leur morale pour entraver leur travail ou encore de leur mettre des bâtons dans les roues pour freiner leurs avancées. Pourtant leurs progrès, leurs percés constituent notre fierté à nous femmes congolaises..": 1,
+      "Autre : La persistance de normes culturelles patriarcales et stereotypes sexistes, ainsi qu'une charge disproportionnée des responsabilités familliale. Le manque de ressources financières, Les inégalités sur le marché du travail, et une faible application des lois en faveur de l'égalité.": 1
     },
     "sec4/actions_display": {
-      "Renforcer les capacités du personnel": 58,
-      "Nommer et former les points focaux genre": 33,
-      "Intégrer le genre dans la planification et le budget": 40,
-      "Créer un cadre de concertation interinstitutionnel": 27,
-      "Allouer un budget spécifique au genre": 33,
-      "Produire des données désagrégées par sexe": 21,
+      "Renforcer les capacités du personnel": 59,
+      "Nommer et former les points focaux genre": 34,
+      "Intégrer le genre dans la planification et le budget": 41,
+      "Créer un cadre de concertation interinstitutionnel": 28,
+      "Allouer un budget spécifique au genre": 34,
+      "Produire des données désagrégées par sexe": 22,
       "Autre : Renforcer le plaidoyer et la sensibilisation des décideurs": 1,
       "Autre : Renforcer le plaidoyer et la sensibilisation des décideurs. »": 1,
       "Autre : Renforcer les capacités et allouer un budget spécifique au genre.": 1,
-      "Autre : Éducation de la femme en vue d’ inculquer dans la mentalité de la femme que une autre femme n’est pas sa rivale et d’inculquer la mentalité aux femmes d’être ensemble pour réfléchir sur les valeurs qui sont les nôtres. Car retenez que sans la participation des femmes le développement est impossible. Alors la femme devrait être très bien éduquée pour pouvoir bien jouer son rôle dans la société.": 1
+      "Autre : Éducation de la femme en vue d’ inculquer dans la mentalité de la femme que une autre femme n’est pas sa rivale et d’inculquer la mentalité aux femmes d’être ensemble pour réfléchir sur les valeurs qui sont les nôtres. Car retenez que sans la participation des femmes le développement est impossible. Alors la femme devrait être très bien éduquée pour pouvoir bien jouer son rôle dans la société.": 1,
+      "Autre : Budgétisation sensible au genre, Collecte de données ventilées, Plaidoyer et sensibilisation, Partenariats etc...": 1
     },
     "sec5/sgtgtg_connus_display": {
-      "Violences Basées sur le Genre (VBG)": 53,
-      "Égalité des Sexes et Habilitation du Statut Juridique de la Femme (ESSJF)": 23,
-      "Renforcement du Pouvoir Économique et Autonomisation de la Femme (RPEAF)": 23,
-      "Participation Politique de la Femme et Leadership Féminin (PPLF)": 29
+      "Violences Basées sur le Genre (VBG)": 54,
+      "Égalité des Sexes et Habilitation du Statut Juridique de la Femme (ESSJF)": 24,
+      "Renforcement du Pouvoir Économique et Autonomisation de la Femme (RPEAF)": 24,
+      "Participation Politique de la Femme et Leadership Féminin (PPLF)": 30
     }
   }
 }
