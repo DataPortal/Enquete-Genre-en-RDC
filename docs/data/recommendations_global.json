@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-02-27T10:09:10Z",
-  "n": 82,
+  "generated_at": "2026-02-27T10:58:37Z",
+  "n": 83,
   "signals": {
-    "formation_oui_pct": 59,
-    "cellule_genre_oui_pct": 89,
+    "formation_oui_pct": 58,
+    "cellule_genre_oui_pct": 88,
     "plan_action_oui_pct": 51,
     "plan_action_np_pct": 30,
-    "indicateurs_oui_pct": 66,
+    "indicateurs_oui_pct": 65,
     "indicateurs_np_pct": 23,
-    "outils_oui_pct": 43,
-    "politiques_connues_oui_pct": 62,
-    "gtg_connu_oui_pct": 68
+    "outils_oui_pct": 42,
+    "politiques_connues_oui_pct": 61,
+    "gtg_connu_oui_pct": 67
   },
   "top_obstacles": [
     {

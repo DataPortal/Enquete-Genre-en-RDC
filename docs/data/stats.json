@@ -1,5 +1,5 @@
 {
-  "n": 82,
+  "n": 83,
   "counters": {
     "sec1/ministere_display": {
       "Autre (à préciser) : Indépendante": 1,
@@ -36,69 +36,70 @@
       "Autre (à préciser) : Ministère de l'entrepreneuriat et Développement des Petites et Moyennes Entreprises": 1,
       "Autre (à préciser) : Ministère de l'Entrepreneuriat, développement des petites et moyennes entreprises": 1,
       "Ministère de l’Économie Nationale": 1,
-      "Autre (à préciser) : ASBL": 1
+      "Autre (à préciser) : ASBL": 1,
+      "Autre (à préciser) : Ministère de PMEA": 1
     },
     "sec1/sexe": {
-      "Féminin": 55,
+      "Féminin": 56,
       "Masculin": 27
     },
     "sec1/fonction": {
       "Autre": 29,
       "Attaché·e / Agent·e": 22,
-      "Chef de Bureau": 18,
+      "Chef de Bureau": 19,
       "Chef de Division": 9,
       "Directeur(trice)": 4
     },
     "sec1/annees_experience_ministere": {
       "4 à 6 ans": 16,
       "1 à 3 ans": 17,
-      "7 à 10 ans": 13,
+      "7 à 10 ans": 14,
       "Moins de 1 an": 12,
       "Plus de 15 ans": 16,
       "11 à 15 ans": 8
     },
     "sec1/formation_genre": {
       "Oui": 48,
-      "Non": 34
+      "Non": 35
     },
     "sec2/compr_genre": {
       "Bonne": 51,
-      "Moyenne": 22,
+      "Moyenne": 23,
       "Faible": 9
     },
     "sec2/diff_sexe_genre": {
-      "Oui": 76,
+      "Oui": 77,
       "Non": 6
     },
     "sec2/genre_biologique": {
-      "Faux": 49,
+      "Faux": 50,
       "Vrai": 33
     },
     "sec2/politiques_genre_connaissance": {
       "Oui": 51,
-      "Non": 31
+      "Non": 32
     },
     "sec2/importance_genre_politiques_publiques": {
-      "Oui": 80,
+      "Oui": 81,
       "Non": 2
     },
     "sec3/cellule_genre": {
       "Oui": 73,
-      "Non": 9
+      "Non": 10
     },
     "sec3/plan_action_genre": {
       "Oui": 42,
-      "Non": 15,
+      "Non": 16,
       "Partiellement / Je ne sais pas": 25
     },
     "sec3/indicateurs_genre": {
       "Oui": 54,
       "Partiellement / Je ne sais pas": 19,
-      "Non": 9
+      "Non": 10
     },
     "sec3/outils_guide_genre": {
       "Oui": 35,
-      "Non": 47
+      "Non": 48
     },
     "sec3/frequence_formations_genre": {
       "Annuelle": 12,
@@ -107,16 +108,16 @@
       "Mensuelle": 13,
       "Ad hoc / Occasionnelle": 17,
       "Jamais / Non organisé": 17,
-      "_missing": 2
+      "_missing": 3
     },
     "sec4/importance_genre_secteur": {
-      "Oui": 80,
+      "Oui": 81,
       "Non": 1,
       "Partiellement / Je ne sais pas": 1
     },
     "sec5/gtg_connaissance": {
       "Oui": 56,
-      "Non": 26
+      "Non": 27
     }
   },
   "multi": {
