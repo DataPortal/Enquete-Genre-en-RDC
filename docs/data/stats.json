@@ -1,5 +1,5 @@
 {
-  "n": 95,
+  "n": 96,
   "counters": {
     "sec1/ministere_display": {
       "Autre (à préciser) : Indépendante": 1,
@@ -43,17 +43,17 @@
       "Autre (à préciser) : Secrétariat General du Gouvernement": 1,
       "Autre (à préciser) : Secrétariat Général du Gouvernement": 1,
       "Autre (à préciser) : secretariat general du gouvernement": 1,
-      "Ministère des Affaires Sociales, Actions Humanitaires et Solidarité Nationale": 2,
+      "Ministère des Affaires Sociales, Actions Humanitaires et Solidarité Nationale": 3,
       "Ministère de l’Agriculture": 1
     },
     "sec1/sexe": {
-      "Féminin": 67,
+      "Féminin": 68,
       "Masculin": 28
     },
     "sec1/fonction": {
       "Autre": 37,
       "Attaché·e / Agent·e": 22,
-      "Chef de Bureau": 21,
+      "Chef de Bureau": 22,
       "Chef de Division": 9,
       "Directeur(trice)": 5,
       "Secrétaire Général·e": 1
@@ -64,50 +64,50 @@
       "7 à 10 ans": 17,
       "Moins de 1 an": 14,
       "Plus de 15 ans": 21,
-      "11 à 15 ans": 8
+      "11 à 15 ans": 9
     },
     "sec1/formation_genre": {
-      "Oui": 50,
+      "Oui": 51,
       "Non": 45
     },
     "sec2/compr_genre": {
       "Bonne": 54,
       "Moyenne": 32,
-      "Faible": 9
+      "Faible": 10
     },
     "sec2/diff_sexe_genre": {
-      "Oui": 89,
+      "Oui": 90,
       "Non": 6
     },
     "sec2/genre_biologique": {
-      "Faux": 59,
+      "Faux": 60,
       "Vrai": 36
     },
     "sec2/politiques_genre_connaissance": {
       "Oui": 59,
-      "Non": 36
+      "Non": 37
     },
     "sec2/importance_genre_politiques_publiques": {
-      "Oui": 91,
+      "Oui": 92,
       "Non": 4
     },
     "sec3/cellule_genre": {
-      "Oui": 84,
+      "Oui": 85,
       "Non": 11
     },
     "sec3/plan_action_genre": {
       "Oui": 43,
-      "Non": 24,
+      "Non": 25,
       "Partiellement / Je ne sais pas": 28
     },
     "sec3/indicateurs_genre": {
       "Oui": 56,
-      "Partiellement / Je ne sais pas": 29,
+      "Partiellement / Je ne sais pas": 30,
       "Non": 10
     },
     "sec3/outils_guide_genre": {
       "Oui": 36,
-      "Non": 59
+      "Non": 60
     },
     "sec3/frequence_formations_genre": {
       "Annuelle": 12,
@@ -115,38 +115,38 @@
       "Trimestrielle": 14,
       "Mensuelle": 13,
       "Ad hoc / Occasionnelle": 20,
-      "Jamais / Non organisé": 25,
+      "Jamais / Non organisé": 26,
       "_missing": 3
     },
     "sec4/importance_genre_secteur": {
-      "Oui": 92,
+      "Oui": 93,
       "Non": 1,
       "Partiellement / Je ne sais pas": 2
     },
     "sec5/gtg_connaissance": {
       "Oui": 65,
-      "Non": 30
+      "Non": 31
     }
   },
   "multi": {
     "sec4/obstacles_display": {
-      "Faible engagement de la hiérarchie": 30,
-      "Manque de financement dédié au genre": 69,
+      "Faible engagement de la hiérarchie": 31,
+      "Manque de financement dédié au genre": 70,
       "Manque de ressources humaines qualifiées": 26,
       "Absence de données désagrégées par sexe": 26,
-      "Absence de politique ou stratégie claire": 28,
-      "Manque de coordination interinstitutionnelle": 28,
-      "Priorités sectorielles non sensibles au genre": 24,
+      "Absence de politique ou stratégie claire": 29,
+      "Manque de coordination interinstitutionnelle": 29,
+      "Priorités sectorielles non sensibles au genre": 25,
       "Autre : Résistances socioculturelles et normes de genre persistantes.": 2,
       "Autre : Certaines femmes ont encore des difficultés pour être et rester loyale envers une autre femme élevée en dignité. La plupart de femmes ont encore des difficultés d’accepter d’autres femmes et ainsi elles ne votent pas les femmes comme elles. Certaines femmes connaissent encore des difficultés pour saisir l’ampleur de la responsabilité qui repose sur les épaules de nos collègues femmes promues à des rôles stratégiques dans notre Pays. En lieu et place d’être prompte et enthousiastes à les aider, les soutenir et à les accompagner, certaines choisissent de les décourager, de troubler leur morale pour entraver leur travail ou encore de leur mettre des bâtons dans les roues pour freiner leurs avancées. Pourtant leurs progrès, leurs percés constituent notre fierté à nous femmes congolaises..": 1,
       "Autre : La persistance de normes culturelles patriarcales et stereotypes sexistes, ainsi qu'une charge disproportionnée des responsabilités familliale. Le manque de ressources financières, Les inégalités sur le marché du travail, et une faible application des lois en faveur de l'égalité.": 1
     },
     "sec4/actions_display": {
-      "Renforcer les capacités du personnel": 69,
-      "Nommer et former les points focaux genre": 44,
-      "Intégrer le genre dans la planification et le budget": 53,
-      "Créer un cadre de concertation interinstitutionnel": 38,
-      "Allouer un budget spécifique au genre": 43,
+      "Renforcer les capacités du personnel": 70,
+      "Nommer et former les points focaux genre": 45,
+      "Intégrer le genre dans la planification et le budget": 54,
+      "Créer un cadre de concertation interinstitutionnel": 39,
+      "Allouer un budget spécifique au genre": 44,
       "Produire des données désagrégées par sexe": 31,
       "Autre : Renforcer le plaidoyer et la sensibilisation des décideurs": 1,
       "Autre : Renforcer le plaidoyer et la sensibilisation des décideurs. »": 1,
