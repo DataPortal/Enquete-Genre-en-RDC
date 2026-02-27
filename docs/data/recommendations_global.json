@@ -1,45 +1,45 @@
 {
-  "generated_at": "2026-02-27T11:39:42Z",
-  "n": 84,
+  "generated_at": "2026-02-27T12:01:04Z",
+  "n": 91,
   "signals": {
-    "formation_oui_pct": 58,
+    "formation_oui_pct": 54,
     "cellule_genre_oui_pct": 88,
-    "plan_action_oui_pct": 50,
-    "plan_action_np_pct": 31,
-    "indicateurs_oui_pct": 64,
-    "indicateurs_np_pct": 24,
-    "outils_oui_pct": 43,
-    "politiques_connues_oui_pct": 61,
-    "gtg_connu_oui_pct": 68
+    "plan_action_oui_pct": 46,
+    "plan_action_np_pct": 29,
+    "indicateurs_oui_pct": 59,
+    "indicateurs_np_pct": 30,
+    "outils_oui_pct": 40,
+    "politiques_connues_oui_pct": 63,
+    "gtg_connu_oui_pct": 70
   },
   "top_obstacles": [
     {
       "label": "Manque de financement dédié au genre",
-      "count": 59
+      "count": 66
     },
     {
       "label": "Faible engagement de la hiérarchie",
       "count": 27
     },
     {
+      "label": "Absence de politique ou stratégie claire",
+      "count": 26
+    },
+    {
+      "label": "Manque de coordination interinstitutionnelle",
+      "count": 26
+    },
+    {
       "label": "Manque de ressources humaines qualifiées",
       "count": 25
     },
     {
+      "label": "Absence de données désagrégées par sexe",
+      "count": 24
+    },
+    {
       "label": "Priorités sectorielles non sensibles au genre",
       "count": 22
-    },
-    {
-      "label": "Absence de politique ou stratégie claire",
-      "count": 19
-    },
-    {
-      "label": "Manque de coordination interinstitutionnelle",
-      "count": 19
-    },
-    {
-      "label": "Absence de données désagrégées par sexe",
-      "count": 17
     },
     {
       "label": "Autre : Résistances socioculturelles et normes de genre persistantes.",
@@ -49,27 +49,27 @@
   "top_actions": [
     {
       "label": "Renforcer les capacités du personnel",
-      "count": 59
+      "count": 66
     },
     {
       "label": "Intégrer le genre dans la planification et le budget",
-      "count": 42
+      "count": 49
     },
     {
       "label": "Nommer et former les points focaux genre",
-      "count": 34
+      "count": 41
     },
     {
       "label": "Allouer un budget spécifique au genre",
-      "count": 34
+      "count": 41
     },
     {
       "label": "Créer un cadre de concertation interinstitutionnel",
-      "count": 28
+      "count": 35
     },
     {
       "label": "Produire des données désagrégées par sexe",
-      "count": 22
+      "count": 29
     },
     {
       "label": "Autre : Renforcer le plaidoyer et la sensibilisation des décideurs",
@@ -84,7 +84,7 @@
     "Convertir les éléments partiels liés au plan/stratégie genre en document formalisé (objectifs, activités, coûts, échéancier, responsables) et instaurer une revue trimestrielle.",
     "Déployer un kit d’outils opérationnels (checklist mainstreaming, fiche projet, grille d’analyse, modèle rapport) accessible à tous (drive/portail) et accompagné d’un guide court.",
     "Mettre en œuvre un plan de renforcement des capacités (sessions courtes + coaching sur cas réels), différencié selon les profils (SG, directions, divisions, agents).",
-    "Traiter en priorité les obstacles les plus fréquents identifiés par les répondants (Top : Manque de financement dédié au genre, Faible engagement de la hiérarchie, Manque de ressources humaines qualifiées, Priorités sectorielles non sensibles au genre, Absence de politique ou stratégie claire) avec un plan de mitigation (responsables, échéances, indicateurs).",
+    "Traiter en priorité les obstacles les plus fréquents identifiés par les répondants (Top : Manque de financement dédié au genre, Faible engagement de la hiérarchie, Absence de politique ou stratégie claire, Manque de coordination interinstitutionnelle, Manque de ressources humaines qualifiées) avec un plan de mitigation (responsables, échéances, indicateurs).",
     "Opérationnaliser les actions prioritaires déclarées (Top : Renforcer les capacités du personnel, Intégrer le genre dans la planification et le budget, Nommer et former les points focaux genre, Allouer un budget spécifique au genre, Créer un cadre de concertation interinstitutionnel) en plan d’actions inter-ministériel (qui fait quoi, quand, avec quels moyens)."
   ]
 }
