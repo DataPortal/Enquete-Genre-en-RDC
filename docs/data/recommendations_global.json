@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-02-28T22:19:59Z",
-  "n": 97,
+  "generated_at": "2026-02-28T22:44:14Z",
+  "n": 98,
   "signals": {
-    "formation_oui_pct": 54,
-    "cellule_genre_oui_pct": 89,
+    "formation_oui_pct": 53,
+    "cellule_genre_oui_pct": 88,
     "plan_action_oui_pct": 44,
-    "plan_action_np_pct": 29,
+    "plan_action_np_pct": 30,
     "indicateurs_oui_pct": 58,
     "indicateurs_np_pct": 31,
     "outils_oui_pct": 37,
-    "politiques_connues_oui_pct": 61,
+    "politiques_connues_oui_pct": 60,
     "gtg_connu_oui_pct": 68
   },
   "top_obstacles": [
@@ -19,7 +19,7 @@
     },
     {
       "label": "Faible engagement de la hiérarchie",
-      "count": 32
+      "count": 33
     },
     {
       "label": "Absence de politique ou stratégie claire",
@@ -53,7 +53,7 @@
     },
     {
       "label": "Intégrer le genre dans la planification et le budget",
-      "count": 55
+      "count": 56
     },
     {
       "label": "Nommer et former les points focaux genre",
