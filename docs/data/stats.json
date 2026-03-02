@@ -1,5 +1,5 @@
 {
-  "n": 102,
+  "n": 106,
   "counters": {
     "sec1/ministere_display": {
       "Autre (à préciser) : Indépendante": 1,
@@ -26,7 +26,7 @@
       "Ministère de la Santé Publique, Hygiène et Prévention": 2,
       "Autre (à préciser) : Secrétariat Général à la Primature RDC": 1,
       "Ministère du Commerce Extérieur": 1,
-      "Ministère des Ressources Hydrauliques et Électricité": 2,
+      "Ministère des Ressources Hydrauliques et Électricité": 4,
       "Ministère des Mines": 1,
       "Ministère de l’Éducation Nationale et Nouvelle Citoyenneté (EPST)": 2,
       "Ministère de la Fonction Publique, Modernisation de l’Administration et Innovation du Service Public": 1,
@@ -39,23 +39,24 @@
       "Autre (à préciser) : ASBL": 1,
       "Autre (à préciser) : Ministère de PMEA": 1,
       "Autre (à préciser) : Formation professionnelle": 1,
-      "Autre (à préciser) : Secrétariat général du gouvernement": 6,
+      "Autre (à préciser) : Secrétariat général du gouvernement": 7,
       "Autre (à préciser) : Secrétariat General du Gouvernement": 1,
       "Autre (à préciser) : Secrétariat Général du Gouvernement": 1,
       "Autre (à préciser) : secretariat general du gouvernement": 1,
       "Ministère des Affaires Sociales, Actions Humanitaires et Solidarité Nationale": 4,
       "Ministère de l’Agriculture": 1,
       "Ministère du Travail, Emploi et Prévoyance Sociale": 1,
-      "Autre (à préciser) : Cour constitutionnelle": 1
+      "Autre (à préciser) : Cour constitutionnelle": 1,
+      "Autre (à préciser) : Division provincial de l'économie/ Kin _Ouestuest": 1
     },
     "sec1/sexe": {
-      "Féminin": 73,
-      "Masculin": 29
+      "Féminin": 75,
+      "Masculin": 31
     },
     "sec1/fonction": {
       "Autre": 40,
-      "Attaché·e / Agent·e": 24,
-      "Chef de Bureau": 22,
+      "Attaché·e / Agent·e": 26,
+      "Chef de Bureau": 24,
       "Chef de Division": 9,
       "Directeur(trice)": 6,
       "Secrétaire Général·e": 1
@@ -65,103 +66,104 @@
       "1 à 3 ans": 21,
       "7 à 10 ans": 19,
       "Moins de 1 an": 14,
-      "Plus de 15 ans": 23,
+      "Plus de 15 ans": 27,
       "11 à 15 ans": 9
     },
     "sec1/formation_genre": {
-      "Oui": 52,
-      "Non": 50
+      "Oui": 53,
+      "Non": 53
     },
     "sec2/compr_genre": {
       "Bonne": 55,
-      "Moyenne": 37,
-      "Faible": 10
+      "Moyenne": 38,
+      "Faible": 13
     },
     "sec2/diff_sexe_genre": {
-      "Oui": 96,
+      "Oui": 100,
       "Non": 6
     },
     "sec2/genre_biologique": {
-      "Faux": 66,
-      "Vrai": 36
+      "Faux": 68,
+      "Vrai": 38
     },
     "sec2/politiques_genre_connaissance": {
-      "Oui": 61,
-      "Non": 41
+      "Oui": 62,
+      "Non": 44
     },
     "sec2/importance_genre_politiques_publiques": {
-      "Oui": 98,
+      "Oui": 102,
       "Non": 4
     },
     "sec3/cellule_genre": {
-      "Oui": 89,
+      "Oui": 93,
       "Non": 13
     },
     "sec3/plan_action_genre": {
-      "Oui": 43,
-      "Non": 27,
+      "Oui": 45,
+      "Non": 29,
       "Partiellement / Je ne sais pas": 32
     },
     "sec3/indicateurs_genre": {
-      "Oui": 58,
+      "Oui": 60,
       "Partiellement / Je ne sais pas": 32,
-      "Non": 12
+      "Non": 14
     },
     "sec3/outils_guide_genre": {
-      "Oui": 36,
-      "Non": 66
+      "Oui": 37,
+      "Non": 69
     },
     "sec3/frequence_formations_genre": {
       "Annuelle": 12,
       "Semestrielle": 8,
-      "Trimestrielle": 14,
+      "Trimestrielle": 16,
       "Mensuelle": 14,
       "Ad hoc / Occasionnelle": 21,
-      "Jamais / Non organisé": 30,
+      "Jamais / Non organisé": 32,
       "_missing": 3
     },
     "sec4/importance_genre_secteur": {
-      "Oui": 99,
+      "Oui": 102,
       "Non": 1,
-      "Partiellement / Je ne sais pas": 2
+      "Partiellement / Je ne sais pas": 3
     },
     "sec5/gtg_connaissance": {
-      "Oui": 69,
-      "Non": 33
+      "Oui": 70,
+      "Non": 36
     }
   },
   "multi": {
     "sec4/obstacles_display": {
-      "Faible engagement de la hiérarchie": 35,
-      "Manque de financement dédié au genre": 74,
-      "Manque de ressources humaines qualifiées": 27,
-      "Absence de données désagrégées par sexe": 28,
-      "Absence de politique ou stratégie claire": 32,
+      "Faible engagement de la hiérarchie": 36,
+      "Manque de financement dédié au genre": 76,
+      "Manque de ressources humaines qualifiées": 28,
+      "Absence de données désagrégées par sexe": 29,
+      "Absence de politique ou stratégie claire": 34,
       "Manque de coordination interinstitutionnelle": 29,
-      "Priorités sectorielles non sensibles au genre": 27,
+      "Priorités sectorielles non sensibles au genre": 28,
       "Autre : Résistances socioculturelles et normes de genre persistantes.": 2,
       "Autre : Certaines femmes ont encore des difficultés pour être et rester loyale envers une autre femme élevée en dignité. La plupart de femmes ont encore des difficultés d’accepter d’autres femmes et ainsi elles ne votent pas les femmes comme elles. Certaines femmes connaissent encore des difficultés pour saisir l’ampleur de la responsabilité qui repose sur les épaules de nos collègues femmes promues à des rôles stratégiques dans notre Pays. En lieu et place d’être prompte et enthousiastes à les aider, les soutenir et à les accompagner, certaines choisissent de les décourager, de troubler leur morale pour entraver leur travail ou encore de leur mettre des bâtons dans les roues pour freiner leurs avancées. Pourtant leurs progrès, leurs percés constituent notre fierté à nous femmes congolaises..": 1,
       "Autre : La persistance de normes culturelles patriarcales et stereotypes sexistes, ainsi qu'une charge disproportionnée des responsabilités familliale. Le manque de ressources financières, Les inégalités sur le marché du travail, et une faible application des lois en faveur de l'égalité.": 1
     },
     "sec4/actions_display": {
-      "Renforcer les capacités du personnel": 73,
-      "Nommer et former les points focaux genre": 47,
-      "Intégrer le genre dans la planification et le budget": 58,
+      "Renforcer les capacités du personnel": 75,
+      "Nommer et former les points focaux genre": 50,
+      "Intégrer le genre dans la planification et le budget": 59,
       "Créer un cadre de concertation interinstitutionnel": 42,
-      "Allouer un budget spécifique au genre": 47,
-      "Produire des données désagrégées par sexe": 33,
+      "Allouer un budget spécifique au genre": 48,
+      "Produire des données désagrégées par sexe": 34,
       "Autre : Renforcer le plaidoyer et la sensibilisation des décideurs": 1,
       "Autre : Renforcer le plaidoyer et la sensibilisation des décideurs. »": 1,
       "Autre : Renforcer les capacités et allouer un budget spécifique au genre.": 1,
       "Autre : Éducation de la femme en vue d’ inculquer dans la mentalité de la femme que une autre femme n’est pas sa rivale et d’inculquer la mentalité aux femmes d’être ensemble pour réfléchir sur les valeurs qui sont les nôtres. Car retenez que sans la participation des femmes le développement est impossible. Alors la femme devrait être très bien éduquée pour pouvoir bien jouer son rôle dans la société.": 1,
       "Autre : Budgétisation sensible au genre, Collecte de données ventilées, Plaidoyer et sensibilisation, Partenariats etc...": 1,
-      "Autre : Renforcement des priorisant le genre": 1
+      "Autre : Renforcement des priorisant le genre": 1,
+      "Autre : Prise en charge des points focaux au formum organisé par le ministère du genre à l'international comme à la nationale.": 1
     },
     "sec5/sgtgtg_connus_display": {
-      "Violences Basées sur le Genre (VBG)": 69,
+      "Violences Basées sur le Genre (VBG)": 70,
       "Égalité des Sexes et Habilitation du Statut Juridique de la Femme (ESSJF)": 27,
       "Renforcement du Pouvoir Économique et Autonomisation de la Femme (RPEAF)": 35,
-      "Participation Politique de la Femme et Leadership Féminin (PPLF)": 33
+      "Participation Politique de la Femme et Leadership Féminin (PPLF)": 35
     }
   }
 }
