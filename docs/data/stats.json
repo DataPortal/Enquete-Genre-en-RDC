@@ -1,5 +1,5 @@
 {
-  "n": 101,
+  "n": 102,
   "counters": {
     "sec1/ministere_display": {
       "Autre (à préciser) : Indépendante": 1,
@@ -39,7 +39,7 @@
       "Autre (à préciser) : ASBL": 1,
       "Autre (à préciser) : Ministère de PMEA": 1,
       "Autre (à préciser) : Formation professionnelle": 1,
-      "Autre (à préciser) : Secrétariat général du gouvernement": 5,
+      "Autre (à préciser) : Secrétariat général du gouvernement": 6,
       "Autre (à préciser) : Secrétariat General du Gouvernement": 1,
       "Autre (à préciser) : Secrétariat Général du Gouvernement": 1,
       "Autre (à préciser) : secretariat general du gouvernement": 1,
@@ -49,11 +49,11 @@
       "Autre (à préciser) : Cour constitutionnelle": 1
     },
     "sec1/sexe": {
-      "Féminin": 72,
+      "Féminin": 73,
       "Masculin": 29
     },
     "sec1/fonction": {
-      "Autre": 39,
+      "Autre": 40,
       "Attaché·e / Agent·e": 24,
       "Chef de Bureau": 22,
       "Chef de Division": 9,
@@ -62,7 +62,7 @@
     },
     "sec1/annees_experience_ministere": {
       "4 à 6 ans": 16,
-      "1 à 3 ans": 20,
+      "1 à 3 ans": 21,
       "7 à 10 ans": 19,
       "Moins de 1 an": 14,
       "Plus de 15 ans": 23,
@@ -70,46 +70,46 @@
     },
     "sec1/formation_genre": {
       "Oui": 52,
-      "Non": 49
+      "Non": 50
     },
     "sec2/compr_genre": {
       "Bonne": 55,
-      "Moyenne": 36,
+      "Moyenne": 37,
       "Faible": 10
     },
     "sec2/diff_sexe_genre": {
-      "Oui": 95,
+      "Oui": 96,
       "Non": 6
     },
     "sec2/genre_biologique": {
-      "Faux": 65,
+      "Faux": 66,
       "Vrai": 36
     },
     "sec2/politiques_genre_connaissance": {
       "Oui": 61,
-      "Non": 40
+      "Non": 41
     },
     "sec2/importance_genre_politiques_publiques": {
-      "Oui": 97,
+      "Oui": 98,
       "Non": 4
     },
     "sec3/cellule_genre": {
-      "Oui": 88,
+      "Oui": 89,
       "Non": 13
     },
     "sec3/plan_action_genre": {
       "Oui": 43,
-      "Non": 26,
+      "Non": 27,
       "Partiellement / Je ne sais pas": 32
     },
     "sec3/indicateurs_genre": {
       "Oui": 58,
       "Partiellement / Je ne sais pas": 32,
-      "Non": 11
+      "Non": 12
     },
     "sec3/outils_guide_genre": {
       "Oui": 36,
-      "Non": 65
+      "Non": 66
     },
     "sec3/frequence_formations_genre": {
       "Annuelle": 12,
@@ -117,25 +117,25 @@
       "Trimestrielle": 14,
       "Mensuelle": 14,
       "Ad hoc / Occasionnelle": 21,
-      "Jamais / Non organisé": 29,
+      "Jamais / Non organisé": 30,
       "_missing": 3
     },
     "sec4/importance_genre_secteur": {
-      "Oui": 98,
+      "Oui": 99,
       "Non": 1,
       "Partiellement / Je ne sais pas": 2
     },
     "sec5/gtg_connaissance": {
       "Oui": 69,
-      "Non": 32
+      "Non": 33
     }
   },
   "multi": {
     "sec4/obstacles_display": {
       "Faible engagement de la hiérarchie": 35,
-      "Manque de financement dédié au genre": 73,
+      "Manque de financement dédié au genre": 74,
       "Manque de ressources humaines qualifiées": 27,
-      "Absence de données désagrégées par sexe": 27,
+      "Absence de données désagrégées par sexe": 28,
       "Absence de politique ou stratégie claire": 32,
       "Manque de coordination interinstitutionnelle": 29,
       "Priorités sectorielles non sensibles au genre": 27,
@@ -154,7 +154,8 @@
       "Autre : Renforcer le plaidoyer et la sensibilisation des décideurs. »": 1,
       "Autre : Renforcer les capacités et allouer un budget spécifique au genre.": 1,
       "Autre : Éducation de la femme en vue d’ inculquer dans la mentalité de la femme que une autre femme n’est pas sa rivale et d’inculquer la mentalité aux femmes d’être ensemble pour réfléchir sur les valeurs qui sont les nôtres. Car retenez que sans la participation des femmes le développement est impossible. Alors la femme devrait être très bien éduquée pour pouvoir bien jouer son rôle dans la société.": 1,
-      "Autre : Budgétisation sensible au genre, Collecte de données ventilées, Plaidoyer et sensibilisation, Partenariats etc...": 1
+      "Autre : Budgétisation sensible au genre, Collecte de données ventilées, Plaidoyer et sensibilisation, Partenariats etc...": 1,
+      "Autre : Renforcement des priorisant le genre": 1
     },
     "sec5/sgtgtg_connus_display": {
       "Violences Basées sur le Genre (VBG)": 69,
