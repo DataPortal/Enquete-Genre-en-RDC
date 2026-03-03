@@ -1,5 +1,5 @@
 {
-  "n": 114,
+  "n": 115,
   "counters": {
     "sec1/ministere_display": {
       "Autre (à préciser) : Indépendante": 1,
@@ -47,15 +47,16 @@
       "Ministère de l’Agriculture": 1,
       "Ministère du Travail, Emploi et Prévoyance Sociale": 1,
       "Autre (à préciser) : Cour constitutionnelle": 1,
-      "Autre (à préciser) : Division provincial de l'économie/ Kin _Ouestuest": 1
+      "Autre (à préciser) : Division provincial de l'économie/ Kin _Ouestuest": 1,
+      "Autre (à préciser) : Secrétariat général de la recherche scientifique et innovations": 1
     },
     "sec1/sexe": {
-      "Féminin": 80,
+      "Féminin": 81,
       "Masculin": 34
     },
     "sec1/fonction": {
       "Autre": 41,
-      "Attaché·e / Agent·e": 31,
+      "Attaché·e / Agent·e": 32,
       "Chef de Bureau": 26,
       "Chef de Division": 9,
       "Directeur(trice)": 6,
@@ -64,77 +65,77 @@
     "sec1/annees_experience_ministere": {
       "4 à 6 ans": 20,
       "1 à 3 ans": 23,
-      "7 à 10 ans": 19,
+      "7 à 10 ans": 20,
       "Moins de 1 an": 15,
       "Plus de 15 ans": 27,
       "11 à 15 ans": 10
     },
     "sec1/formation_genre": {
       "Oui": 57,
-      "Non": 57
+      "Non": 58
     },
     "sec2/compr_genre": {
       "Bonne": 58,
-      "Moyenne": 43,
+      "Moyenne": 44,
       "Faible": 13
     },
     "sec2/diff_sexe_genre": {
-      "Oui": 108,
+      "Oui": 109,
       "Non": 6
     },
     "sec2/genre_biologique": {
       "Faux": 73,
-      "Vrai": 41
+      "Vrai": 42
     },
     "sec2/politiques_genre_connaissance": {
       "Oui": 64,
-      "Non": 50
+      "Non": 51
     },
     "sec2/importance_genre_politiques_publiques": {
-      "Oui": 110,
+      "Oui": 111,
       "Non": 4
     },
     "sec3/cellule_genre": {
-      "Oui": 96,
+      "Oui": 97,
       "Non": 18
     },
     "sec3/plan_action_genre": {
       "Oui": 46,
       "Non": 29,
-      "Partiellement / Je ne sais pas": 39
+      "Partiellement / Je ne sais pas": 40
     },
     "sec3/indicateurs_genre": {
       "Oui": 61,
-      "Partiellement / Je ne sais pas": 39,
+      "Partiellement / Je ne sais pas": 40,
       "Non": 14
     },
     "sec3/outils_guide_genre": {
       "Oui": 38,
-      "Non": 76
+      "Non": 77
     },
     "sec3/frequence_formations_genre": {
       "Annuelle": 13,
       "Semestrielle": 8,
       "Trimestrielle": 16,
       "Mensuelle": 14,
-      "Ad hoc / Occasionnelle": 26,
+      "Ad hoc / Occasionnelle": 27,
       "Jamais / Non organisé": 34,
       "_missing": 3
     },
     "sec4/importance_genre_secteur": {
-      "Oui": 110,
+      "Oui": 111,
       "Non": 1,
       "Partiellement / Je ne sais pas": 3
     },
     "sec5/gtg_connaissance": {
       "Oui": 71,
-      "Non": 43
+      "Non": 44
     }
   },
   "multi": {
     "sec4/obstacles_display": {
       "Faible engagement de la hiérarchie": 40,
-      "Manque de financement dédié au genre": 80,
+      "Manque de financement dédié au genre": 81,
       "Manque de ressources humaines qualifiées": 30,
       "Absence de données désagrégées par sexe": 31,
       "Absence de politique ou stratégie claire": 37,
@@ -149,7 +150,7 @@
       "Nommer et former les points focaux genre": 54,
       "Intégrer le genre dans la planification et le budget": 62,
       "Créer un cadre de concertation interinstitutionnel": 46,
-      "Allouer un budget spécifique au genre": 52,
+      "Allouer un budget spécifique au genre": 53,
       "Produire des données désagrégées par sexe": 38,
       "Autre : Renforcer le plaidoyer et la sensibilisation des décideurs": 1,
       "Autre : Renforcer le plaidoyer et la sensibilisation des décideurs. »": 1,
