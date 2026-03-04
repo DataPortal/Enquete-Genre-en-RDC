@@ -1,21 +1,21 @@
 {
-  "generated_at": "2026-03-04T13:37:27Z",
-  "n": 129,
+  "generated_at": "2026-03-04T14:25:24Z",
+  "n": 131,
   "signals": {
-    "formation_oui_pct": 49,
+    "formation_oui_pct": 50,
     "cellule_genre_oui_pct": 82,
-    "plan_action_oui_pct": 38,
-    "plan_action_np_pct": 36,
-    "indicateurs_oui_pct": 50,
-    "indicateurs_np_pct": 36,
-    "outils_oui_pct": 33,
-    "politiques_connues_oui_pct": 52,
-    "gtg_connu_oui_pct": 60
+    "plan_action_oui_pct": 39,
+    "plan_action_np_pct": 35,
+    "indicateurs_oui_pct": 51,
+    "indicateurs_np_pct": 35,
+    "outils_oui_pct": 34,
+    "politiques_connues_oui_pct": 53,
+    "gtg_connu_oui_pct": 61
   },
   "top_obstacles": [
     {
       "label": "Manque de financement dédié au genre",
-      "count": 91
+      "count": 93
     },
     {
       "label": "Absence de politique ou stratégie claire",
@@ -23,11 +23,11 @@
     },
     {
       "label": "Faible engagement de la hiérarchie",
-      "count": 41
+      "count": 43
     },
     {
       "label": "Manque de coordination interinstitutionnelle",
-      "count": 38
+      "count": 40
     },
     {
       "label": "Priorités sectorielles non sensibles au genre",
@@ -49,15 +49,15 @@
   "top_actions": [
     {
       "label": "Renforcer les capacités du personnel",
-      "count": 89
+      "count": 91
     },
     {
       "label": "Intégrer le genre dans la planification et le budget",
-      "count": 72
+      "count": 74
     },
     {
       "label": "Allouer un budget spécifique au genre",
-      "count": 61
+      "count": 63
     },
     {
       "label": "Nommer et former les points focaux genre",
@@ -65,11 +65,11 @@
     },
     {
       "label": "Créer un cadre de concertation interinstitutionnel",
-      "count": 54
+      "count": 55
     },
     {
       "label": "Produire des données désagrégées par sexe",
-      "count": 41
+      "count": 42
     },
     {
       "label": "Autre : Renforcer le plaidoyer et la sensibilisation des décideurs",
