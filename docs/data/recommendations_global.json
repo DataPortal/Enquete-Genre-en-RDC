@@ -1,25 +1,25 @@
 {
-  "generated_at": "2026-03-04T12:25:37Z",
-  "n": 127,
+  "generated_at": "2026-03-04T13:37:27Z",
+  "n": 129,
   "signals": {
-    "formation_oui_pct": 48,
+    "formation_oui_pct": 49,
     "cellule_genre_oui_pct": 82,
     "plan_action_oui_pct": 38,
-    "plan_action_np_pct": 35,
+    "plan_action_np_pct": 36,
     "indicateurs_oui_pct": 50,
     "indicateurs_np_pct": 36,
-    "outils_oui_pct": 32,
-    "politiques_connues_oui_pct": 51,
+    "outils_oui_pct": 33,
+    "politiques_connues_oui_pct": 52,
     "gtg_connu_oui_pct": 60
   },
   "top_obstacles": [
     {
       "label": "Manque de financement dédié au genre",
-      "count": 89
+      "count": 91
     },
     {
       "label": "Absence de politique ou stratégie claire",
-      "count": 43
+      "count": 44
     },
     {
       "label": "Faible engagement de la hiérarchie",
@@ -34,12 +34,12 @@
       "count": 36
     },
     {
-      "label": "Absence de données désagrégées par sexe",
+      "label": "Manque de ressources humaines qualifiées",
       "count": 33
     },
     {
-      "label": "Manque de ressources humaines qualifiées",
-      "count": 32
+      "label": "Absence de données désagrégées par sexe",
+      "count": 33
     },
     {
       "label": "Autre : Résistances socioculturelles et normes de genre persistantes.",
@@ -49,15 +49,15 @@
   "top_actions": [
     {
       "label": "Renforcer les capacités du personnel",
-      "count": 87
+      "count": 89
     },
     {
       "label": "Intégrer le genre dans la planification et le budget",
-      "count": 70
+      "count": 72
     },
     {
       "label": "Allouer un budget spécifique au genre",
-      "count": 59
+      "count": 61
     },
     {
       "label": "Nommer et former les points focaux genre",
