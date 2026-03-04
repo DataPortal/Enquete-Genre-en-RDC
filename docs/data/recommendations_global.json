@@ -1,29 +1,29 @@
 {
-  "generated_at": "2026-03-04T20:36:14Z",
-  "n": 136,
+  "generated_at": "2026-03-04T21:02:14Z",
+  "n": 137,
   "signals": {
     "formation_oui_pct": 50,
     "cellule_genre_oui_pct": 83,
     "plan_action_oui_pct": 39,
     "plan_action_np_pct": 35,
-    "indicateurs_oui_pct": 51,
+    "indicateurs_oui_pct": 52,
     "indicateurs_np_pct": 35,
     "outils_oui_pct": 35,
     "politiques_connues_oui_pct": 53,
-    "gtg_connu_oui_pct": 62
+    "gtg_connu_oui_pct": 63
   },
   "top_obstacles": [
     {
       "label": "Manque de financement dédié au genre",
-      "count": 98
+      "count": 99
     },
     {
       "label": "Absence de politique ou stratégie claire",
-      "count": 47
+      "count": 48
     },
     {
       "label": "Faible engagement de la hiérarchie",
-      "count": 46
+      "count": 47
     },
     {
       "label": "Manque de coordination interinstitutionnelle",
@@ -31,7 +31,7 @@
     },
     {
       "label": "Priorités sectorielles non sensibles au genre",
-      "count": 38
+      "count": 39
     },
     {
       "label": "Manque de ressources humaines qualifiées",
@@ -39,7 +39,7 @@
     },
     {
       "label": "Absence de données désagrégées par sexe",
-      "count": 35
+      "count": 36
     },
     {
       "label": "Autre : Résistances socioculturelles et normes de genre persistantes.",
@@ -53,23 +53,23 @@
     },
     {
       "label": "Intégrer le genre dans la planification et le budget",
-      "count": 79
+      "count": 80
     },
     {
       "label": "Allouer un budget spécifique au genre",
-      "count": 66
+      "count": 67
     },
     {
       "label": "Nommer et former les points focaux genre",
-      "count": 60
+      "count": 61
     },
     {
       "label": "Créer un cadre de concertation interinstitutionnel",
-      "count": 58
+      "count": 59
     },
     {
       "label": "Produire des données désagrégées par sexe",
-      "count": 44
+      "count": 45
     },
     {
       "label": "Autre : Renforcer le plaidoyer et la sensibilisation des décideurs",
