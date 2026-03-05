@@ -1,44 +1,44 @@
 {
-  "generated_at": "2026-03-05T14:33:14Z",
-  "n": 146,
+  "generated_at": "2026-03-05T15:31:13Z",
+  "n": 150,
   "signals": {
     "formation_oui_pct": 49,
-    "cellule_genre_oui_pct": 82,
-    "plan_action_oui_pct": 38,
+    "cellule_genre_oui_pct": 81,
+    "plan_action_oui_pct": 39,
     "plan_action_np_pct": 35,
     "indicateurs_oui_pct": 51,
     "indicateurs_np_pct": 35,
     "outils_oui_pct": 35,
     "politiques_connues_oui_pct": 51,
-    "gtg_connu_oui_pct": 61
+    "gtg_connu_oui_pct": 60
   },
   "top_obstacles": [
     {
       "label": "Manque de financement dédié au genre",
-      "count": 104
+      "count": 107
     },
     {
       "label": "Faible engagement de la hiérarchie",
-      "count": 52
+      "count": 55
     },
     {
       "label": "Absence de politique ou stratégie claire",
-      "count": 52
+      "count": 55
     },
     {
       "label": "Manque de coordination interinstitutionnelle",
-      "count": 44
+      "count": 45
     },
     {
       "label": "Priorités sectorielles non sensibles au genre",
-      "count": 40
-    },
-    {
-      "label": "Manque de ressources humaines qualifiées",
-      "count": 37
+      "count": 42
     },
     {
       "label": "Absence de données désagrégées par sexe",
+      "count": 38
+    },
+    {
+      "label": "Manque de ressources humaines qualifiées",
       "count": 37
     },
     {
@@ -49,27 +49,27 @@
   "top_actions": [
     {
       "label": "Renforcer les capacités du personnel",
-      "count": 99
+      "count": 102
     },
     {
       "label": "Intégrer le genre dans la planification et le budget",
-      "count": 83
+      "count": 86
     },
     {
       "label": "Allouer un budget spécifique au genre",
-      "count": 70
+      "count": 71
     },
     {
       "label": "Nommer et former les points focaux genre",
-      "count": 66
+      "count": 68
     },
     {
       "label": "Créer un cadre de concertation interinstitutionnel",
-      "count": 63
+      "count": 64
     },
     {
       "label": "Produire des données désagrégées par sexe",
-      "count": 47
+      "count": 49
     },
     {
       "label": "Autre : Renforcer le plaidoyer et la sensibilisation des décideurs",
