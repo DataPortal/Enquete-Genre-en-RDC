@@ -1,5 +1,5 @@
 {
-  "n": 140,
+  "n": 141,
   "counters": {
     "sec1/ministere_display": {
       "Autre (à préciser) : Indépendante": 1,
@@ -8,7 +8,7 @@
       "Ministère de l’Intérieur, Sécurité et Affaires Coutumières": 1,
       "Ministère du Genre, Famille et Enfant": 30,
       "Autre (à préciser) : Croix rouge Rdc": 1,
-      "Ministère du Budget": 32,
+      "Ministère du Budget": 33,
       "Ministère de l’Industrie": 1,
       "Autre (à préciser) : chancellerie des ordres nationaux": 1,
       "Autre (à préciser) : Min provinciale du genre/Kinshasa": 1,
@@ -54,19 +54,19 @@
       "Autre (à préciser) : Ministère de la Formation Professionnelle": 1
     },
     "sec1/sexe": {
-      "Féminin": 89,
+      "Féminin": 90,
       "Masculin": 51
     },
     "sec1/fonction": {
       "Autre": 43,
-      "Attaché·e / Agent·e": 47,
+      "Attaché·e / Agent·e": 48,
       "Chef de Bureau": 30,
       "Chef de Division": 9,
       "Directeur(trice)": 10,
       "Secrétaire Général·e": 1
     },
     "sec1/annees_experience_ministere": {
-      "4 à 6 ans": 23,
+      "4 à 6 ans": 24,
       "1 à 3 ans": 25,
       "7 à 10 ans": 31,
       "Moins de 1 an": 15,
@@ -75,46 +75,46 @@
     },
     "sec1/formation_genre": {
       "Oui": 72,
-      "Non": 68
+      "Non": 69
     },
     "sec2/compr_genre": {
       "Bonne": 73,
-      "Moyenne": 54,
+      "Moyenne": 55,
       "Faible": 13
     },
     "sec2/diff_sexe_genre": {
       "Oui": 132,
-      "Non": 8
+      "Non": 9
     },
     "sec2/genre_biologique": {
       "Faux": 84,
-      "Vrai": 56
+      "Vrai": 57
     },
     "sec2/politiques_genre_connaissance": {
       "Oui": 75,
-      "Non": 65
+      "Non": 66
     },
     "sec2/importance_genre_politiques_publiques": {
-      "Oui": 136,
+      "Oui": 137,
       "Non": 4
     },
     "sec3/cellule_genre": {
       "Oui": 117,
-      "Non": 23
+      "Non": 24
     },
     "sec3/plan_action_genre": {
       "Oui": 56,
-      "Non": 36,
+      "Non": 37,
       "Partiellement / Je ne sais pas": 48
     },
     "sec3/indicateurs_genre": {
       "Oui": 74,
       "Partiellement / Je ne sais pas": 48,
-      "Non": 18
+      "Non": 19
     },
     "sec3/outils_guide_genre": {
       "Oui": 51,
-      "Non": 89
+      "Non": 90
     },
     "sec3/frequence_formations_genre": {
       "Annuelle": 16,
@@ -122,23 +122,23 @@
       "Trimestrielle": 18,
       "Mensuelle": 15,
       "Ad hoc / Occasionnelle": 40,
-      "Jamais / Non organisé": 38,
+      "Jamais / Non organisé": 39,
       "_missing": 3
     },
     "sec4/importance_genre_secteur": {
-      "Oui": 136,
+      "Oui": 137,
       "Non": 1,
       "Partiellement / Je ne sais pas": 3
     },
     "sec5/gtg_connaissance": {
       "Oui": 89,
-      "Non": 51
+      "Non": 52
     }
   },
   "multi": {
     "sec4/obstacles_display": {
       "Faible engagement de la hiérarchie": 48,
-      "Manque de financement dédié au genre": 102,
+      "Manque de financement dédié au genre": 103,
       "Manque de ressources humaines qualifiées": 37,
       "Absence de données désagrégées par sexe": 36,
       "Absence de politique ou stratégie claire": 49,
@@ -153,7 +153,7 @@
       "Nommer et former les points focaux genre": 63,
       "Intégrer le genre dans la planification et le budget": 81,
       "Créer un cadre de concertation interinstitutionnel": 61,
-      "Allouer un budget spécifique au genre": 69,
+      "Allouer un budget spécifique au genre": 70,
       "Produire des données désagrégées par sexe": 46,
       "Autre : Renforcer le plaidoyer et la sensibilisation des décideurs": 1,
       "Autre : Renforcer le plaidoyer et la sensibilisation des décideurs. »": 1,
@@ -167,7 +167,7 @@
       "Violences Basées sur le Genre (VBG)": 98,
       "Égalité des Sexes et Habilitation du Statut Juridique de la Femme (ESSJF)": 36,
       "Renforcement du Pouvoir Économique et Autonomisation de la Femme (RPEAF)": 43,
-      "Participation Politique de la Femme et Leadership Féminin (PPLF)": 49
+      "Participation Politique de la Femme et Leadership Féminin (PPLF)": 50
     }
   }
 }
