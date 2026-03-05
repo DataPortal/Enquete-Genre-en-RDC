@@ -1,5 +1,5 @@
 {
-  "n": 150,
+  "n": 152,
   "counters": {
     "sec1/ministere_display": {
       "Autre (à préciser) : Indépendante": 1,
@@ -8,7 +8,7 @@
       "Ministère de l’Intérieur, Sécurité et Affaires Coutumières": 1,
       "Ministère du Genre, Famille et Enfant": 30,
       "Autre (à préciser) : Croix rouge Rdc": 1,
-      "Ministère du Budget": 42,
+      "Ministère du Budget": 44,
       "Ministère de l’Industrie": 1,
       "Autre (à préciser) : chancellerie des ordres nationaux": 1,
       "Autre (à préciser) : Min provinciale du genre/Kinshasa": 1,
@@ -54,70 +54,70 @@
       "Autre (à préciser) : Ministère de la Formation Professionnelle": 1
     },
     "sec1/sexe": {
-      "Féminin": 97,
+      "Féminin": 99,
       "Masculin": 53
     },
     "sec1/fonction": {
       "Autre": 43,
-      "Attaché·e / Agent·e": 54,
+      "Attaché·e / Agent·e": 56,
       "Chef de Bureau": 33,
       "Chef de Division": 9,
       "Directeur(trice)": 10,
       "Secrétaire Général·e": 1
     },
     "sec1/annees_experience_ministere": {
-      "4 à 6 ans": 28,
+      "4 à 6 ans": 29,
       "1 à 3 ans": 26,
       "7 à 10 ans": 33,
       "Moins de 1 an": 15,
       "Plus de 15 ans": 35,
-      "11 à 15 ans": 13
+      "11 à 15 ans": 14
     },
     "sec1/formation_genre": {
-      "Oui": 73,
-      "Non": 77
+      "Oui": 74,
+      "Non": 78
     },
     "sec2/compr_genre": {
-      "Bonne": 76,
+      "Bonne": 77,
       "Moyenne": 58,
-      "Faible": 16
+      "Faible": 17
     },
     "sec2/diff_sexe_genre": {
-      "Oui": 138,
+      "Oui": 140,
       "Non": 12
     },
     "sec2/genre_biologique": {
       "Faux": 90,
-      "Vrai": 60
+      "Vrai": 62
     },
     "sec2/politiques_genre_connaissance": {
       "Oui": 76,
-      "Non": 74
+      "Non": 76
     },
     "sec2/importance_genre_politiques_publiques": {
-      "Oui": 146,
+      "Oui": 148,
       "Non": 4
     },
     "sec3/cellule_genre": {
-      "Oui": 122,
-      "Non": 28
+      "Oui": 123,
+      "Non": 29
     },
     "sec3/plan_action_genre": {
-      "Oui": 58,
-      "Non": 39,
+      "Oui": 59,
+      "Non": 40,
       "Partiellement / Je ne sais pas": 53
     },
     "sec3/indicateurs_genre": {
-      "Oui": 77,
+      "Oui": 78,
       "Partiellement / Je ne sais pas": 53,
-      "Non": 20
+      "Non": 21
     },
     "sec3/outils_guide_genre": {
-      "Oui": 52,
-      "Non": 98
+      "Oui": 53,
+      "Non": 99
     },
     "sec3/frequence_formations_genre": {
-      "Annuelle": 17,
+      "Annuelle": 19,
       "Semestrielle": 10,
       "Trimestrielle": 18,
       "Mensuelle": 15,
@@ -126,21 +126,21 @@
       "_missing": 3
     },
     "sec4/importance_genre_secteur": {
-      "Oui": 145,
+      "Oui": 147,
       "Non": 1,
       "Partiellement / Je ne sais pas": 4
     },
     "sec5/gtg_connaissance": {
-      "Oui": 90,
-      "Non": 60
+      "Oui": 91,
+      "Non": 61
     }
   },
   "multi": {
     "sec4/obstacles_display": {
-      "Faible engagement de la hiérarchie": 55,
-      "Manque de financement dédié au genre": 107,
-      "Manque de ressources humaines qualifiées": 37,
-      "Absence de données désagrégées par sexe": 38,
+      "Faible engagement de la hiérarchie": 56,
+      "Manque de financement dédié au genre": 108,
+      "Manque de ressources humaines qualifiées": 39,
+      "Absence de données désagrégées par sexe": 39,
       "Absence de politique ou stratégie claire": 55,
       "Manque de coordination interinstitutionnelle": 45,
       "Priorités sectorielles non sensibles au genre": 42,
@@ -149,12 +149,12 @@
       "Autre : La persistance de normes culturelles patriarcales et stereotypes sexistes, ainsi qu'une charge disproportionnée des responsabilités familliale. Le manque de ressources financières, Les inégalités sur le marché du travail, et une faible application des lois en faveur de l'égalité.": 1
     },
     "sec4/actions_display": {
-      "Renforcer les capacités du personnel": 102,
-      "Nommer et former les points focaux genre": 68,
-      "Intégrer le genre dans la planification et le budget": 86,
+      "Renforcer les capacités du personnel": 104,
+      "Nommer et former les points focaux genre": 69,
+      "Intégrer le genre dans la planification et le budget": 87,
       "Créer un cadre de concertation interinstitutionnel": 64,
-      "Allouer un budget spécifique au genre": 71,
-      "Produire des données désagrégées par sexe": 49,
+      "Allouer un budget spécifique au genre": 72,
+      "Produire des données désagrégées par sexe": 50,
       "Autre : Renforcer le plaidoyer et la sensibilisation des décideurs": 1,
       "Autre : Renforcer le plaidoyer et la sensibilisation des décideurs. »": 1,
       "Autre : Renforcer les capacités et allouer un budget spécifique au genre.": 1,
@@ -164,10 +164,10 @@
       "Autre : Prise en charge des points focaux au formum organisé par le ministère du genre à l'international comme à la nationale.": 1
     },
     "sec5/sgtgtg_connus_display": {
-      "Violences Basées sur le Genre (VBG)": 100,
-      "Égalité des Sexes et Habilitation du Statut Juridique de la Femme (ESSJF)": 36,
-      "Renforcement du Pouvoir Économique et Autonomisation de la Femme (RPEAF)": 45,
-      "Participation Politique de la Femme et Leadership Féminin (PPLF)": 54
+      "Violences Basées sur le Genre (VBG)": 102,
+      "Égalité des Sexes et Habilitation du Statut Juridique de la Femme (ESSJF)": 37,
+      "Renforcement du Pouvoir Économique et Autonomisation de la Femme (RPEAF)": 46,
+      "Participation Politique de la Femme et Leadership Féminin (PPLF)": 55
     }
   }
 }
