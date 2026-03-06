@@ -1,5 +1,5 @@
 {
-  "n": 152,
+  "n": 153,
   "counters": {
     "sec1/ministere_display": {
       "Autre (à préciser) : Indépendante": 1,
@@ -8,7 +8,7 @@
       "Ministère de l’Intérieur, Sécurité et Affaires Coutumières": 1,
       "Ministère du Genre, Famille et Enfant": 30,
       "Autre (à préciser) : Croix rouge Rdc": 1,
-      "Ministère du Budget": 44,
+      "Ministère du Budget": 45,
       "Ministère de l’Industrie": 1,
       "Autre (à préciser) : chancellerie des ordres nationaux": 1,
       "Autre (à préciser) : Min provinciale du genre/Kinshasa": 1,
@@ -54,12 +54,12 @@
       "Autre (à préciser) : Ministère de la Formation Professionnelle": 1
     },
     "sec1/sexe": {
-      "Féminin": 99,
+      "Féminin": 100,
       "Masculin": 53
     },
     "sec1/fonction": {
       "Autre": 43,
-      "Attaché·e / Agent·e": 56,
+      "Attaché·e / Agent·e": 57,
       "Chef de Bureau": 33,
       "Chef de Division": 9,
       "Directeur(trice)": 10,
@@ -71,54 +71,54 @@
       "7 à 10 ans": 33,
       "Moins de 1 an": 15,
       "Plus de 15 ans": 35,
-      "11 à 15 ans": 14
+      "11 à 15 ans": 15
     },
     "sec1/formation_genre": {
-      "Oui": 74,
+      "Oui": 75,
       "Non": 78
     },
     "sec2/compr_genre": {
-      "Bonne": 77,
+      "Bonne": 78,
       "Moyenne": 58,
       "Faible": 17
     },
     "sec2/diff_sexe_genre": {
-      "Oui": 140,
+      "Oui": 141,
       "Non": 12
     },
     "sec2/genre_biologique": {
-      "Faux": 90,
+      "Faux": 91,
       "Vrai": 62
     },
     "sec2/politiques_genre_connaissance": {
-      "Oui": 76,
+      "Oui": 77,
       "Non": 76
     },
     "sec2/importance_genre_politiques_publiques": {
-      "Oui": 148,
+      "Oui": 149,
       "Non": 4
     },
     "sec3/cellule_genre": {
-      "Oui": 123,
+      "Oui": 124,
       "Non": 29
     },
     "sec3/plan_action_genre": {
-      "Oui": 59,
+      "Oui": 60,
       "Non": 40,
       "Partiellement / Je ne sais pas": 53
     },
     "sec3/indicateurs_genre": {
-      "Oui": 78,
+      "Oui": 79,
       "Partiellement / Je ne sais pas": 53,
       "Non": 21
     },
     "sec3/outils_guide_genre": {
-      "Oui": 53,
+      "Oui": 54,
       "Non": 99
     },
     "sec3/frequence_formations_genre": {
       "Annuelle": 19,
-      "Semestrielle": 10,
+      "Semestrielle": 11,
       "Trimestrielle": 18,
       "Mensuelle": 15,
       "Ad hoc / Occasionnelle": 44,
@@ -126,19 +126,19 @@
       "_missing": 3
     },
     "sec4/importance_genre_secteur": {
-      "Oui": 147,
+      "Oui": 148,
       "Non": 1,
       "Partiellement / Je ne sais pas": 4
     },
     "sec5/gtg_connaissance": {
-      "Oui": 91,
+      "Oui": 92,
       "Non": 61
     }
   },
   "multi": {
     "sec4/obstacles_display": {
       "Faible engagement de la hiérarchie": 56,
-      "Manque de financement dédié au genre": 108,
+      "Manque de financement dédié au genre": 109,
       "Manque de ressources humaines qualifiées": 39,
       "Absence de données désagrégées par sexe": 39,
       "Absence de politique ou stratégie claire": 55,
@@ -153,7 +153,7 @@
       "Nommer et former les points focaux genre": 69,
       "Intégrer le genre dans la planification et le budget": 87,
       "Créer un cadre de concertation interinstitutionnel": 64,
-      "Allouer un budget spécifique au genre": 72,
+      "Allouer un budget spécifique au genre": 73,
       "Produire des données désagrégées par sexe": 50,
       "Autre : Renforcer le plaidoyer et la sensibilisation des décideurs": 1,
       "Autre : Renforcer le plaidoyer et la sensibilisation des décideurs. »": 1,
@@ -164,7 +164,7 @@
       "Autre : Prise en charge des points focaux au formum organisé par le ministère du genre à l'international comme à la nationale.": 1
     },
     "sec5/sgtgtg_connus_display": {
-      "Violences Basées sur le Genre (VBG)": 102,
+      "Violences Basées sur le Genre (VBG)": 103,
       "Égalité des Sexes et Habilitation du Statut Juridique de la Femme (ESSJF)": 37,
       "Renforcement du Pouvoir Économique et Autonomisation de la Femme (RPEAF)": 46,
       "Participation Politique de la Femme et Leadership Féminin (PPLF)": 55

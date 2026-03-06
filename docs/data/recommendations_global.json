@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-03-06T05:55:09Z",
-  "n": 152,
+  "generated_at": "2026-03-06T06:53:38Z",
+  "n": 153,
   "signals": {
     "formation_oui_pct": 49,
     "cellule_genre_oui_pct": 81,
     "plan_action_oui_pct": 39,
     "plan_action_np_pct": 35,
-    "indicateurs_oui_pct": 51,
+    "indicateurs_oui_pct": 52,
     "indicateurs_np_pct": 35,
     "outils_oui_pct": 35,
     "politiques_connues_oui_pct": 50,
@@ -15,7 +15,7 @@
   "top_obstacles": [
     {
       "label": "Manque de financement dédié au genre",
-      "count": 108
+      "count": 109
     },
     {
       "label": "Faible engagement de la hiérarchie",
@@ -57,7 +57,7 @@
     },
     {
       "label": "Allouer un budget spécifique au genre",
-      "count": 72
+      "count": 73
     },
     {
       "label": "Nommer et former les points focaux genre",
