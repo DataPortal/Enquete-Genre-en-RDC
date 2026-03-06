@@ -1,5 +1,5 @@
 {
-  "n": 153,
+  "n": 155,
   "counters": {
     "sec1/ministere_display": {
       "Autre (à préciser) : Indépendante": 1,
@@ -8,7 +8,7 @@
       "Ministère de l’Intérieur, Sécurité et Affaires Coutumières": 1,
       "Ministère du Genre, Famille et Enfant": 30,
       "Autre (à préciser) : Croix rouge Rdc": 1,
-      "Ministère du Budget": 45,
+      "Ministère du Budget": 47,
       "Ministère de l’Industrie": 1,
       "Autre (à préciser) : chancellerie des ordres nationaux": 1,
       "Autre (à préciser) : Min provinciale du genre/Kinshasa": 1,
@@ -54,12 +54,12 @@
       "Autre (à préciser) : Ministère de la Formation Professionnelle": 1
     },
     "sec1/sexe": {
-      "Féminin": 100,
+      "Féminin": 102,
       "Masculin": 53
     },
     "sec1/fonction": {
       "Autre": 43,
-      "Attaché·e / Agent·e": 57,
+      "Attaché·e / Agent·e": 59,
       "Chef de Bureau": 33,
       "Chef de Division": 9,
       "Directeur(trice)": 10,
@@ -67,7 +67,7 @@
     },
     "sec1/annees_experience_ministere": {
       "4 à 6 ans": 29,
-      "1 à 3 ans": 26,
+      "1 à 3 ans": 28,
       "7 à 10 ans": 33,
       "Moins de 1 an": 15,
       "Plus de 15 ans": 35,
@@ -75,46 +75,46 @@
     },
     "sec1/formation_genre": {
       "Oui": 75,
-      "Non": 78
+      "Non": 80
     },
     "sec2/compr_genre": {
       "Bonne": 78,
       "Moyenne": 58,
-      "Faible": 17
+      "Faible": 19
     },
     "sec2/diff_sexe_genre": {
-      "Oui": 141,
-      "Non": 12
+      "Oui": 142,
+      "Non": 13
     },
     "sec2/genre_biologique": {
       "Faux": 91,
-      "Vrai": 62
+      "Vrai": 64
     },
     "sec2/politiques_genre_connaissance": {
       "Oui": 77,
-      "Non": 76
+      "Non": 78
     },
     "sec2/importance_genre_politiques_publiques": {
-      "Oui": 149,
+      "Oui": 151,
       "Non": 4
     },
     "sec3/cellule_genre": {
       "Oui": 124,
-      "Non": 29
+      "Non": 31
     },
     "sec3/plan_action_genre": {
       "Oui": 60,
       "Non": 40,
-      "Partiellement / Je ne sais pas": 53
+      "Partiellement / Je ne sais pas": 55
     },
     "sec3/indicateurs_genre": {
       "Oui": 79,
-      "Partiellement / Je ne sais pas": 53,
+      "Partiellement / Je ne sais pas": 55,
       "Non": 21
     },
     "sec3/outils_guide_genre": {
       "Oui": 54,
-      "Non": 99
+      "Non": 101
     },
     "sec3/frequence_formations_genre": {
       "Annuelle": 19,
@@ -122,39 +122,39 @@
       "Trimestrielle": 18,
       "Mensuelle": 15,
       "Ad hoc / Occasionnelle": 44,
-      "Jamais / Non organisé": 43,
+      "Jamais / Non organisé": 45,
       "_missing": 3
     },
     "sec4/importance_genre_secteur": {
-      "Oui": 148,
+      "Oui": 150,
       "Non": 1,
       "Partiellement / Je ne sais pas": 4
     },
     "sec5/gtg_connaissance": {
       "Oui": 92,
-      "Non": 61
+      "Non": 63
     }
   },
   "multi": {
     "sec4/obstacles_display": {
-      "Faible engagement de la hiérarchie": 56,
-      "Manque de financement dédié au genre": 109,
-      "Manque de ressources humaines qualifiées": 39,
-      "Absence de données désagrégées par sexe": 39,
-      "Absence de politique ou stratégie claire": 55,
-      "Manque de coordination interinstitutionnelle": 45,
-      "Priorités sectorielles non sensibles au genre": 42,
+      "Faible engagement de la hiérarchie": 58,
+      "Manque de financement dédié au genre": 111,
+      "Manque de ressources humaines qualifiées": 41,
+      "Absence de données désagrégées par sexe": 41,
+      "Absence de politique ou stratégie claire": 57,
+      "Manque de coordination interinstitutionnelle": 47,
+      "Priorités sectorielles non sensibles au genre": 44,
       "Autre : Résistances socioculturelles et normes de genre persistantes.": 2,
       "Autre : Certaines femmes ont encore des difficultés pour être et rester loyale envers une autre femme élevée en dignité. La plupart de femmes ont encore des difficultés d’accepter d’autres femmes et ainsi elles ne votent pas les femmes comme elles. Certaines femmes connaissent encore des difficultés pour saisir l’ampleur de la responsabilité qui repose sur les épaules de nos collègues femmes promues à des rôles stratégiques dans notre Pays. En lieu et place d’être prompte et enthousiastes à les aider, les soutenir et à les accompagner, certaines choisissent de les décourager, de troubler leur morale pour entraver leur travail ou encore de leur mettre des bâtons dans les roues pour freiner leurs avancées. Pourtant leurs progrès, leurs percés constituent notre fierté à nous femmes congolaises..": 1,
       "Autre : La persistance de normes culturelles patriarcales et stereotypes sexistes, ainsi qu'une charge disproportionnée des responsabilités familliale. Le manque de ressources financières, Les inégalités sur le marché du travail, et une faible application des lois en faveur de l'égalité.": 1
     },
     "sec4/actions_display": {
-      "Renforcer les capacités du personnel": 104,
-      "Nommer et former les points focaux genre": 69,
-      "Intégrer le genre dans la planification et le budget": 87,
-      "Créer un cadre de concertation interinstitutionnel": 64,
-      "Allouer un budget spécifique au genre": 73,
-      "Produire des données désagrégées par sexe": 50,
+      "Renforcer les capacités du personnel": 106,
+      "Nommer et former les points focaux genre": 71,
+      "Intégrer le genre dans la planification et le budget": 89,
+      "Créer un cadre de concertation interinstitutionnel": 66,
+      "Allouer un budget spécifique au genre": 75,
+      "Produire des données désagrégées par sexe": 52,
       "Autre : Renforcer le plaidoyer et la sensibilisation des décideurs": 1,
       "Autre : Renforcer le plaidoyer et la sensibilisation des décideurs. »": 1,
       "Autre : Renforcer les capacités et allouer un budget spécifique au genre.": 1,
@@ -167,7 +167,7 @@
       "Violences Basées sur le Genre (VBG)": 103,
       "Égalité des Sexes et Habilitation du Statut Juridique de la Femme (ESSJF)": 37,
       "Renforcement du Pouvoir Économique et Autonomisation de la Femme (RPEAF)": 46,
-      "Participation Politique de la Femme et Leadership Féminin (PPLF)": 55
+      "Participation Politique de la Femme et Leadership Féminin (PPLF)": 57
     }
   }
 }
