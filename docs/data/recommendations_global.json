@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-03-10T08:57:46Z",
-  "n": 157,
+  "generated_at": "2026-03-10T09:55:34Z",
+  "n": 158,
   "signals": {
     "formation_oui_pct": 49,
     "cellule_genre_oui_pct": 80,
     "plan_action_oui_pct": 39,
-    "plan_action_np_pct": 36,
+    "plan_action_np_pct": 35,
     "indicateurs_oui_pct": 51,
     "indicateurs_np_pct": 36,
     "outils_oui_pct": 35,
@@ -31,7 +31,7 @@
     },
     {
       "label": "Priorités sectorielles non sensibles au genre",
-      "count": 44
+      "count": 45
     },
     {
       "label": "Manque de ressources humaines qualifiées",
@@ -49,7 +49,7 @@
   "top_actions": [
     {
       "label": "Renforcer les capacités du personnel",
-      "count": 107
+      "count": 108
     },
     {
       "label": "Intégrer le genre dans la planification et le budget",
