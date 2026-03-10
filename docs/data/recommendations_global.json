@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-03-10T11:52:31Z",
-  "n": 159,
+  "generated_at": "2026-03-10T12:51:00Z",
+  "n": 160,
   "signals": {
     "formation_oui_pct": 48,
     "cellule_genre_oui_pct": 79,
     "plan_action_oui_pct": 38,
-    "plan_action_np_pct": 35,
+    "plan_action_np_pct": 36,
     "indicateurs_oui_pct": 50,
-    "indicateurs_np_pct": 36,
-    "outils_oui_pct": 35,
-    "politiques_connues_oui_pct": 50,
+    "indicateurs_np_pct": 37,
+    "outils_oui_pct": 34,
+    "politiques_connues_oui_pct": 49,
     "gtg_connu_oui_pct": 58
   },
   "top_obstacles": [
@@ -35,7 +35,7 @@
     },
     {
       "label": "Manque de ressources humaines qualifiées",
-      "count": 42
+      "count": 43
     },
     {
       "label": "Absence de données désagrégées par sexe",
@@ -49,7 +49,7 @@
   "top_actions": [
     {
       "label": "Renforcer les capacités du personnel",
-      "count": 108
+      "count": 109
     },
     {
       "label": "Intégrer le genre dans la planification et le budget",
@@ -61,7 +61,7 @@
     },
     {
       "label": "Nommer et former les points focaux genre",
-      "count": 72
+      "count": 73
     },
     {
       "label": "Créer un cadre de concertation interinstitutionnel",
