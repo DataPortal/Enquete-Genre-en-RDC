@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-03-10T09:55:34Z",
-  "n": 158,
+  "generated_at": "2026-03-10T10:44:01Z",
+  "n": 159,
   "signals": {
-    "formation_oui_pct": 49,
-    "cellule_genre_oui_pct": 80,
-    "plan_action_oui_pct": 39,
+    "formation_oui_pct": 48,
+    "cellule_genre_oui_pct": 79,
+    "plan_action_oui_pct": 38,
     "plan_action_np_pct": 35,
-    "indicateurs_oui_pct": 51,
+    "indicateurs_oui_pct": 50,
     "indicateurs_np_pct": 36,
     "outils_oui_pct": 35,
     "politiques_connues_oui_pct": 50,
-    "gtg_connu_oui_pct": 59
+    "gtg_connu_oui_pct": 58
   },
   "top_obstacles": [
     {
@@ -31,7 +31,7 @@
     },
     {
       "label": "Priorités sectorielles non sensibles au genre",
-      "count": 45
+      "count": 46
     },
     {
       "label": "Manque de ressources humaines qualifiées",
@@ -53,7 +53,7 @@
     },
     {
       "label": "Intégrer le genre dans la planification et le budget",
-      "count": 90
+      "count": 91
     },
     {
       "label": "Allouer un budget spécifique au genre",
