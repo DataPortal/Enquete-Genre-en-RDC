@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-03-22T15:45:00Z",
-  "n": 164,
+  "generated_at": "2026-03-22T16:00:44Z",
+  "n": 165,
   "signals": {
     "formation_oui_pct": 47,
-    "cellule_genre_oui_pct": 79,
+    "cellule_genre_oui_pct": 78,
     "plan_action_oui_pct": 38,
     "plan_action_np_pct": 35,
     "indicateurs_oui_pct": 50,
-    "indicateurs_np_pct": 37,
+    "indicateurs_np_pct": 36,
     "outils_oui_pct": 34,
     "politiques_connues_oui_pct": 50,
     "gtg_connu_oui_pct": 57
@@ -15,7 +15,7 @@
   "top_obstacles": [
     {
       "label": "Manque de financement dédié au genre",
-      "count": 115
+      "count": 116
     },
     {
       "label": "Faible engagement de la hiérarchie",
@@ -23,7 +23,7 @@
     },
     {
       "label": "Absence de politique ou stratégie claire",
-      "count": 59
+      "count": 60
     },
     {
       "label": "Manque de coordination interinstitutionnelle",
@@ -49,7 +49,7 @@
   "top_actions": [
     {
       "label": "Renforcer les capacités du personnel",
-      "count": 112
+      "count": 113
     },
     {
       "label": "Intégrer le genre dans la planification et le budget",
