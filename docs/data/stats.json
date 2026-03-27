@@ -1,5 +1,5 @@
 {
-  "n": 168,
+  "n": 169,
   "counters": {
     "sec1/ministere_display": {
       "Autre (à préciser) : Indépendante": 1,
@@ -8,7 +8,7 @@
       "Ministère de l’Intérieur, Sécurité et Affaires Coutumières": 1,
       "Ministère du Genre, Famille et Enfant": 30,
       "Autre (à préciser) : Croix rouge Rdc": 1,
-      "Ministère du Budget": 56,
+      "Ministère du Budget": 57,
       "Ministère de l’Industrie": 1,
       "Autre (à préciser) : chancellerie des ordres nationaux": 1,
       "Autre (à préciser) : Min provinciale du genre/Kinshasa": 1,
@@ -55,12 +55,12 @@
     },
     "sec1/sexe": {
       "Féminin": 109,
-      "Masculin": 59
+      "Masculin": 60
     },
     "sec1/fonction": {
       "Autre": 43,
       "Attaché·e / Agent·e": 65,
-      "Chef de Bureau": 36,
+      "Chef de Bureau": 37,
       "Chef de Division": 12,
       "Directeur(trice)": 11,
       "Secrétaire Général·e": 1
@@ -70,51 +70,51 @@
       "1 à 3 ans": 29,
       "7 à 10 ans": 36,
       "Moins de 1 an": 16,
-      "Plus de 15 ans": 40,
+      "Plus de 15 ans": 41,
       "11 à 15 ans": 17
     },
     "sec1/formation_genre": {
-      "Oui": 77,
+      "Oui": 78,
       "Non": 91
     },
     "sec2/compr_genre": {
       "Bonne": 84,
-      "Moyenne": 65,
+      "Moyenne": 66,
       "Faible": 19
     },
     "sec2/diff_sexe_genre": {
-      "Oui": 153,
+      "Oui": 154,
       "Non": 15
     },
     "sec2/genre_biologique": {
       "Faux": 101,
-      "Vrai": 67
+      "Vrai": 68
     },
     "sec2/politiques_genre_connaissance": {
       "Oui": 82,
-      "Non": 86
+      "Non": 87
     },
     "sec2/importance_genre_politiques_publiques": {
-      "Oui": 162,
+      "Oui": 163,
       "Non": 6
     },
     "sec3/cellule_genre": {
       "Oui": 129,
-      "Non": 39
+      "Non": 40
     },
     "sec3/plan_action_genre": {
       "Oui": 63,
-      "Non": 45,
+      "Non": 46,
       "Partiellement / Je ne sais pas": 60
     },
     "sec3/indicateurs_genre": {
       "Oui": 83,
       "Partiellement / Je ne sais pas": 62,
-      "Non": 23
+      "Non": 24
     },
     "sec3/outils_guide_genre": {
       "Oui": 56,
-      "Non": 112
+      "Non": 113
     },
     "sec3/frequence_formations_genre": {
       "Annuelle": 22,
@@ -122,23 +122,23 @@
       "Trimestrielle": 19,
       "Mensuelle": 16,
       "Ad hoc / Occasionnelle": 46,
-      "Jamais / Non organisé": 47,
+      "Jamais / Non organisé": 48,
       "_missing": 4
     },
     "sec4/importance_genre_secteur": {
-      "Oui": 160,
+      "Oui": 161,
       "Non": 3,
       "Partiellement / Je ne sais pas": 5
     },
     "sec5/gtg_connaissance": {
       "Oui": 94,
-      "Non": 74
+      "Non": 75
     }
   },
   "multi": {
     "sec4/obstacles_display": {
       "Faible engagement de la hiérarchie": 60,
-      "Manque de financement dédié au genre": 118,
+      "Manque de financement dédié au genre": 119,
       "Manque de ressources humaines qualifiées": 44,
       "Absence de données désagrégées par sexe": 43,
       "Absence de politique ou stratégie claire": 60,
@@ -149,7 +149,7 @@
       "Autre : La persistance de normes culturelles patriarcales et stereotypes sexistes, ainsi qu'une charge disproportionnée des responsabilités familliale. Le manque de ressources financières, Les inégalités sur le marché du travail, et une faible application des lois en faveur de l'égalité.": 1
     },
     "sec4/actions_display": {
-      "Renforcer les capacités du personnel": 114,
+      "Renforcer les capacités du personnel": 115,
       "Nommer et former les points focaux genre": 77,
       "Intégrer le genre dans la planification et le budget": 92,
       "Créer un cadre de concertation interinstitutionnel": 68,
@@ -164,7 +164,7 @@
       "Autre : Prise en charge des points focaux au formum organisé par le ministère du genre à l'international comme à la nationale.": 1
     },
     "sec5/sgtgtg_connus_display": {
-      "Violences Basées sur le Genre (VBG)": 108,
+      "Violences Basées sur le Genre (VBG)": 109,
       "Égalité des Sexes et Habilitation du Statut Juridique de la Femme (ESSJF)": 44,
       "Renforcement du Pouvoir Économique et Autonomisation de la Femme (RPEAF)": 50,
       "Participation Politique de la Femme et Leadership Féminin (PPLF)": 60
