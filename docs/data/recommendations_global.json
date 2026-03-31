@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-03-31T08:36:28Z",
-  "n": 169,
+  "generated_at": "2026-03-31T09:44:12Z",
+  "n": 170,
   "signals": {
     "formation_oui_pct": 46,
     "cellule_genre_oui_pct": 76,
@@ -9,7 +9,7 @@
     "indicateurs_oui_pct": 49,
     "indicateurs_np_pct": 37,
     "outils_oui_pct": 33,
-    "politiques_connues_oui_pct": 49,
+    "politiques_connues_oui_pct": 48,
     "gtg_connu_oui_pct": 56
   },
   "top_obstacles": [
@@ -18,11 +18,11 @@
       "count": 119
     },
     {
-      "label": "Faible engagement de la hiérarchie",
-      "count": 60
+      "label": "Absence de politique ou stratégie claire",
+      "count": 61
     },
     {
-      "label": "Absence de politique ou stratégie claire",
+      "label": "Faible engagement de la hiérarchie",
       "count": 60
     },
     {
@@ -49,11 +49,11 @@
   "top_actions": [
     {
       "label": "Renforcer les capacités du personnel",
-      "count": 115
+      "count": 116
     },
     {
       "label": "Intégrer le genre dans la planification et le budget",
-      "count": 92
+      "count": 93
     },
     {
       "label": "Allouer un budget spécifique au genre",
@@ -87,7 +87,7 @@
     "Mettre en œuvre un plan de renforcement des capacités (sessions courtes + coaching sur cas réels), différencié selon les profils (SG, directions, divisions, agents).",
     "Renforcer l’appropriation des politiques genre (CEDAW, Beijing, Rés. 1325, cadres nationaux) via fiches synthèse, sessions d’appropriation et intégration dans les processus internes.",
     "Accroître la visibilité et la participation au Groupe Thématique du Genre (GTG) et aux sous-groupes via onboarding, calendrier partagé et points de contact par ministère.",
-    "Traiter en priorité les obstacles les plus fréquents identifiés par les répondants (Top : Manque de financement dédié au genre, Faible engagement de la hiérarchie, Absence de politique ou stratégie claire, Manque de coordination interinstitutionnelle, Priorités sectorielles non sensibles au genre) avec un plan de mitigation (responsables, échéances, indicateurs).",
+    "Traiter en priorité les obstacles les plus fréquents identifiés par les répondants (Top : Manque de financement dédié au genre, Absence de politique ou stratégie claire, Faible engagement de la hiérarchie, Manque de coordination interinstitutionnelle, Priorités sectorielles non sensibles au genre) avec un plan de mitigation (responsables, échéances, indicateurs).",
     "Opérationnaliser les actions prioritaires déclarées (Top : Renforcer les capacités du personnel, Intégrer le genre dans la planification et le budget, Allouer un budget spécifique au genre, Nommer et former les points focaux genre, Créer un cadre de concertation interinstitutionnel) en plan d’actions inter-ministériel (qui fait quoi, quand, avec quels moyens)."
   ]
 }
