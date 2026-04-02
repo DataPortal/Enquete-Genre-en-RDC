@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-04-02T12:35:41Z",
-  "n": 173,
+  "generated_at": "2026-04-02T14:06:39Z",
+  "n": 174,
   "signals": {
     "formation_oui_pct": 46,
     "cellule_genre_oui_pct": 75,
@@ -15,11 +15,11 @@
   "top_obstacles": [
     {
       "label": "Manque de financement dédié au genre",
-      "count": 120
+      "count": 121
     },
     {
       "label": "Absence de politique ou stratégie claire",
-      "count": 63
+      "count": 64
     },
     {
       "label": "Faible engagement de la hiérarchie",
@@ -27,7 +27,7 @@
     },
     {
       "label": "Manque de coordination interinstitutionnelle",
-      "count": 50
+      "count": 51
     },
     {
       "label": "Priorités sectorielles non sensibles au genre",
@@ -35,7 +35,7 @@
     },
     {
       "label": "Manque de ressources humaines qualifiées",
-      "count": 44
+      "count": 45
     },
     {
       "label": "Absence de données désagrégées par sexe",
@@ -49,15 +49,15 @@
   "top_actions": [
     {
       "label": "Renforcer les capacités du personnel",
-      "count": 116
+      "count": 117
     },
     {
       "label": "Intégrer le genre dans la planification et le budget",
-      "count": 94
+      "count": 95
     },
     {
       "label": "Allouer un budget spécifique au genre",
-      "count": 81
+      "count": 82
     },
     {
       "label": "Nommer et former les points focaux genre",
